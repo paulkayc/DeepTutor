@@ -26,7 +26,6 @@ const isPlaceholder = (t: string) => t.trim().startsWith("[");
         <Media src={story.image} alt={story.imageAlt} label="Our Story photo" size="1200 × 800 px" hint="A photo from the centre's early days or a defining moment." ratio="3 / 2" width={795} height={530} class="shadow-[var(--shadow-soft)]" />
       </div>
       <div class="reveal">
-        <p class="eyebrow">Where it began</p>
         <h2 id="story-heading" class="h-section">Our Story</h2>
         <div class="hero-copy measure mt-6 space-y-5 text-lg leading-relaxed lg:text-[1.1875rem]">
           {story.paragraphs.map((p, i) => (
