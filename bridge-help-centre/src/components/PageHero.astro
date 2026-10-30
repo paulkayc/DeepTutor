@@ -1,7 +1,7 @@
 ---
 /* Page header band. Optional "aside" slot (e.g. a flyer) sits beside the
    heading on large screens and below it on phones. */
-interface Props { title: string; subtitle: string; eyebrow?: string }
+interface Props { title: string; subtitle?: string; eyebrow?: string }
 const { title, subtitle, eyebrow } = Astro.props;
 const hasAside = Astro.slots.has("aside");
 ---
@@ -11,7 +11,7 @@ const hasAside = Astro.slots.has("aside");
     <div>
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
       <h1 class="max-w-4xl text-[2.25rem] font-extrabold leading-[1.08] tracking-[-0.03em] md:text-5xl lg:text-6xl">{title}</h1>
-      <p class="lead measure mt-6">{subtitle}</p>
+      {subtitle && <p class="lead measure mt-6">{subtitle}</p>}
       <slot />
     </div>
     {hasAside && <div class="w-full"><slot name="aside" /></div>}
