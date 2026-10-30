@@ -109,8 +109,6 @@ In Google Maps, go to Share → Embed a map, copy the address inside `src="…"`
    environment variable on the host). It is used for search engines and sharing previews.
 2. **Forms:** create Formspree forms (or similar) and paste the two endpoints into `forms` in
    `src/config/site.js`. Until then the forms show a WhatsApp/email fallback instead of sending.
-3. **Privacy:** replace the interim text in `src/pages/privacy.astro` with the centre's own policy,
-   then set `privacyPolicyReady: true` in `src/config/site.js`.
 
 ## Maintenance tools
 - `python3 tools/make-image-sizes.py`: after adding photos, creates lighter 640px copies that

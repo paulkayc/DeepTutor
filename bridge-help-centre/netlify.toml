@@ -2,5 +2,8 @@
   command = "npm run build"
   publish = "dist"
 
+[build.environment]
+  NODE_VERSION = "24"
+
 # Security and caching headers are written to dist/_headers by the build
 # (see security-headers.mjs), which Netlify applies automatically.

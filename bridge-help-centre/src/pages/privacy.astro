@@ -1,27 +1,72 @@
 ---
-/* PRIVACY PAGE — interim version.
-   It only states facts about how this website works. The centre's full
-   privacy policy (who sees enquiries, how long they are kept, etc.) must be
-   written by the centre, ideally checked against the Nigeria Data Protection
-   Act 2023. When it is added, set site.privacyPolicyReady = true in
-   src/config/site.js so search engines can list this page. */
+/* PRIVACY POLICY — the centre's own wording (supplied 30 October 2026).
+   Edit the text below to update it; change "Last updated" when you do.
+   Contact details come from src/config/site.js. */
 import Base from "../layouts/Base.astro";
 import PageHero from "../components/PageHero.astro";
-import { site } from "../config/site.js";
+import { site, telLink } from "../config/site.js";
+const websiteLabel = site.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 ---
-<Base title="Privacy" description="How The Bridge Help Centre website handles the information you share with us." noindex={!site.privacyPolicyReady}>
-  <PageHero title="Privacy" subtitle="How this website handles the information you share with us." />
+<Base title="Privacy Policy" description="How The Bridge Help Centre collects, uses, stores and protects personal information, including children's privacy and safeguarding." noindex={!site.privacyPolicyReady}>
+  <PageHero title="Privacy Policy" subtitle="The Bridge Help Centre">
+    <p class="mt-4 text-ink-soft">Last updated: 30 October 2026</p>
+  </PageHero>
+
   <section class="section">
-    <div class="container-site measure space-y-5 text-lg">
-      <h2 class="h-sub">What this website collects</h2>
-      <p>This website only receives information you choose to send us: your name, email address, phone number (optional) and message when you use one of our forms. Your message is delivered to our team so that we can reply to you.</p>
-      <p>When you tap a WhatsApp, email or phone link, your conversation happens in that app, not on this website.</p>
-      <h2 class="h-sub">Cookies and tracking</h2>
-      <p>This website does not use advertising or analytics cookies. The Google map on our Contact page only loads if you choose to show it. Google may then set its own cookies.</p>
-      <h2 class="h-sub">Children and young people</h2>
-      <p>If you are under 18, please ask a parent, guardian or teacher to contact us with you.</p>
-      <h2 class="h-sub">Questions</h2>
-      <p>For questions about your information, email <a class="link" href={`mailto:${site.email}`}>{site.email}</a> or call <a class="link" href={`tel:${site.phone.international}`}>{site.phone.display}</a>.</p>
+    <div class="container-site measure policy space-y-5 text-lg leading-relaxed">
+      <h2>1. Introduction</h2>
+      <p>The Bridge Help Centre values your privacy and is committed to protecting the personal information of our website visitors, beneficiaries, parents, guardians, volunteers, partners and supporters.</p>
+      <p>This Privacy Policy explains how we collect, use, store and protect personal information when you visit our website or interact with our organisation.</p>
+
+      <h2>2. Information We Collect</h2>
+      <p>We may collect personal information such as your name, email address, telephone number and any information you voluntarily provide through our contact forms, enquiries or other communications.</p>
+      <p>We may also collect basic technical information, such as your browser type and pages visited, to help us improve our website.</p>
+      <p>We do not intentionally collect unnecessary personal information about children.</p>
+
+      <h2>3. How We Use Your Information</h2>
+      <p>We use personal information to:</p>
+      <ul class="list-disc space-y-2 pl-6">
+        <li>Respond to enquiries and requests.</li>
+        <li>Provide information about our programmes and activities.</li>
+        <li>Communicate with parents, guardians, volunteers, partners and supporters.</li>
+        <li>Improve our website and services.</li>
+        <li>Fulfil applicable legal and safeguarding responsibilities.</li>
+      </ul>
+      <p>We will not use your information for unrelated purposes without an appropriate legal basis.</p>
+
+      <h2>4. Children's Privacy and Safeguarding</h2>
+      <p>The Bridge Help Centre is committed to protecting the privacy, dignity and safety of children and young people.</p>
+      <p>We seek appropriate parent or guardian consent where required before collecting or publishing children's personal information or photographs.</p>
+      <p>We do not knowingly publish sensitive personal information about children or use their information in ways that may compromise their safety.</p>
+
+      <h2>5. Sharing of Information</h2>
+      <p>We do not sell, rent or trade personal information.</p>
+      <p>We may share information with trusted service providers where necessary to operate our website or deliver our services, or where required by law.</p>
+      <p>We take reasonable steps to ensure that personal information is handled appropriately.</p>
+
+      <h2>6. Data Security and Retention</h2>
+      <p>We take reasonable technical and organisational measures to protect personal information against unauthorised access, loss, misuse or disclosure.</p>
+      <p>We retain personal information only for as long as necessary for the purposes for which it was collected, or as required by applicable law.</p>
+
+      <h2>7. Cookies</h2>
+      <p>Our website may use cookies or similar technologies to support essential website functions and improve user experience.</p>
+      <p>Where applicable, visitors will be provided with appropriate information and choices regarding non-essential cookies.</p>
+
+      <h2>8. Your Privacy Rights</h2>
+      <p>Subject to applicable law, you may request access to, correction of, or deletion of your personal information. You may also object to certain uses of your information or withdraw consent where processing is based on consent.</p>
+      <p>To make a privacy-related request, please contact us using the details below.</p>
+
+      <h2>9. Contact Us</h2>
+      <p>If you have questions about this Privacy Policy or how your personal information is handled, please contact:</p>
+      <address class="not-italic break-words rounded-2xl bg-blue-tint p-6 [overflow-wrap:anywhere]">
+        <strong>The Bridge Help Centre</strong><br />
+        Email: <a class="link" href={`mailto:${site.email}`}>{site.email}</a><br />
+        Phone: <a class="link" href={telLink}>{site.phone.display}</a><br />
+        Website: <a class="link" href={site.url}>{websiteLabel}</a>
+      </address>
+
+      <h2>10. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. Any changes will be published on this page with an updated revision date.</p>
     </div>
   </section>
 </Base>

@@ -107,7 +107,7 @@ export const site = {
   privacyPolicyUrl: "/privacy/",
   // Set to true once the full privacy policy text has been added (the page is
   // hidden from search engines until then).
-  privacyPolicyReady: false,
+  privacyPolicyReady: true,
 };
 
 /* ---- Navigation (order matters) ------------------------------------- */

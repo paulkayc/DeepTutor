@@ -42,5 +42,5 @@ then republish that folder to the same artifact URL (index.html as the page, eve
   Base.astro changes, the hash updates automatically; re-run tools/update-vercel-headers.mjs for Vercel.
 - External services allowed by the CSP: formspree.io (forms), maps.google.com / www.google.com (map).
   Adding any other third-party script, font, iframe or form service requires updating security-headers.mjs.
-- Privacy page is noindex until site.privacyPolicyReady is true. Do not invent policy text.
+- Privacy Policy is the centre's own wording (src/pages/privacy.astro). Do not invent policy text.
 - Past events hide themselves; the Upcoming section disappears when no future events exist.
