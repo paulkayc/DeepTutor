@@ -1,27 +1,10 @@
 ---
 import { site, nav, telLink } from "../config/site.js";
 import { services } from "../data/services.js";
-import Logo from "./Logo.astro";
 import Icon from "./Icon.astro";
 ---
 <footer class="bg-blue-tint pb-28 text-ink sm:pb-10" data-hide-floats>
-  <div class="container-site grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1.3fr_1.3fr] lg:py-20">
-    <div>
-      <a href="/" class="inline-flex items-center gap-3 rounded-lg">
-        <Logo /><span class="sr-only">{site.name} — home</span>
-      </a>
-      <p class="mt-5 max-w-xs">{site.shortDescription}</p>
-      <ul class="mt-6 flex gap-2" aria-label="Social media">
-        {site.social.map((s) => (
-          <li>
-            <a href={s.url} target="_blank" rel="noopener" class="inline-flex size-11 items-center justify-center rounded-full bg-white text-ink shadow-[var(--shadow-soft)] transition-colors hover:text-magenta-deep" aria-label={`${site.name} on ${s.name} (opens in a new tab)`}>
-              <Icon name={s.icon} size={20} />
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-
+  <div class="container-site grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1fr_1.3fr_1.3fr] lg:py-20">
     <nav aria-labelledby="footer-pages">
       <h2 id="footer-pages" class="text-base font-extrabold">Quick links</h2>
       <ul class="mt-4">
@@ -60,6 +43,16 @@ import Icon from "./Icon.astro";
             {site.hours.map((h) => <span class="block">{h.days}: {h.time}</span>)}
           </div>
         </li>
+      </ul>
+      <h3 class="mt-8 text-base font-extrabold">Follow us</h3>
+      <ul class="mt-3 flex gap-2" aria-label="Social media">
+        {site.social.map((s) => (
+          <li>
+            <a href={s.url} target="_blank" rel="noopener" class="inline-flex size-11 items-center justify-center rounded-full bg-white text-ink shadow-[var(--shadow-soft)] transition-colors hover:text-magenta-deep" aria-label={`${site.name} on ${s.name} (opens in a new tab)`}>
+              <Icon name={s.icon} size={20} />
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   </div>
