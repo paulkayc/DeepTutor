@@ -53,13 +53,13 @@ const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.loc
           <span><strong>Guiding Lives</strong> <em>today,</em></span>
           <span class="h-hero-alt"><strong>Building futures</strong> <em>tomorrow.</em></span>
         </h1>
-        <p class="measure mt-8 text-xl font-semibold leading-relaxed text-ink lg:text-2xl">
+        <p class="hero-copy measure mt-8 text-xl font-medium leading-relaxed text-ink lg:text-2xl">
           A social enterprise for child and youth development in Nigeria, equipping children and young people to thrive academically, psychologically, socially, and personally.
         </p>
-        <p class="measure mt-5 text-lg leading-relaxed text-ink-soft lg:text-xl">
+        <p class="hero-copy measure mt-5 text-lg leading-relaxed text-ink-soft lg:text-xl">
           We collaborate with parents, schools, communities, and government partners to create nurturing environments where children and young people can learn, grow, and reach their potential.
         </p>
-        <p class="measure mt-5 text-lg leading-relaxed text-ink-soft lg:text-xl">{servicesIntro}</p>
+        <p class="hero-copy measure mt-5 text-lg leading-relaxed text-ink-soft lg:text-xl">{servicesIntro}</p>
         <div class="mt-10 flex flex-col gap-4 sm:flex-row" data-hide-floats>
           <a href={whatsappLink()} target="_blank" rel="noopener" class="btn btn-primary"><Icon name="whatsapp" />Chat on WhatsApp</a>
           <a href="/programmes" class="btn btn-secondary">Explore Our Programmes</a>
