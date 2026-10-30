@@ -7,10 +7,11 @@ interface Props { limit?: number; filters?: boolean; layout?: "grid" | "masonry"
 const { limit = gallery.length, filters = false, layout = "masonry", id = "gallery-grid" } = Astro.props;
 // Show only real photos once any exist; placeholders appear only for an empty gallery.
 const real = gallery.filter((g) => g.src);
-const items = (real.length ? real : gallery).slice(0, limit);
+// Grid layout with fewer photos than slots: show five as one large (2 × 2) + four small.
+const featureFirst = layout === "grid" && real.length > 0 && real.length < limit;
+const items = (real.length ? real : gallery).slice(0, featureFirst ? 5 : limit);
 const categories = galleryCategories.filter((c) => items.some((g) => g.category === c));
-// Grid layout: the first photo is large (2 × 2), so five photos fill a 4 × 2 grid.
-const featureFirst = layout === "grid" && real.length > 0;
+
 const ratios = ["4 / 3", "3 / 4", "1 / 1", "4 / 5", "3 / 2", "1 / 1"];
 ---
 <div data-gallery>
