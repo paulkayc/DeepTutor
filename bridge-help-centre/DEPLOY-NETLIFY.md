@@ -1,48 +1,56 @@
-# Putting the website online with Netlify
+# Putting the website online (GitHub + Netlify)
 
-Everything the build needs is already set up in `netlify.toml` (build command, output folder,
-Node.js 24, the www → thebridgehelpcentre.org redirect). Security headers are created by the build.
+The project is ready to deploy. Everything Netlify needs is already in `netlify.toml`:
 
-## 1. Create the Netlify site (one time)
-1. Go to https://app.netlify.com/signup and choose **Sign up with GitHub** (use the GitHub account
-   that owns `paulkayc/DeepTutor`).
-2. Click **Add new site → Import an existing project → GitHub**. Allow Netlify to see the
-   `DeepTutor` repository when GitHub asks.
-3. Pick **paulkayc/DeepTutor** and fill in:
-   - **Branch to deploy:** `claude/bold-clarke-g3jnxm`
-   - **Base directory:** `bridge-help-centre`
-   - Leave build command and publish directory as Netlify fills them in
-     (`npm run build` and `bridge-help-centre/dist`).
-4. Click **Deploy**. After 1–2 minutes you get a temporary address like
-   `something.netlify.app`. Open it and check the site.
+| Setting | Value |
+|---|---|
+| Build command | `npm run build` |
+| Output (publish) folder | `dist` |
+| Node.js version | 24 |
+| Base directory | *(leave empty)* |
 
-## 2. Connect thebridgehelpcentre.org (domain registered at Cloudflare)
+No secret keys or passwords are needed. Security headers and the sitemap are created by the build.
+
+## A. Put the project in a new private GitHub repository (GitHub Desktop)
+1. **Unzip the website.** Right-click `bridge-help-centre.zip` → **Extract All…** → choose your
+   **Documents** folder → **Extract**. You now have `Documents\bridge-help-centre`.
+2. **Install GitHub Desktop** from https://desktop.github.com and open it.
+   Click **Sign in to GitHub.com** and log in (create a free GitHub account first if needed).
+3. **Turn the folder into a repository.** In GitHub Desktop: **File → Add local repository…** →
+   **Choose…** → select `Documents\bridge-help-centre` → **Add repository**.
+   It will say *"This directory does not appear to be a Git repository"* → click
+   **create a repository** → leave the name as `bridge-help-centre`, leave
+   **Git ignore** as *None* (the project already has one) → **Create repository**.
+4. **Upload it privately.** Click **Publish repository** (top bar). Make sure
+   **Keep this code private** is ticked → **Publish repository**.
+5. **Check it.** On https://github.com click your profile picture → **Your repositories** →
+   `bridge-help-centre`. It should show a 🔒 **Private** label and folders like `src`, `public`.
+
+## B. Create the Netlify site
+1. Go to https://app.netlify.com/signup → **Sign up with GitHub**.
+2. **Add new site → Import an existing project → GitHub.** When GitHub asks which
+   repositories Netlify may see, choose **Only select repositories → bridge-help-centre** → **Install**.
+3. Pick **bridge-help-centre**. Check: Branch **main**, Base directory **empty**,
+   Build command `npm run build`, Publish directory `dist`. Click **Deploy**.
+4. After 1–2 minutes you get a temporary address like `something.netlify.app`. Open it and look around.
+
+## C. Connect thebridgehelpcentre.org (domain at Cloudflare)
 Cloudflare-registered domains must keep Cloudflare DNS, so do NOT change nameservers.
 
-**In Netlify**
-1. Your site → **Domain management → Add a domain** → `thebridgehelpcentre.org` → **Verify**.
-   If Netlify says the domain is already registered, choose **Add domain** anyway.
-2. Netlify also adds `www.thebridgehelpcentre.org`. Note your Netlify address (e.g. `something.netlify.app`).
-3. Make `thebridgehelpcentre.org` the **Primary domain** (⋯ menu next to it → Set as primary domain).
+**In Netlify:** Domain management → **Add a domain** → `thebridgehelpcentre.org` → Verify → Add.
+Then ⋯ next to it → **Set as primary domain**.
 
-**In Cloudflare** (dash.cloudflare.com → click `thebridgehelpcentre.org` → **DNS → Records**)
-1. Delete any existing **A**, **AAAA** or **CNAME** records named `@`/`thebridgehelpcentre.org` or `www`
-   (e.g. Cloudflare "parking" records). Leave MX/TXT email records alone.
-2. **Add record:** Type `CNAME`, Name `@`, Target `something.netlify.app`, **Proxy status: DNS only (grey cloud)**, Save.
-3. **Add record:** Type `CNAME`, Name `www`, Target `something.netlify.app`, **Proxy status: DNS only (grey cloud)**, Save.
+**In Cloudflare** (dash.cloudflare.com → `thebridgehelpcentre.org` → **DNS → Records**):
+1. Delete existing **A / AAAA / CNAME** records named `@` (thebridgehelpcentre.org) or `www`.
+   Leave **MX** and **TXT** (email) records alone.
+2. **Add record:** CNAME, Name `@`, Target `something.netlify.app`, Proxy status **DNS only (grey cloud)**.
+3. **Add record:** CNAME, Name `www`, Target `something.netlify.app`, Proxy status **DNS only (grey cloud)**.
 
-The grey cloud ("DNS only") matters: with the orange cloud on, Netlify cannot create the
-site's security certificate.
+**Back in Netlify:** Domain management → **HTTPS → Verify DNS configuration → Provision certificate**.
+When it says "Your site has HTTPS enabled", https://thebridgehelpcentre.org is live.
 
-**Back in Netlify**
-4. Domain management shows both domains as verified within minutes (allow up to a few hours).
-5. **HTTPS → Verify DNS configuration → Provision certificate.** When it says
-   "Your site has HTTPS enabled", https://thebridgehelpcentre.org is live.
-
-## 3. After it is live
-- Open https://thebridgehelpcentre.org on your phone and click through every page.
-- Submit the Google Form once and check **Responses** in Google Forms.
-- Tap the WhatsApp, phone, email, map and social buttons.
-- Free check of real-visitor speed later: https://pagespeed.web.dev
-
-Every change pushed to the branch is published automatically by Netlify.
+## D. After it is live
+- Click through every page on your phone.
+- Submit the Google Form (Get Involved and the event registration); check **Responses** in Google Forms.
+- Tap WhatsApp, phone, email, map, Facebook and Instagram.
+- From now on, every change saved to GitHub goes live automatically within ~2 minutes.

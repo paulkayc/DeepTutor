@@ -27,7 +27,7 @@ When the owner sends images, crop/optimise them (WebP, sensible size), place the
 - Images: `public/images/` (gallery photos in `public/images/gallery/`)
 
 ## Gotcha
-The repository root `.gitignore` ignores every `data/` folder. This folder's `.gitignore`
+(Only applies while this folder lives inside the DeepTutor repository.) The DeepTutor root `.gitignore` ignores every `data/` folder. This folder's `.gitignore`
 re-includes `src/data/`. Keep that rule, and check `git status` shows new data files before committing.
 
 ## Online preview for the owner
