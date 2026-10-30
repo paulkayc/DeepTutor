@@ -40,10 +40,16 @@ export const values = [
 ];
 
 /* [PLACEHOLDER] Optional team cards. Delete the array items (or set team = [])
-   to hide the "Our Team" grid. photo: 800 × 800 px. */
+   to hide the "Our Team" grid. photo: 800 × 800 px. Optional: profession, photoAlt. */
 export const team = [
   { name: "[Team member name]", role: "[Role]", photo: "" },
-  { name: "[Team member name]", role: "[Role]", photo: "" },
+  {
+    name: "Dr Kelechi Ikonne",
+    role: "Director",
+    profession: "Paediatrician",
+    photo: "/images/team/kelechi-ikonne.webp",
+    photoAlt: "Portrait of Dr Kelechi Ikonne, Director of The Bridge Help Centre, in a blue suit and tie",
+  },
   { name: "[Team member name]", role: "[Role]", photo: "" },
 ];
 
