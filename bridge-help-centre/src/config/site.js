@@ -94,7 +94,7 @@ export const site = {
   //    the embed link here: in Google Forms press Send → the < > tab → copy only
   //    the address inside src="…" (it ends in "embedded=true").
   getInvolvedForm: "https://forms.gle/5ctH4N3UdYXbgnY66",
-  getInvolvedFormEmbed: "",
+  getInvolvedFormEmbed: "https://docs.google.com/forms/d/e/1FAIpQLSeIDAADKzeF57skvIZfJ3sfbqfLy13afaBx3uevB8TQVN6CnQ/viewform?embedded=true",
 
   // Bank details for supporters (shown on the Get Involved page).
   // Set supportDetails: null to hide the block.

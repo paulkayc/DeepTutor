@@ -223,22 +223,6 @@ $$("[data-map]").forEach((box) => {
   });
 });
 
-/* ---- Google Form (Get Involved): load in the page only when asked ---- */
-$$("[data-gform]").forEach((box) => {
-  box.querySelector("[data-gform-load]")?.addEventListener("click", () => {
-    let src = box.dataset.gform;
-    if (src.includes("docs.google.com/forms") && !src.includes("embedded=true")) src += (src.includes("?") ? "&" : "?") + "embedded=true";
-    const frame = document.createElement("iframe");
-    frame.src = src;
-    frame.title = "Get Involved form (Google Forms)";
-    frame.className = "block h-[1100px] w-full border-0 sm:h-[1000px]";
-    frame.loading = "eager";
-    box.querySelector("[data-gform-placeholder]").hidden = true;
-    box.append(frame);
-    frame.focus();
-  });
-});
-
 /* ---- Copy buttons (e.g. bank account number) ----------------------- */
 $$("[data-copy]").forEach((btn) => {
   const label = btn.querySelector("[data-copy-label]");

@@ -85,23 +85,27 @@ const bank = site.supportDetails;
     </section>
   )}
 
-  <!-- Interest form: the centre's Google Form (set in src/config/site.js).
-       It loads from Google only when the visitor taps "Show the form". -->
+  <!-- Interest form: the centre's Google Form, shown open on the page
+       (links set in src/config/site.js: getInvolvedFormEmbed / getInvolvedForm). -->
   <section class="section" aria-labelledby="form-heading" id="interest-form">
     <div class="container-site mx-auto max-w-3xl">
-      <h2 id="form-heading" class="h-section mb-8 text-center">Tell us how you'd like to help</h2>
-      <div class="card overflow-hidden !p-0">
-        <div class="relative" data-gform={site.getInvolvedFormEmbed || site.getInvolvedForm}>
-          <div class="flex flex-col items-center gap-4 px-6 py-12 text-center sm:px-10" data-gform-placeholder>
-            <span class="icon-badge"><Icon name="file" size={28} /></span>
-            <p class="max-w-md text-lg">Fill in our short form and our team will get back to you.</p>
-            <div class="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
-              <button type="button" class="js-only btn btn-primary w-full sm:w-auto" data-gform-load>Show the form here</button>
-              <a href={site.getInvolvedForm} target="_blank" rel="noopener" class="btn btn-secondary w-full sm:w-auto">Open the form<Icon name="arrow" size={20} /><span class="sr-only"> (opens Google Forms in a new tab)</span></a>
-            </div>
-            <p class="max-w-md text-sm text-ink-soft">The form is provided by Google, which may set cookies when it loads. <a href={site.privacyPolicyUrl} class="link">Privacy Policy</a></p>
-          </div>
+      <h2 id="form-heading" class="h-section text-center">Tell us how you'd like to help</h2>
+      <p class="mb-8 mt-4 text-center text-sm text-ink-soft">
+        Having trouble with the form? <a href={site.getInvolvedForm} target="_blank" rel="noopener" class="link">Open it in a new tab</a>.
+        The form is provided by Google, which may set cookies. <a href={site.privacyPolicyUrl} class="link">Privacy Policy</a>
+      </p>
+      <div class="card relative overflow-hidden !p-0">
+        <div class="absolute inset-x-0 top-0 flex flex-col items-center gap-3 px-6 pt-16 text-center" aria-hidden="true">
+          <span class="icon-badge"><Icon name="file" size={28} /></span>
+          <p class="font-semibold">Loading the form…</p>
+          <p class="text-sm text-ink-soft">If it doesn't appear, use the "Open it in a new tab" link above.</p>
         </div>
+        <iframe
+          src={site.getInvolvedFormEmbed || site.getInvolvedForm}
+          title="Get Involved form (Google Forms)"
+          class="relative block h-[1150px] w-full border-0 sm:h-[1000px]"
+          loading="lazy"
+        >Loading…</iframe>
       </div>
     </div>
   </section>
