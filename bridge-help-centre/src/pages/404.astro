@@ -1,0 +1,12 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+---
+<Base title="Page not found" description="Sorry, we couldn't find that page.">
+  <PageHero title="We couldn't find that page" subtitle="It may have moved. Let's get you back on the path.">
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a href="/" class="btn btn-primary">Go to the home page</a>
+      <a href="/contact" class="btn btn-secondary">Contact us</a>
+    </div>
+  </PageHero>
+</Base>

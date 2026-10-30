@@ -1,0 +1,86 @@
+---
+import { site, nav, whatsappLink } from "../config/site.js";
+import Logo from "./Logo.astro";
+import Icon from "./Icon.astro";
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isCurrent = (href: string) => (href === "/" ? path === "/" : path === href || path.startsWith(href + "/"));
+---
+<header class="site-header sticky top-0 z-40 bg-white" data-header>
+  <div class="mx-auto flex h-20 w-full max-w-[1400px] items-center gap-3 px-6 lg:h-24">
+    <a href="/" class="mr-auto flex min-h-11 items-center gap-3 rounded-lg">
+      <Logo compact />
+      <span class="text-[0.95rem] font-extrabold leading-tight sm:text-lg">The Bridge<br class="sm:hidden" /> Help Centre</span>
+    </a>
+
+    <nav aria-label="Main" class="hidden nav:block">
+      <ul class="flex items-center">
+        {nav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="nav-link relative inline-flex min-h-11 items-center whitespace-nowrap px-2.5 text-[0.95rem] font-semibold text-ink/80 transition-colors hover:text-ink"
+              aria-current={isCurrent(item.href) ? "page" : undefined}
+            >{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <a
+      href={whatsappLink()}
+      target="_blank"
+      rel="noopener"
+      class="btn btn-primary btn-sm shrink-0 !px-4 sm:!px-5 nav:ml-2"
+      aria-label="Chat on WhatsApp (opens in a new tab)"
+    >
+      <Icon name="whatsapp" size={22} />
+      <span class="hidden min-[400px]:inline">Chat on WhatsApp</span>
+      <span class="min-[400px]:hidden" aria-hidden="true">Chat</span>
+    </a>
+
+    <button
+      type="button"
+      class="js-only inline-flex size-12 items-center justify-center rounded-xl border-2 border-blue text-ink nav:hidden"
+      aria-haspopup="dialog"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      data-menu-open
+    >
+      <Icon name="menu" size={26} />
+      <span class="sr-only">Open menu</span>
+    </button>
+    <a href="#footer-pages" class="no-js-only inline-flex min-h-12 items-center rounded-xl border-2 border-blue px-3 font-bold nav:hidden">Menu</a>
+  </div>
+
+  <dialog id="mobile-menu" class="menu-dialog" aria-label="Menu" data-menu>
+    <div class="flex h-full flex-col">
+      <div class="flex h-20 items-center justify-between border-b-2 border-blue-tint px-6">
+        <span class="text-lg font-extrabold">Menu</span>
+        <button type="button" class="inline-flex size-12 items-center justify-center rounded-xl border-2 border-blue" data-menu-close>
+          <Icon name="close" size={26} />
+          <span class="sr-only">Close menu</span>
+        </button>
+      </div>
+      <nav aria-label="Main (mobile)" class="flex-1 overflow-y-auto px-6 py-4">
+        <ul>
+          {nav.map((item) => (
+            <li class="border-b border-blue-tint">
+              <a
+                href={item.href}
+                class="flex min-h-16 items-center justify-between text-xl font-bold aria-[current=page]:text-magenta-deep"
+                aria-current={isCurrent(item.href) ? "page" : undefined}
+              >
+                {item.label}
+                <Icon name="chevronRight" size={22} />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <div class="grid gap-3 border-t-2 border-blue-tint p-6">
+        <a href={whatsappLink()} target="_blank" rel="noopener" class="btn btn-primary w-full"><Icon name="whatsapp" />Chat on WhatsApp</a>
+        <a href={`mailto:${site.email}`} class="btn btn-secondary w-full"><Icon name="mail" />Email Us</a>
+      </div>
+    </div>
+  </dialog>
+</header>

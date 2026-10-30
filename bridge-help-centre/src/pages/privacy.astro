@@ -1,0 +1,14 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../config/site.js";
+---
+<Base title="Privacy Policy" description="How The Bridge Help Centre handles the personal information you share with us.">
+  <PageHero title="Privacy Policy" subtitle="How we look after the information you share with us." />
+  <section class="section">
+    <div class="container-site measure space-y-5">
+      <p class="placeholder-text rounded-xl border-2 border-dashed border-blue bg-blue-tint px-4 py-3 font-bold not-italic text-ink">[PLACEHOLDER — Add the centre's privacy policy here. Ask a legal adviser to confirm it meets the Nigeria Data Protection Act 2023.]</p>
+      <p>We only collect the information you choose to send us through our forms, WhatsApp or email, and we use it only to reply to you. Questions? Email <a class="link" href={`mailto:${site.email}`}>{site.email}</a>.</p>
+    </div>
+  </section>
+</Base>

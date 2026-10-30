@@ -1,0 +1,22 @@
+---
+import { site, whatsappLink } from "../config/site.js";
+import Icon from "./Icon.astro";
+---
+<div class="floating-contact fixed bottom-4 right-4 z-30 flex flex-col gap-3 sm:bottom-6 sm:right-6" data-floating>
+  <a
+    href={whatsappLink()}
+    target="_blank"
+    rel="noopener"
+    class="inline-flex size-14 items-center justify-center rounded-full bg-magenta text-white shadow-[0_14px_30px_-10px_rgb(17_24_39/0.45)] transition hover:-translate-y-0.5 hover:bg-magenta-deep"
+    aria-label="Chat with The Bridge Help Centre on WhatsApp"
+  >
+    <Icon name="whatsapp" size={28} />
+  </a>
+  <a
+    href={`mailto:${site.email}`}
+    class="inline-flex size-14 items-center justify-center rounded-full bg-blue text-ink shadow-[0_14px_30px_-10px_rgb(17_24_39/0.45)] transition hover:-translate-y-0.5"
+    aria-label="Email The Bridge Help Centre"
+  >
+    <Icon name="mail" size={26} />
+  </a>
+</div>

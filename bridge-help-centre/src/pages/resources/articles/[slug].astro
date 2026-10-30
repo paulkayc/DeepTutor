@@ -1,0 +1,36 @@
+---
+/* ARTICLE TEMPLATE — one page per article in src/data/articles.js. */
+import Base from "../../../layouts/Base.astro";
+import Media from "../../../components/Media.astro";
+import Icon from "../../../components/Icon.astro";
+import CtaBand from "../../../components/CtaBand.astro";
+import { articles } from "../../../data/articles.js";
+
+export function getStaticPaths() {
+  return articles.map((article) => ({ params: { slug: article.slug }, props: { article } }));
+}
+const { article } = Astro.props;
+const date = new Date(article.date + "T12:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+---
+<Base title={article.title} description={article.excerpt} ogType="article">
+  <article>
+    <header class="bg-blue-tint">
+      <div class="container-site max-w-4xl py-16 lg:py-24">
+        <a href="/resources" class="link-arrow mb-6"><Icon name="chevronLeft" size={20} />All resources</a>
+        <div class="flex flex-wrap items-center gap-3 text-sm">
+          <span class="chip !bg-white">{article.category}</span>
+          <time datetime={article.date} class="text-ink-soft">{date}</time>
+        </div>
+        <h1 class="mt-5 text-[2.25rem] font-extrabold leading-[1.1] tracking-[-0.03em] md:text-5xl">{article.title}</h1>
+        <p class="lead mt-6">{article.excerpt}</p>
+      </div>
+    </header>
+    <div class="container-site max-w-4xl py-16 lg:py-24">
+      <Media src={article.image} alt={`Image for ${article.title}`} label="Article image" size="1200 × 800 px" ratio="3 / 2" eager />
+      <div class="prose-site measure mx-auto mt-10 text-lg">
+        {article.body.map((p) => p.startsWith("## ") ? <h2>{p.slice(3)}</h2> : <p>{p}</p>)}
+      </div>
+    </div>
+  </article>
+  <CtaBand />
+</Base>

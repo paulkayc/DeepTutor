@@ -1,0 +1,31 @@
+---
+/* Shows a real image when `src` is set, otherwise a clearly labelled
+   dashed placeholder box (with the recommended size and what belongs there).
+   Placeholders keep descriptive alt text via role="img" + aria-label. */
+import Icon from "./Icon.astro";
+interface Props {
+  src?: string;
+  alt: string;
+  label: string;          // e.g. "Director photo"
+  size: string;           // e.g. "800 × 1000 px"
+  hint?: string;          // one-line description of the photo needed
+  ratio?: string;         // CSS aspect-ratio, e.g. "4 / 5"
+  class?: string;
+  eager?: boolean;        // above-the-fold images
+  width?: number;
+  height?: number;
+}
+const { src, alt, label, size, hint, ratio = "4 / 3", class: cls = "", eager = false, width = 1200, height = 900 } = Astro.props;
+---
+{src ? (
+  <div class:list={["media", cls]} style={`aspect-ratio:${ratio}`}>
+    <img src={src} alt={alt} width={width} height={height} loading={eager ? "eager" : "lazy"} decoding="async" fetchpriority={eager ? "high" : undefined} />
+  </div>
+) : (
+  <div class:list={["ph", cls]} style={`aspect-ratio:${ratio}`} role="img" aria-label={alt} data-placeholder={label}>
+    <Icon name="image" size={32} class="ph-icon" />
+    <span class="ph-label" aria-hidden="true">{label}</span>
+    <span class="ph-meta" aria-hidden="true">Recommended {size}</span>
+    {hint && <span class="ph-meta max-w-xs" aria-hidden="true">{hint}</span>}
+  </div>
+)}

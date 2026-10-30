@@ -1,0 +1,17 @@
+---
+import { site } from "../config/site.js";
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+---
+{site.logo ? (
+  <img src={site.logo} alt="" width="240" height="80" class={compact ? "h-11 w-auto" : "h-14 w-auto"} />
+) : (
+  <span
+    class:list={[
+      "inline-flex shrink-0 items-center justify-center rounded-lg border-2 border-dashed border-blue bg-blue-tint font-extrabold tracking-[0.2em] text-ink",
+      compact ? "h-11 w-14 text-[0.65rem] tracking-[0.12em]" : "h-16 w-36 text-sm",
+    ]}
+    aria-hidden="true"
+    title="Logo placeholder — 240 × 80 px. Set site.logo in src/config/site.js"
+  >LOGO</span>
+)}

@@ -1,0 +1,21 @@
+---
+import { stats, statsNote } from "../data/stats.js";
+interface Props { large?: boolean; showNote?: boolean }
+const { large = false, showNote = false } = Astro.props;
+---
+<ul class:list={["grid gap-6 sm:grid-cols-2", large ? "lg:grid-cols-4 lg:gap-8" : "lg:grid-cols-4"]}>
+  {stats.map((s) => {
+    const numeric = typeof s.value === "number" || /^\d[\d,]*$/.test(String(s.value));
+    return (
+      <li class:list={["reveal rounded-3xl bg-white text-center shadow-[var(--shadow-soft)]", large ? "px-6 py-12" : "px-6 py-10"]}>
+        <p
+          class:list={["font-extrabold leading-none tracking-[-0.03em] text-magenta", large ? "text-5xl lg:text-6xl" : "text-[2.75rem] lg:text-5xl", !numeric && "!text-3xl lg:!text-4xl"]}
+          data-count={numeric ? String(s.value).replace(/,/g, "") : undefined}
+          data-suffix={s.suffix}
+        >{numeric ? Number(String(s.value).replace(/,/g, "")).toLocaleString("en-NG") : s.value}{s.suffix}</p>
+        <p class="mt-4 text-lg font-semibold">{s.label}</p>
+      </li>
+    );
+  })}
+</ul>
+{showNote && <p class="placeholder-text mt-6 text-center text-sm">{statsNote}</p>}

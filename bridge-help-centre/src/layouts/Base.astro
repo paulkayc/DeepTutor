@@ -1,0 +1,83 @@
+---
+import "@fontsource-variable/manrope/wght.css";
+import "../styles/global.css";
+import manropeWoff2 from "@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url";
+import { site } from "../config/site.js";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FloatingContact from "../components/FloatingContact.astro";
+
+interface Props { title: string; description: string; ogType?: string }
+const { title, description, ogType = "website" } = Astro.props;
+const fullTitle = title === site.name ? `${site.name} | Child & Youth Development in Nigeria` : `${title} | ${site.name}`;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ogImage = new URL(site.ogImage, site.url).href;
+const c = site.colors;
+const brandVars = `:root{--brand-white:${c.white};--brand-blue:${c.babyBlue};--brand-magenta:${c.magenta};--brand-ink:${c.ink}}`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.name,
+  description: site.shortDescription,
+  url: site.url,
+  logo: site.logo ? new URL(site.logo, site.url).href : undefined,
+  email: site.email,
+  telephone: site.phone.international,
+  areaServed: "Nigeria",
+  ...(site.address ? { address: site.address } : {}),
+  sameAs: site.social.map((s) => s.url).filter((u) => u && u !== "#"),
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer support",
+    telephone: site.phone.international,
+    email: site.email,
+    areaServed: "NG",
+    availableLanguage: ["English"],
+    hoursAvailable: [
+      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "10:00", closes: "16:00" },
+    ],
+  },
+};
+---
+<!doctype html>
+<html lang="en-NG">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content={c.white} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script is:inline>document.documentElement.classList.add("js");</script>
+    <!-- Manrope (Google Font), self-hosted for speed and preloaded -->
+    <link rel="preload" as="font" type="font/woff2" href={manropeWoff2} crossorigin />
+    <style is:inline set:html={brandVars}></style>
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body>
+    <a href="#main" class="sr-only fixed left-4 top-4 z-50 rounded-xl bg-white px-5 py-3 font-bold text-ink shadow-[var(--shadow-lift)] focus:not-sr-only">Skip to main content</a>
+    <Header />
+    <main id="main" tabindex="-1" class="focus:outline-none">
+      <slot />
+    </main>
+    <Footer />
+    <FloatingContact />
+    <script>
+      import "../scripts/main.js";
+    </script>
+  </body>
+</html>

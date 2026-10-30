@@ -1,0 +1,19 @@
+---
+import { director } from "../data/about.js";
+import Media from "./Media.astro";
+interface Props { headingLevel?: 2 | 3; id?: string }
+const { id = "director" } = Astro.props;
+---
+<section class="section section-tint" aria-labelledby={`${id}-heading`} id={id}>
+  <div class="container-site grid items-center gap-12 lg:grid-cols-[5fr_7fr] lg:gap-20">
+    <div class="reveal mx-auto w-full max-w-md lg:max-w-none">
+      <Media src={director.photo} alt={director.photoAlt} label="Director photo" size="800 × 1000 px" hint="Warm, natural portrait of Mrs. Amarachi Ikonne." ratio="4 / 5" width={800} height={1000} class="shadow-[var(--shadow-soft)]" />
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">Leadership</p>
+      <h2 id={`${id}-heading`} class="h-section">Meet the Director</h2>
+      <p class="mt-6 text-xl font-extrabold">{director.name}</p>
+      <p class="measure mt-4">{director.bio}</p>
+    </div>
+  </div>
+</section>

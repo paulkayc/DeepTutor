@@ -1,0 +1,32 @@
+---
+/* Magenta call-to-action band. Defaults: "Let's walk this journey together"
+   with WhatsApp + Email. Pages can override the heading and primary button. */
+import { site, whatsappLink, telLink } from "../config/site.js";
+import Icon from "./Icon.astro";
+interface Props { title?: string; primary?: { label: string; href: string } }
+const { title = "Let's walk this journey together", primary } = Astro.props;
+---
+<section class="on-magenta relative overflow-hidden bg-magenta text-white" aria-labelledby="cta-heading" data-hide-floats>
+  <div aria-hidden="true" class="pointer-events-none absolute -left-20 -top-28 size-80 rounded-full border-[40px] border-white/10"></div>
+  <div aria-hidden="true" class="pointer-events-none absolute -bottom-32 -right-16 size-96 rounded-full border-[48px] border-white/10"></div>
+  <div class="container-site relative py-16 text-center lg:py-24">
+    <h2 id="cta-heading" class="mx-auto max-w-3xl text-[2rem] font-extrabold leading-[1.1] tracking-[-0.02em] md:text-5xl">{title}</h2>
+    <div class="mt-10 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
+      {primary ? (
+        <>
+          <a href={primary.href} class="btn btn-white">{primary.label}<Icon name="arrow" size={20} /></a>
+          <a href={whatsappLink()} target="_blank" rel="noopener" class="btn btn-outline-white"><Icon name="whatsapp" />Chat on WhatsApp</a>
+        </>
+      ) : (
+        <>
+          <a href={whatsappLink()} target="_blank" rel="noopener" class="btn btn-white"><Icon name="whatsapp" />Chat on WhatsApp</a>
+          <a href={`mailto:${site.email}`} class="btn btn-outline-white"><Icon name="mail" />Email Us</a>
+        </>
+      )}
+    </div>
+    <p class="mt-8 text-[1.1875rem] font-bold">
+      Or call us: <a href={telLink} class="inline-flex min-h-11 items-center underline decoration-2 underline-offset-4 hover:decoration-4">{site.phone.display}</a>
+      {primary && (<> · <a href={`mailto:${site.email}`} class="inline-flex min-h-11 items-center underline decoration-2 underline-offset-4 hover:decoration-4">Email Us</a></>)}
+    </p>
+  </div>
+</section>

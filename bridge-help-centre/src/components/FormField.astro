@@ -1,0 +1,24 @@
+---
+interface Props {
+  name: string; label: string; type?: string; required?: boolean;
+  options?: string[]; autocomplete?: string; hint?: string; placeholder?: string; formId: string;
+}
+const { name, label, type = "text", required = false, options, autocomplete, hint, formId } = Astro.props;
+const id = `${formId}-${name}`;
+const describedBy = [hint && `${id}-hint`, `${id}-error`].filter(Boolean).join(" ");
+---
+<div class="field">
+  <label for={id}>{label}{required ? <span aria-hidden="true" class="text-magenta-deep"> *</span> : <span class="font-normal text-ink-soft"> (optional)</span>}</label>
+  {hint && <p id={`${id}-hint`} class="hint">{hint}</p>}
+  {options ? (
+    <select id={id} name={name} class="input" required={required} aria-describedby={describedBy} autocomplete={autocomplete}>
+      <option value="">Please choose…</option>
+      {options.map((o) => <option value={o}>{o}</option>)}
+    </select>
+  ) : type === "textarea" ? (
+    <textarea id={id} name={name} class="input" rows="5" required={required} aria-describedby={describedBy}></textarea>
+  ) : (
+    <input id={id} name={name} type={type} class="input" required={required} aria-describedby={describedBy} autocomplete={autocomplete} inputmode={type === "tel" ? "tel" : undefined} />
+  )}
+  <p id={`${id}-error`} class="field-error" aria-live="polite"></p>
+</div>

@@ -1,0 +1,44 @@
+---
+/* Wraps a form: posts to the configured endpoint (src/config/site.js → forms),
+   validates accessibly, and shows a friendly success message with a WhatsApp backup. */
+import { whatsappLink, isPlaceholderEndpoint, site } from "../config/site.js";
+import Icon from "./Icon.astro";
+interface Props { id: string; endpoint: string; subject: string; submitLabel: string; successTitle?: string; successText?: string }
+const { id, endpoint, subject, submitLabel, successTitle = "Thank you — your message is on its way!", successText = "We will get back to you within two working days." } = Astro.props;
+---
+<form
+  id={id}
+  action={endpoint}
+  method="POST"
+  class="grid gap-6"
+  novalidate
+  data-form
+  data-unconfigured={isPlaceholderEndpoint(endpoint) ? "true" : undefined}
+>
+  <input type="hidden" name="_subject" value={subject} />
+  <input type="hidden" name="_replyto" value="" data-replyto />
+  <div class="hidden" aria-hidden="true">
+    <label>Leave this field empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+  </div>
+  <p class="sr-only" data-form-summary role="alert"></p>
+  <slot />
+  <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center" data-hide-floats>
+    <button type="submit" class="btn btn-primary" data-submit>{submitLabel}<Icon name="arrow" size={20} /></button>
+    <p class="text-sm text-ink-soft">Fields marked <span class="text-magenta-deep">*</span> are required.</p>
+  </div>
+</form>
+<div class="hidden rounded-3xl bg-blue-tint p-8 lg:p-10" role="status" tabindex="-1" data-form-success={id}>
+  <span class="icon-badge !bg-white"><Icon name="check" size={28} /></span>
+  <h3 class="h-sub mt-5">{successTitle}</h3>
+  <p class="mt-3">{successText}</p>
+  <p class="mt-3">Need us sooner? Chat with us directly on WhatsApp.</p>
+  <a href={whatsappLink("Hello, I just sent a message through your website.")} target="_blank" rel="noopener" class="btn btn-primary mt-6"><Icon name="whatsapp" />Chat on WhatsApp</a>
+</div>
+<div class="hidden rounded-3xl border-2 border-magenta bg-white p-8" role="alert" tabindex="-1" data-form-failure={id}>
+  <h3 class="h-sub">Sorry, your message could not be sent just now.</h3>
+  <p class="mt-3">Please reach us directly — we would love to hear from you.</p>
+  <div class="mt-6 flex flex-wrap gap-3">
+    <a href={whatsappLink()} target="_blank" rel="noopener" class="btn btn-primary"><Icon name="whatsapp" />Chat on WhatsApp</a>
+    <a href={`mailto:${site.email}?subject=${encodeURIComponent(subject)}`} class="btn btn-secondary"><Icon name="mail" />Email Us</a>
+  </div>
+</div>

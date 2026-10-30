@@ -1,0 +1,70 @@
+---
+import { site, nav, telLink } from "../config/site.js";
+import { services } from "../data/services.js";
+import Logo from "./Logo.astro";
+import Icon from "./Icon.astro";
+---
+<footer class="bg-blue-tint pb-28 text-ink sm:pb-10" data-hide-floats>
+  <div class="container-site grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1.3fr_1.3fr] lg:py-20">
+    <div>
+      <a href="/" class="inline-flex items-center gap-3 rounded-lg">
+        <Logo /><span class="sr-only">{site.name} — home</span>
+      </a>
+      <p class="mt-5 max-w-xs">{site.shortDescription}</p>
+      <ul class="mt-6 flex gap-2" aria-label="Social media">
+        {site.social.map((s) => (
+          <li>
+            <a href={s.url} class="inline-flex size-11 items-center justify-center rounded-full bg-white text-ink shadow-[var(--shadow-soft)] transition-colors hover:text-magenta-deep" aria-label={`${site.name} on ${s.name}`}>
+              <Icon name={s.icon} size={20} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <nav aria-labelledby="footer-pages">
+      <h2 id="footer-pages" class="text-base font-extrabold">Quick links</h2>
+      <ul class="mt-4">
+        {nav.map((item) => (
+          <li><a href={item.href} class="inline-flex min-h-11 items-center hover:text-magenta-deep hover:underline">{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav aria-labelledby="footer-services">
+      <h2 id="footer-services" class="text-base font-extrabold">Our services</h2>
+      <ul class="mt-4">
+        {services.map((s) => (
+          <li><a href={`/programmes#${s.id}`} class="inline-flex min-h-11 items-center py-1 leading-snug hover:text-magenta-deep hover:underline">{s.name}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div>
+      <h2 class="text-base font-extrabold">Contact</h2>
+      <ul class="mt-4 space-y-3">
+        <li>
+          <a href={telLink} class="inline-flex min-h-11 items-center gap-3 font-semibold hover:text-magenta-deep">
+            <Icon name="phone" size={20} /> <span><span class="sr-only">Phone: </span>{site.phone.display}</span>
+          </a>
+        </li>
+        <li>
+          <a href={`mailto:${site.email}`} class="inline-flex min-h-11 items-center gap-3 font-semibold break-all hover:text-magenta-deep">
+            <Icon name="mail" size={20} class="shrink-0" /> <span><span class="sr-only">Email: </span>{site.email}</span>
+          </a>
+        </li>
+        <li class="flex gap-3">
+          <Icon name="clock" size={20} class="mt-1 shrink-0" />
+          <div>
+            <span class="sr-only">Opening hours: </span>
+            {site.hours.map((h) => <span class="block">{h.days}: {h.time}</span>)}
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container-site flex flex-col gap-2 border-t border-blue py-6 text-sm sm:flex-row sm:items-center sm:justify-between">
+    <p>© 2026 The Bridge Help Centre. All rights reserved.</p>
+    <a href={site.privacyPolicyUrl} class="inline-flex min-h-11 items-center underline-offset-4 hover:underline">Privacy Policy</a>
+  </div>
+</footer>

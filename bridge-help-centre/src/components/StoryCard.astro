@@ -1,0 +1,23 @@
+---
+/* Reminder: only publish stories with written consent; change names where needed. */
+import Media from "./Media.astro";
+import Icon from "./Icon.astro";
+interface Props { story: { name: string; age: string; photo?: string; quote: string; story: string; link?: string }; featured?: boolean }
+const { story, featured = false } = Astro.props;
+---
+<article class:list={["card reveal flex !p-0 overflow-hidden", featured ? "flex-col md:flex-row" : "flex-col"]}>
+  <div class:list={[featured && "md:w-[44%] md:shrink-0"]}>
+    <Media src={story.photo} alt={`Portrait of ${story.name}`} label="Story photo" size="800 × 800 px" ratio="1 / 1" class="!rounded-none !border-x-0 !border-t-0 h-full" width={800} height={800} />
+  </div>
+  <div class:list={["flex flex-1 flex-col", featured ? "p-8 lg:p-12 justify-center" : "p-7"]}>
+    <h3 class:list={["font-extrabold", featured ? "text-2xl" : "text-xl"]}>{story.name}, {story.age}</h3>
+    <p class:list={["mt-3 font-bold leading-snug text-magenta-deep", featured ? "text-xl lg:text-2xl" : "text-lg"]}>“{story.quote}”</p>
+    <p class="mt-4 text-ink-soft">{story.story}</p>
+    {!featured && (
+      <p class="mt-auto pt-5">
+        <a href={story.link || "/contact"} class="link-arrow">Read full story<span class="sr-only"> of {story.name}</span><Icon name="arrow" size={20} /></a>
+      </p>
+    )}
+    <slot />
+  </div>
+</article>

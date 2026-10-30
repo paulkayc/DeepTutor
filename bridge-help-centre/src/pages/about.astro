@@ -1,0 +1,117 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Media from "../components/Media.astro";
+import Icon from "../components/Icon.astro";
+import DirectorBlock from "../components/DirectorBlock.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { story, vision, mission, values, approach, team } from "../data/about.js";
+const isPlaceholder = (t: string) => t.trim().startsWith("[");
+---
+<Base
+  title="About Us"
+  description="Our story, vision, mission and values — and the leadership of Mrs. Amarachi Ikonne, Director of The Bridge Help Centre in Nigeria."
+>
+  <PageHero
+    eyebrow="About Us"
+    title="About The Bridge Help Centre"
+    subtitle="A social enterprise for child and youth development in Nigeria, equipping children and young people to thrive academically, psychologically, socially, and personally."
+  />
+
+  <!-- Our Story -->
+  <section class="section" aria-labelledby="story-heading">
+    <div class="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <div class="reveal">
+        <Media src={story.image} alt={story.imageAlt} label="Our Story photo" size="1200 × 800 px" hint="A photo from the centre's early days or a defining moment." ratio="3 / 2" />
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">Where it began</p>
+        <h2 id="story-heading" class="h-section">Our Story</h2>
+        <div class="measure mt-6 space-y-5">
+          {story.paragraphs.map((p, i) => (
+            <p class:list={[isPlaceholder(p) && "placeholder-text", i === 0 && isPlaceholder(p) && "rounded-xl border-2 border-dashed border-blue bg-blue-tint px-4 py-3 font-bold not-italic text-ink"]}>{p}</p>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission -->
+  <section class="section pt-0 lg:pt-0" aria-label="Vision and mission">
+    <div class="container-site grid gap-6 md:grid-cols-2 lg:gap-8">
+      <article class="card reveal">
+        <Icon name="eye" size={52} class="text-magenta" />
+        <h2 class="h-sub mt-6 !text-3xl !font-bold">Our Vision</h2>
+        <p class:list={["mt-4 text-lg", isPlaceholder(vision) && "placeholder-text"]}>{vision}</p>
+      </article>
+      <article class="card reveal">
+        <Icon name="target" size={52} class="text-magenta" />
+        <h2 class="h-sub mt-6 !text-3xl !font-bold">Our Mission</h2>
+        <p class="mt-4 text-lg">{mission}</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Values (editable in src/data/about.js) -->
+  <section class="section section-tint" aria-labelledby="values-heading">
+    <div class="container-site">
+      <SectionHeading eyebrow="Our Values" title="What We Stand For" id="values-heading" />
+      <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {values.map((v) => (
+          <li class="card reveal flex gap-5 !p-7">
+            <span class="icon-badge !bg-blue-tint"><Icon name={v.icon} size={26} /></span>
+            <div>
+              <h3 class="text-xl font-extrabold">{v.name}</h3>
+              <p class="mt-1.5 text-ink-soft">{v.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Our Approach -->
+  <section class="section" aria-labelledby="approach-heading">
+    <div class="container-site">
+      <SectionHeading eyebrow="Our Approach" title="A promise, not a process" id="approach-heading">
+        <p class="lead measure mt-5">Every young person who comes to us is met with the same three commitments.</p>
+      </SectionHeading>
+      <ol class="grid gap-6 lg:grid-cols-3 lg:gap-0">
+        {approach.map((step, i) => (
+          <li class="reveal relative lg:pr-10">
+            <div class="flex items-center gap-4">
+              <span class="inline-flex size-14 shrink-0 items-center justify-center rounded-full bg-magenta text-xl font-extrabold text-white" aria-hidden="true">{i + 1}</span>
+              {i < approach.length - 1 && <span class="hidden h-0.5 flex-1 bg-blue lg:block" aria-hidden="true"></span>}
+            </div>
+            <h3 class="h-sub mt-6">{step.title}</h3>
+            <p class="mt-3 text-ink-soft lg:pr-4">{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Leadership -->
+  <DirectorBlock id="leadership" />
+
+  {team.length > 0 && (
+    <section class="section" aria-labelledby="team-heading">
+      <div class="container-site">
+        <SectionHeading eyebrow="Our People" title="Our Team" id="team-heading" />
+        {/* Optional: edit or remove the team array in src/data/about.js */}
+        <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {team.map((m) => (
+            <li class="reveal">
+              <Media src={m.photo} alt={`Photo of ${m.name}`} label="Team photo" size="800 × 800 px" ratio="1 / 1" width={800} height={800} />
+              <h3 class="mt-5 text-xl font-extrabold">{m.name}</h3>
+              <p class="placeholder-text mt-1">{m.role}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <CtaBand />
+</Base>
