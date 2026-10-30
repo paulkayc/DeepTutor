@@ -1,7 +1,8 @@
 /* Home page images.
    heroImage: the wide photo across the very top of the home page (a landscape
    photo, ideally 1920 px wide or more; the top and bottom are trimmed to fit).
-   introImage: the "Who We Are" photo just below the hero (landscape, about 1536 × 1024 px). */
+   introImage: photo from the former "Who We Are" section. That section was removed
+   at the owner's request, so this photo is not shown anywhere at the moment. */
 export const home = {
   heroImage: "/images/home/hero-classroom.webp",
   heroImageWidth: 1080,
