@@ -74,7 +74,7 @@ const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.loc
   <!-- 2. Our Services (directly under the hero) -->
   <section id="our-services" class="section scroll-mt-24" aria-labelledby="services-heading">
     <div class="container-site">
-      <h2 id="services-heading" class="services-title mb-10 lg:mb-14">Our Services</h2>
+      <h2 id="services-heading" class="fancy-title mb-10 lg:mb-14">Our Services</h2>
       <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-6">
         {services.map((s, i) => (
           <li class:list={["lg:col-span-2", i === 3 && "lg:col-start-2"]}>
@@ -91,7 +91,7 @@ const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.loc
   <!-- 5. Impact at a glance -->
   <section class="section pt-0 lg:pt-0" aria-labelledby="impact-heading">
     <div class="container-site">
-      <SectionHeading eyebrow="Our Impact" title="Change you can count — and stories you can feel" id="impact-heading" />
+      <h2 id="impact-heading" class="fancy-title mb-10 lg:mb-14">Our Impact</h2>
       <Stats />
       <div class="mt-16">
         <StoryCard story={stories[0]} featured>

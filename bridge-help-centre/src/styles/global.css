@@ -105,8 +105,8 @@
   @media (min-width: 64rem) { .director-bio { font-size: 1.4375rem; } }
   /* Home hero paragraphs share the director biography's serif. */
   .hero-copy { font-family: var(--font-display); }
-  /* "OUR SERVICES" heading: bold capitals with a magenta-to-blue colour blend. */
-  .services-title {
+  /* Home section headings ("OUR SERVICES", "OUR IMPACT"): bold capitals with a magenta-to-blue blend. */
+  .fancy-title {
     font-family: var(--font-display);
     font-weight: 800;
     text-transform: uppercase;

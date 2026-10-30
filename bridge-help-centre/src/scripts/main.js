@@ -35,7 +35,7 @@ const animateCount = (el) => {
   const suffix = el.dataset.suffix || "";
   if (!Number.isFinite(target) || reduceMotion) return;
   const start = performance.now();
-  const duration = 1400;
+  const duration = 2200;
   const step = (now) => {
     const t = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - t, 3);
