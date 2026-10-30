@@ -147,8 +147,8 @@ $$("[data-slideshow]").forEach((show) => {
       s.classList.toggle("is-active", on);
       s.setAttribute("aria-hidden", String(!on));
       s.querySelectorAll("a").forEach((a) => (on ? a.removeAttribute("tabindex") : a.setAttribute("tabindex", "-1")));
-      // Load the next image just before it is shown.
-      if (on || n === (current + 1) % slides.length) s.querySelector("img").loading = "eager";
+      // Once the slideshow is near the screen, load the shown and next images.
+      if (onScreen && (on || n === (current + 1) % slides.length)) s.querySelector("img").loading = "eager";
     });
     dots.forEach((d, n) => (n === current ? d.setAttribute("aria-current", "true") : d.removeAttribute("aria-current")));
   };
@@ -168,7 +168,7 @@ $$("[data-slideshow]").forEach((show) => {
   show.addEventListener("focusin", () => { hovering = true; update(); });
   show.addEventListener("focusout", () => { hovering = false; update(); });
   if ("IntersectionObserver" in window) {
-    new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; update(); }, { threshold: 0.25 }).observe(show);
+    new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; if (onScreen) go(current); update(); }, { threshold: 0.25 }).observe(show);
   }
   go(0);
   update();

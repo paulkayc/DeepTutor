@@ -55,6 +55,7 @@ export const site = {
   // size below. Set logo: "" to show the dashed "LOGO" placeholder instead.
   // The client's original artwork is kept at /public/images/logo-original.jpg.
   logo: "/images/logo.webp",
+  logoSmall: "/images/logo-sm.webp", // smaller copy for the header
   logoWidth: 457,
   logoHeight: 264,
 

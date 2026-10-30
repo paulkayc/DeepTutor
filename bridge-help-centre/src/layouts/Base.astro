@@ -12,8 +12,8 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FloatingContact from "../components/FloatingContact.astro";
 
-interface Props { title: string; description: string; ogType?: string }
-const { title, description, ogType = "website" } = Astro.props;
+interface Props { title: string; description: string; ogType?: string; preloadImage?: { src: string; srcset?: string } }
+const { title, description, ogType = "website", preloadImage } = Astro.props;
 const fullTitle = title === site.name ? `${site.name} | Child & Youth Development in Nigeria` : `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL(site.ogImage, site.url).href;
@@ -70,6 +70,7 @@ const schema = {
 
     <script is:inline>document.documentElement.classList.add("js");</script>
     <!-- Manrope (Google Font), self-hosted for speed and preloaded -->
+    {preloadImage && <link rel="preload" as="image" href={preloadImage.src} imagesrcset={preloadImage.srcset} imagesizes="100vw" fetchpriority="high" />}
     <link rel="preload" as="font" type="font/woff2" href={manropeWoff2} crossorigin />
     <link rel="preload" as="font" type="font/woff2" href={frauncesWoff2} crossorigin />
     <style is:inline set:html={brandVars}></style>

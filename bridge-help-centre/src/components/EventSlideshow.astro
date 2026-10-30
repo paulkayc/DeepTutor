@@ -53,12 +53,12 @@ const details = [
     {event.subtitle && <p class="hero-copy mt-3 text-lg text-ink-soft lg:text-xl">{event.subtitle}</p>}
     <dl class="mt-8 grid gap-4 sm:grid-cols-2">
       {details.map((d) => (
-        <div class="flex items-start gap-3">
-          <span class="icon-badge !size-11 !rounded-full"><Icon name={d.icon} size={20} /></span>
-          <div>
-            <dt class="text-sm font-bold uppercase tracking-wider text-ink-soft">{d.label}</dt>
-            <dd class="font-semibold">{d.value}</dd>
-          </div>
+        <div class="grid grid-cols-[auto_1fr] items-start gap-x-3">
+          <dt class="contents">
+            <span class="icon-badge row-span-2 !size-11 !rounded-full"><Icon name={d.icon} size={20} /></span>
+            <span class="text-sm font-bold uppercase tracking-wider text-ink-soft">{d.label}</span>
+          </dt>
+          <dd class="col-start-2 font-semibold">{d.value}</dd>
         </div>
       ))}
     </dl>

@@ -5,11 +5,12 @@ const { compact = false } = Astro.props;
 ---
 {site.logo ? (
   <img
-    src={site.logo}
+    src={compact && site.logoSmall ? site.logoSmall : site.logo}
     alt=""
     width={site.logoWidth}
     height={site.logoHeight}
     decoding="async"
+    loading={compact ? "eager" : "lazy"}
     class={compact ? "h-9 w-auto sm:h-11 lg:h-14" : "h-24 w-auto"}
   />
 ) : (

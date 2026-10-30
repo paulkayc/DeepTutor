@@ -5,6 +5,7 @@
    at the owner's request, so this photo is not shown anywhere at the moment. */
 export const home = {
   heroImage: "/images/home/hero-classroom.webp",
+  heroImageSmall: "/images/home/hero-classroom-640.webp", // lighter copy for phones
   heroImageWidth: 1080,
   heroImageHeight: 810,
   heroImageAlt: "A Bridge Help Centre facilitator speaking to a full classroom of secondary school students in checked uniforms during a school outreach",
