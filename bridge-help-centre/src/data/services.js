@@ -26,7 +26,7 @@ export const services = [
   {
     id: "counselling",
     number: "02",
-    name: "Individual and School Counseling services", // exact
+    name: "Individual and School Counselling services", // exact
     summary: "A safe place to talk, be heard, and receive guidance.", // exact
     icon: "counselling",
     image: "/images/programmes/counselling.webp",
