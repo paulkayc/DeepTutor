@@ -43,12 +43,12 @@ const isPlaceholder = (t: string) => t.trim().startsWith("[");
       <article class="card reveal">
         <Icon name="eye" size={52} class="text-magenta" />
         <h2 class="h-sub mt-6 !text-3xl !font-bold">Our Vision</h2>
-        <p class:list={["mt-4 text-lg", isPlaceholder(vision) && "placeholder-text"]}>{vision}</p>
+        <p class:list={["hero-copy mt-4 text-lg leading-relaxed lg:text-xl", isPlaceholder(vision) && "placeholder-text"]}>{vision}</p>
       </article>
       <article class="card reveal">
         <Icon name="target" size={52} class="text-magenta" />
         <h2 class="h-sub mt-6 !text-3xl !font-bold">Our Mission</h2>
-        <p class="mt-4 text-lg">{mission}</p>
+        <p class="hero-copy mt-4 text-lg leading-relaxed lg:text-xl">{mission}</p>
       </article>
     </div>
   </section>

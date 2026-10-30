@@ -22,11 +22,12 @@ export const story = {
   ],
 };
 
-// [PLACEHOLDER]
-export const vision = "[Add vision statement]";
-// exact
+// Owner's wording
+export const vision =
+  "To be a leading organization dedicated to meeting the diverse needs of children, adolescents, and young people, helping them grow, thrive, and reach their full potential.";
+// Owner's wording
 export const mission =
-  "We collaborate with parents, schools, communities, and government partners to create nurturing environments where children and young people can learn, grow, and reach their potential.";
+  "To work collaboratively with parents, schools, and government partners to support, empower, and equip children and young people to thrive. We are committed to creating safe, inclusive, and nurturing environments by addressing their emotional, psychological, educational, and social needs with care, compassion, and professionalism, ensuring they are given equal opportunity to reach their full potential.";
 
 /* EDITABLE starting points — rename, rewrite or delete freely. */
 export const values = [
