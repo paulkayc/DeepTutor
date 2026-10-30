@@ -39,13 +39,6 @@ export const values = [
   { name: "Safety", text: "We keep every space we create safe, confidential and child-centred.", icon: "lock" },
 ];
 
-/* Our Approach — drawn from the client's own promise. */
-export const approach = [
-  { title: "We meet you where you are", text: "Whatever a young person is carrying — at school, at home or inside — we start there, without judgement." },
-  { title: "We walk with you", text: "Through counselling, mentoring and learning support, we stay alongside them, step by step." },
-  { title: "We help you reach where you want to be", text: "Confident, capable and ready to live purposefully and contribute to their community." },
-];
-
 /* [PLACEHOLDER] Optional team cards. Delete the array items (or set team = [])
    to hide the "Our Team" grid. photo: 800 × 800 px. */
 export const team = [
