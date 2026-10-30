@@ -1,9 +1,9 @@
 ---
 /* One service box on the Home page: icon marker, service name (links to its
-   section on Our Programmes) and its own WhatsApp + email buttons. */
+   section on Our Programmes), short description and WhatsApp + email icon buttons. */
 import Icon from "./Icon.astro";
 import { whatsappLink, emailLink } from "../config/site.js";
-interface Props { service: { id: string; name: string; icon: string } }
+interface Props { service: { id: string; name: string; summary: string; icon: string } }
 const { service } = Astro.props;
 ---
 <article class="card card-hover reveal flex h-full flex-col !p-7">
@@ -13,20 +13,25 @@ const { service } = Astro.props;
       <a href={`/programmes#${service.id}`} class="hover:text-magenta-deep hover:underline hover:decoration-2 hover:underline-offset-4">{service.name}</a>
     </h3>
   </div>
-  <div class="mt-auto flex flex-wrap gap-3 pt-7">
+  <p class="mt-4 text-ink-soft">{service.summary}</p>
+  <div class="mt-auto flex gap-3 pt-6">
     <a
       href={whatsappLink(`Hello, I would like to enquire about ${service.name}`)}
       target="_blank"
       rel="noopener"
-      class="inline-flex min-h-11 items-center gap-2 rounded-full bg-magenta px-4 text-[0.9375rem] font-bold text-white transition hover:-translate-y-0.5 hover:bg-magenta-deep"
+      class="inline-flex size-11 items-center justify-center rounded-full bg-magenta text-white transition hover:-translate-y-0.5 hover:bg-magenta-deep"
+      aria-label={`WhatsApp us about ${service.name} (opens in a new tab)`}
+      title="Chat on WhatsApp"
     >
-      <Icon name="whatsapp" size={20} />WhatsApp<span class="sr-only"> us about {service.name} (opens in a new tab)</span>
+      <Icon name="whatsapp" size={22} />
     </a>
     <a
       href={emailLink(`Enquiry: ${service.name}`)}
-      class="inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-blue bg-white px-4 text-[0.9375rem] font-bold text-ink transition hover:-translate-y-0.5 hover:border-ink"
+      class="inline-flex size-11 items-center justify-center rounded-full bg-blue text-ink transition hover:-translate-y-0.5"
+      aria-label={`Email us about ${service.name}`}
+      title="Send an email"
     >
-      <Icon name="mail" size={20} />Email<span class="sr-only"> us about {service.name}</span>
+      <Icon name="mail" size={22} />
     </a>
   </div>
 </article>
