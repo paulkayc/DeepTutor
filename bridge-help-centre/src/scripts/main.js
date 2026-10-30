@@ -220,6 +220,22 @@ if (pastList) {
   if (upEmpty && upcomingList) upEmpty.hidden = upcomingList.children.length > 0;
 }
 
+/* ---- Copy buttons (e.g. bank account number) ----------------------- */
+$$("[data-copy]").forEach((btn) => {
+  const label = btn.querySelector("[data-copy-label]");
+  btn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(btn.dataset.copy);
+      label.textContent = "Copied";
+    } catch {
+      const src = btn.parentElement.querySelector("[data-copy-source]");
+      if (src) { const r = document.createRange(); r.selectNodeContents(src); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
+      label.textContent = "Selected — press copy";
+    }
+    setTimeout(() => (label.textContent = "Copy"), 2500);
+  });
+});
+
 /* ---- Forms: accessible validation + async submit -------------------- */
 $$("[data-form]").forEach((form) => {
   const summary = form.querySelector("[data-form-summary]");

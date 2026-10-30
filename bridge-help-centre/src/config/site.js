@@ -30,7 +30,7 @@
    Office address .............. site.address (below)
    Map ......................... site.mapEmbedUrl (below)
    Form endpoints .............. site.forms (below)
-   Bank / payment details ...... site.supportDetails (below)
+   Bank / payment details ...... site.supportDetails (below) (done)
    Social media links .......... site.social (below) (done)
    Website address ............. site.url (below)
    ===================================================================== */
@@ -99,10 +99,13 @@ export const site = {
     newsletterEndpoint: "https://formspree.io/f/YOUR_NEWSLETTER_FORM_ID",
   },
 
-  // [PLACEHOLDER] Bank or payment details for supporters. The block stays
-  // hidden on the Get Involved page until this is filled in, e.g.
-  // { bank: "…", accountName: "…", accountNumber: "…", note: "…" }
-  supportDetails: null,
+  // Bank details for supporters (shown on the Get Involved page).
+  // Set supportDetails: null to hide the block.
+  supportDetails: {
+    accountName: "The Bridge Help Center Ltd/Gte",
+    accountNumber: "0149917444",
+    bank: "Sterling Bank",
+  },
 
   // Social media links (add a line to show another icon).
   social: [
