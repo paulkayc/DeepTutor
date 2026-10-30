@@ -1,7 +1,9 @@
 ---
 import "@fontsource-variable/manrope/wght.css";
+import "@fontsource-variable/fraunces/wght.css";
 import "../styles/global.css";
 import manropeWoff2 from "@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url";
+import frauncesWoff2 from "@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2?url";
 import { site } from "../config/site.js";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -66,6 +68,7 @@ const schema = {
     <script is:inline>document.documentElement.classList.add("js");</script>
     <!-- Manrope (Google Font), self-hosted for speed and preloaded -->
     <link rel="preload" as="font" type="font/woff2" href={manropeWoff2} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={frauncesWoff2} crossorigin />
     <style is:inline set:html={brandVars}></style>
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>

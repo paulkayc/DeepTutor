@@ -10,6 +10,8 @@
 }
 
 @theme inline {
+  /* Display face for the home page headline (owner asked for a different, expressive font). */
+  --font-display: "Fraunces Variable", "Fraunces", Georgia, "Times New Roman", serif;
   --font-sans: "Manrope Variable", "Manrope", "Inter", "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --color-white: var(--brand-white);
@@ -81,6 +83,17 @@
     @apply h-0.5 w-7 rounded-full bg-magenta;
   }
   .h-display > span { white-space: nowrap; }
+  .h-hero {
+    font-family: var(--font-display);
+    font-weight: 400;
+    /* Big on phones (wraps there); from 640px up each half stays on one line. */
+    font-size: max(2.25rem, min(4.75rem, calc((100vw - 3rem) / 14.6)));
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+  .h-hero > span { display: block; }
+  @media (min-width: 40rem) { .h-hero > span { white-space: nowrap; } }
+  .h-hero strong { font-weight: 800; color: var(--color-magenta); white-space: nowrap; }
   .h-display {
     @apply font-extrabold;
     /* Sized so each sentence stays on one line, even on a 360-390 px phone. */
