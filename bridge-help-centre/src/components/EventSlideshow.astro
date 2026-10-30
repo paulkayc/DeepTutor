@@ -10,6 +10,7 @@ interface Props {
   event: {
     title: string; subtitle?: string; date: string; time?: string; location?: string;
     price?: string; speaker?: string; slides: Slide[]; speakerBio?: string[];
+    registerForm?: string; registerFormEmbed?: string;
   };
 }
 const { event } = Astro.props;
@@ -64,8 +65,28 @@ const details = [
       ))}
     </dl>
     <div class="mt-10 flex flex-col gap-4 sm:flex-row">
-      <a href={whatsappLink(`Hello, I would like to register for ${event.title} on ${when}`)} target="_blank" rel="noopener" class="btn btn-primary"><Icon name="whatsapp" />Register on WhatsApp</a>
+      {(event.registerFormEmbed || event.registerForm) && (
+        <a href="#register-form" class="btn btn-primary" data-open-register><Icon name="file" size={22} />Register with our form</a>
+      )}
+      <a href={whatsappLink(`Hello, I would like to register for ${event.title} on ${when}`)} target="_blank" rel="noopener" class:list={["btn", (event.registerFormEmbed || event.registerForm) ? "btn-secondary" : "btn-primary"]}><Icon name="whatsapp" />Register on WhatsApp</a>
     </div>
+    {(event.registerFormEmbed || event.registerForm) && (
+      <details id="register-form" class="mt-6 scroll-mt-28 rounded-3xl border-2 border-blue bg-white" data-register-form>
+        <summary class="flex min-h-14 items-center justify-between gap-4 px-6 py-4 text-lg font-bold">
+          Registration form
+          <Icon name="chevronDown" size={22} class="accordion-chevron shrink-0 transition-transform" />
+        </summary>
+        <div class="px-2 pb-4 sm:px-4">
+          <p class="px-4 pb-3 text-sm text-ink-soft">
+            Trouble with the form? <a href={event.registerForm || event.registerFormEmbed} target="_blank" rel="noopener" class="link">Open it in a new tab</a>. Provided by Google, which may set cookies.
+          </p>
+          <div class="relative overflow-hidden rounded-2xl bg-blue-tint">
+            <p class="absolute inset-x-0 top-10 text-center font-semibold" aria-hidden="true">Loading the form…</p>
+            <iframe src={event.registerFormEmbed || event.registerForm} title={`Registration form for ${event.title} (Google Forms)`} class="relative block h-[1100px] w-full border-0 sm:h-[950px]" loading="lazy">Loading…</iframe>
+          </div>
+        </div>
+      </details>
+    )}
     {event.speakerBio && (
       <details class="mt-10 rounded-3xl bg-blue-tint">
         <summary class="flex min-h-14 items-center justify-between gap-4 px-6 py-4 text-lg font-bold">

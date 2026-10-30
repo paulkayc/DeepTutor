@@ -17,6 +17,10 @@ export const events = [
     location: "Online (Google Meet)",
     price: "Free",
     speaker: "Kenneth Anele",
+    // Registration form (Google Form). registerFormEmbed shows it on the page;
+    // registerForm opens it in a new tab. Leave both "" to hide the form button.
+    registerForm: "https://forms.gle/5ctH4N3UdYXbgnY66",
+    registerFormEmbed: "https://docs.google.com/forms/d/e/1FAIpQLSeIDAADKzeF57skvIZfJ3sfbqfLy13afaBx3uevB8TQVN6CnQ/viewform?embedded=true",
     description: "A child development & learning programme for parents, teachers and educators, with Special Needs & Developmental Intervention Specialist Kenneth Anele.",
     image: "/images/events/struggling-to-learn-flyer.webp",
     imageRatio: "4 / 5",

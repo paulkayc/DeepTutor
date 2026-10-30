@@ -199,6 +199,18 @@ $$("[data-map]").forEach((box) => {
   });
 });
 
+/* ---- "Register with our form" opens and scrolls to the form -------- */
+$$("[data-open-register]").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const box = document.querySelector("[data-register-form]");
+    if (!box) return;
+    e.preventDefault();
+    box.open = true;
+    box.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    box.querySelector("summary").focus({ preventScroll: true });
+  });
+});
+
 /* ---- Copy buttons (e.g. bank account number) ----------------------- */
 $$("[data-copy]").forEach((btn) => {
   const label = btn.querySelector("[data-copy-label]");
