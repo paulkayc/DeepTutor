@@ -40,7 +40,8 @@ then republish that folder to the same artifact URL (index.html as the page, eve
 - New photos: run `python3 tools/make-image-sizes.py` so `-640.webp` copies exist (picked up by src/lib/images.js).
 - Security headers/CSP are generated at build (security-headers.mjs). If the inline start-up script in
   Base.astro changes, the hash updates automatically; re-run tools/update-vercel-headers.mjs for Vercel.
-- External services allowed by the CSP: formspree.io (forms), maps.google.com / www.google.com (map).
+- External services allowed by the CSP: formspree.io (Contact form), maps.google.com / www.google.com (map),
+  docs.google.com / forms.gle (Get Involved Google Form, site.getInvolvedForm).
   Adding any other third-party script, font, iframe or form service requires updating security-headers.mjs.
 - Privacy Policy is the centre's own wording (src/pages/privacy.astro). Do not invent policy text.
 - Past events hide themselves; the Upcoming section disappears when no future events exist.

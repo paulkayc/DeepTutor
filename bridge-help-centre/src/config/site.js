@@ -86,8 +86,15 @@ export const site = {
   // HTML POST (Formspree, Web3Forms, Getform…) will work.
   forms: {
     contactEndpoint: "https://formspree.io/f/YOUR_CONTACT_FORM_ID",
-    getInvolvedEndpoint: "https://formspree.io/f/YOUR_GET_INVOLVED_FORM_ID",
   },
+
+  // Get Involved page: the centre's Google Form.
+  //  - getInvolvedForm: the link to the form (opens in a new tab).
+  //  - getInvolvedFormEmbed: optional. For the most reliable in-page form, paste
+  //    the embed link here: in Google Forms press Send → the < > tab → copy only
+  //    the address inside src="…" (it ends in "embedded=true").
+  getInvolvedForm: "https://forms.gle/5ctH4N3UdYXbgnY66",
+  getInvolvedFormEmbed: "",
 
   // Bank details for supporters (shown on the Get Involved page).
   // Set supportDetails: null to hide the block.

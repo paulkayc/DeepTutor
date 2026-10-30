@@ -107,8 +107,9 @@ In Google Maps, go to Share → Embed a map, copy the address inside `src="…"`
 ## Before going live (checklist)
 1. **Website address:** thebridgehelpcentre.org (set as `url` in `src/config/site.js`). On the host,
    connect both `thebridgehelpcentre.org` and `www.thebridgehelpcentre.org`; www redirects to the main address.
-2. **Forms:** create Formspree forms (or similar) and paste the two endpoints into `forms` in
-   `src/config/site.js`. Until then the forms show a WhatsApp/email fallback instead of sending.
+2. **Contact form:** create a Formspree form and paste its endpoint into `forms.contactEndpoint` in
+   `src/config/site.js`. Until then it shows a WhatsApp/email fallback. (The Get Involved page uses the
+   centre's Google Form: `getInvolvedForm` / `getInvolvedFormEmbed`.)
 
 ## Maintenance tools
 - `python3 tools/make-image-sizes.py`: after adding photos, creates lighter 640px copies that

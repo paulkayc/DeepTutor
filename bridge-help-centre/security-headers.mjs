@@ -32,7 +32,7 @@ export function buildCsp(hashes) {
     "font-src 'self' data:",
     "connect-src 'self' https://formspree.io",
     "form-action 'self' https://formspree.io",
-    "frame-src https://maps.google.com https://www.google.com",
+    "frame-src https://maps.google.com https://www.google.com https://docs.google.com https://forms.gle",
     "object-src 'none'",
     "base-uri 'self'",
     "frame-ancestors 'none'",
