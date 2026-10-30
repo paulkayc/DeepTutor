@@ -31,7 +31,7 @@
    Map ......................... site.mapEmbedUrl (below)
    Form endpoints .............. site.forms (below)
    Bank / payment details ...... site.supportDetails (below)
-   Social media links .......... site.social (below)
+   Social media links .......... site.social (below) (done)
    Website address ............. site.url (below)
    ===================================================================== */
 
@@ -104,13 +104,10 @@ export const site = {
   // { bank: "…", accountName: "…", accountNumber: "…", note: "…" }
   supportDetails: null,
 
-  // [PLACEHOLDER] Social media links — replace "#" with real profile URLs,
-  // or delete a line to hide that icon.
+  // Social media links (add a line to show another icon).
   social: [
-    { name: "Facebook", icon: "facebook", url: "#" },
-    { name: "Instagram", icon: "instagram", url: "#" },
-    { name: "X (Twitter)", icon: "x", url: "#" },
-    { name: "LinkedIn", icon: "linkedin", url: "#" },
+    { name: "Facebook", icon: "facebook", url: "https://www.facebook.com/share/1HhiWFayto/" },
+    { name: "Instagram", icon: "instagram", url: "https://www.instagram.com/thebridgehelpcentre_" },
   ],
 
   privacyPolicyUrl: "/privacy",

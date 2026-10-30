@@ -14,7 +14,7 @@ import Icon from "./Icon.astro";
       <ul class="mt-6 flex gap-2" aria-label="Social media">
         {site.social.map((s) => (
           <li>
-            <a href={s.url} class="inline-flex size-11 items-center justify-center rounded-full bg-white text-ink shadow-[var(--shadow-soft)] transition-colors hover:text-magenta-deep" aria-label={`${site.name} on ${s.name}`}>
+            <a href={s.url} target="_blank" rel="noopener" class="inline-flex size-11 items-center justify-center rounded-full bg-white text-ink shadow-[var(--shadow-soft)] transition-colors hover:text-magenta-deep" aria-label={`${site.name} on ${s.name} (opens in a new tab)`}>
               <Icon name={s.icon} size={20} />
             </a>
           </li>
