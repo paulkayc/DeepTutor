@@ -1,3 +1,7 @@
 node_modules/
 dist/
 .astro/
+
+# The repository root ignores every "data/" folder (DeepTutor runtime data).
+# The website's content files must be committed, so re-include them here.
+!src/data/
