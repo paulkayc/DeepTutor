@@ -5,12 +5,14 @@
    details where needed, and never show a face without consent.
    Tell each story with the young person first: what they faced, what the
    centre did alongside them, and where they are now.
-   photo: 800 × 800 px square ([PLACEHOLDER] while "").
+   photo: 800 × 800 px square ([PLACEHOLDER] while ""). photoAlt: describe the photo.
    The first story is featured on the Home page.
    --------------------------------------------------------------------- */
 export const stories = [
   {
-    name: "[First name]", age: "[Age]", photo: "",
+    name: "[First name]", age: "[Age]",
+    photo: "/images/stories/story-01.webp",
+    photoAlt: "A Bridge Help Centre facilitator in a pink T-shirt speaking with a class of students in light-blue uniforms",
     quote: "[One-line quote in their own words]",
     story: "[What they were facing.] [How The Bridge Help Centre walked with them.] [Where they are now.]",
     link: "",
