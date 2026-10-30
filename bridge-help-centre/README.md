@@ -74,7 +74,7 @@ Put the photo in `public/images/gallery/`. Then fill in one line in `src/data/ga
 { src: "/images/gallery/outreach-lagos.webp", alt: "Students at a school outreach in Lagos", caption: "School outreach", category: "School Outreach" },
 ```
 
-The Home page shows the first 8 images. Our Impact shows all of them, with filters by category.
+The Home page ("Moments from Our Work") shows the first 8 images.
 
 ### Add an article
 Copy a block in `src/data/articles.js` and give it a new `slug`. Write the body as a list of

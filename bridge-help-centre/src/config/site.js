@@ -118,7 +118,6 @@ export const nav = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Our Programmes", href: "/programmes" },
-  { label: "Our Impact", href: "/impact" },
   { label: "Get Involved", href: "/get-involved" },
   { label: "Resources", href: "/resources" },
   { label: "Contact Us", href: "/contact" },

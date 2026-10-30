@@ -5,8 +5,8 @@
    2. Fill in src, alt (describe the photo for screen readers), an optional
       caption and a category. Categories are used by the filter chips:
       "School Outreach", "Counselling", "Mentorship", "Community".
-   The Home page shows the first 8 (with fewer than 8 photos it shows five:
-   one large, four small); Our Impact shows all.
+   The Home page ("Moments from Our Work") shows the first 8 (with fewer
+   than 8 photos it shows five: one large, four small).
    Lines with src: "" are skipped once any real photo is listed (placeholders
    only appear when the gallery is completely empty).
    --------------------------------------------------------------------- */
