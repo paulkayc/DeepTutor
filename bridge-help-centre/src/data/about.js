@@ -10,9 +10,8 @@ export const director = {
 };
 
 export const story = {
-  // [PLACEHOLDER] 1200 × 800 px photo, e.g. "/images/our-story.jpg"
-  image: "",
-  imageAlt: "The Bridge Help Centre at work with young people",
+  image: "/images/about/our-story.webp",
+  imageAlt: "A Bridge Help Centre facilitator in a red T-shirt with a full classroom of students in light-blue uniforms during a school outreach",
   // Our Story — written with the owner. Edit freely; one string per paragraph.
   paragraphs: [
     "For more than 16 years, our founder, Mrs. Amarachi Ikonne, has sat with teenagers and young adults in classrooms, counselling rooms and communities in Umuahia. Again and again, she met young people who were bright, curious and full of promise, yet carrying far more than any child should.",
@@ -43,11 +42,11 @@ export const values = [
    to hide the "Our Team" grid. photo: 800 × 800 px. Optional: profession, photoAlt. */
 export const team = [
   {
-    name: "Amarachi Ikonne",
-    role: "Founder",
+    name: "Mrs. Amarachi Ikonne",
+    role: "Founder & Director",
     profession: "Child/Youth Counsellor",
     photo: "/images/team/amarachi-ikonne.webp",
-    photoAlt: "Portrait of Amarachi Ikonne, Founder of The Bridge Help Centre, smiling in a soft pink dress",
+    photoAlt: "Portrait of Mrs. Amarachi Ikonne, Founder and Director of The Bridge Help Centre, smiling in a soft pink dress",
   },
   {
     name: "Dr Kelechi Ikonne",
