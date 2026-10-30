@@ -9,7 +9,10 @@ const isCurrent = (href: string) => (href === "/" ? path === "/" : path === href
   <div class="mx-auto flex h-20 w-full max-w-[1400px] items-center gap-3 px-6 lg:h-24">
     <a href="/" class="mr-auto flex min-h-11 items-center gap-3 rounded-lg">
       <Logo compact />
-      <span class="text-[0.8125rem] font-extrabold uppercase leading-tight tracking-[0.04em] sm:text-base lg:text-lg">The Bridge<br /> Help Centre</span>
+      <span class="flex flex-col">
+        <span class="text-[0.8125rem] font-extrabold uppercase leading-tight tracking-[0.04em] sm:text-base lg:text-lg">The Bridge<br /> Help Centre</span>
+        <span class="tagline mt-0.5 text-[0.75rem] leading-tight sm:text-sm">Guiding lives, building futures</span>
+      </span>
     </a>
 
     <nav aria-label="Main" class="hidden nav:block">

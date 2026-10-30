@@ -12,6 +12,7 @@
 @theme inline {
   /* Display face for the home page headline (owner asked for a different, expressive font). */
   --font-display: "Fraunces Variable", "Fraunces", Georgia, "Times New Roman", serif;
+  --font-accent: "DM Sans Variable", "DM Sans", "Manrope Variable", system-ui, sans-serif;
   --font-sans: "Manrope Variable", "Manrope", "Inter", "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --color-white: var(--brand-white);
@@ -94,6 +95,12 @@
   .h-hero > span { display: block; }
   @media (min-width: 40rem) { .h-hero > span { white-space: nowrap; } }
   .h-hero strong { font-weight: 800; color: var(--color-magenta); white-space: nowrap; }
+  .h-hero em { font-style: italic; font-weight: 300; }
+  /* Second line in a different face: a bold modern sans with a true italic. */
+  .h-hero .h-hero-alt { font-family: var(--font-accent); letter-spacing: -0.04em; }
+  .h-hero .h-hero-alt strong { font-weight: 800; }
+  .h-hero .h-hero-alt em { font-weight: 400; }
+  .tagline { font-family: var(--font-display); font-style: italic; font-weight: 500; color: var(--color-magenta-deep); }
   .h-display {
     @apply font-extrabold;
     /* Sized so each sentence stays on one line, even on a 360-390 px phone. */
