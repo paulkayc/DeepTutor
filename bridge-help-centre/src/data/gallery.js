@@ -5,22 +5,20 @@
    2. Fill in src, alt (describe the photo for screen readers), an optional
       caption and a category. Categories are used by the filter chips:
       "School Outreach", "Counselling", "Mentorship", "Community".
-   The Home page shows the first 8; Our Impact shows all of them.
-   [PLACEHOLDER] While src is "" a numbered placeholder box is shown.
+   The Home page shows the first 5 (one large, four small); Our Impact shows all.
+   Lines with src: "" are skipped once any real photo is listed (placeholders
+   only appear when the gallery is completely empty).
    --------------------------------------------------------------------- */
 export const galleryCategories = ["School Outreach", "Counselling", "Mentorship", "Community"];
 
 export const gallery = [
-  { src: "", alt: "Students listening during a school outreach talk", caption: "School outreach", category: "School Outreach" },
+  { src: "/images/gallery/school-outreach-talk.webp", width: 528, height: 528, alt: "A Bridge Help Centre facilitator in a red T-shirt speaking to a packed classroom of students in light-blue uniforms", caption: "School outreach in action", category: "School Outreach" },
+  { src: "/images/gallery/outreach-team.webp", width: 1080, height: 1080, alt: "Two photos of The Bridge Help Centre team in pink and white branded T-shirts standing together outside a school during an outreach", caption: "Our team at a school outreach", category: "School Outreach" },
+  { src: "/images/gallery/students-session.webp", width: 588, height: 588, alt: "Secondary school students smiling and taking notes at their desks during a Bridge Help Centre session", caption: "Students during a session", category: "School Outreach" },
+  { src: "/images/gallery/team-at-school.webp", width: 1080, height: 1079, alt: "Two photos of Bridge Help Centre team members and a partner smiling outside a school building", caption: "The Bridge Help Centre team", category: "Community" },
+  { src: "/images/gallery/my-why-my-focus-flyer.webp", width: 1080, height: 1080, alt: "Flyer for 'My Why, My Focus, My Future', a student development programme for ages 10 to 18 with facilitator Amara Ikonne, 1st October 2026, 11 AM on Google Meet", caption: "My Why, My Focus, My Future (1 Oct 2026)", category: "Mentorship" },
+  // Add more photos below (copy a line above and change it). Empty lines like
+  // these are ignored once at least one real photo is listed.
   { src: "", alt: "A mentor and teenagers setting goals together", caption: "Mentoring circle", category: "Mentorship" },
-  { src: "", alt: "Community members at a youth empowerment event", caption: "Community day", category: "Community" },
   { src: "", alt: "A warm, quiet room prepared for counselling", caption: "Our counselling space", category: "Counselling" },
-  { src: "", alt: "Teachers taking part in a training workshop", caption: "Teachers' training", category: "School Outreach" },
-  { src: "", alt: "Girls taking part in a leadership session", caption: "Girls' leadership", category: "Community" },
-  { src: "", alt: "Young people presenting their life goals", caption: "Goal-setting session", category: "Mentorship" },
-  { src: "", alt: "A group discussion during a wellbeing session", caption: "Wellbeing session", category: "Counselling" },
-  { src: "", alt: "Students asking questions at a career guidance talk", caption: "Career guidance", category: "School Outreach" },
-  { src: "", alt: "Volunteers preparing materials for an outreach", caption: "Our volunteers", category: "Community" },
-  { src: "", alt: "A mentor celebrating progress with a young person", caption: "Celebrating progress", category: "Mentorship" },
-  { src: "", alt: "Parents attending a learning support session", caption: "Parents' session", category: "Counselling" },
 ];

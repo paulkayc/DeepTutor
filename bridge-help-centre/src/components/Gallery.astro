@@ -5,20 +5,25 @@ import Media from "./Media.astro";
 import Icon from "./Icon.astro";
 interface Props { limit?: number; filters?: boolean; layout?: "grid" | "masonry"; id?: string }
 const { limit = gallery.length, filters = false, layout = "masonry", id = "gallery-grid" } = Astro.props;
-const items = gallery.slice(0, limit);
+// Show only real photos once any exist; placeholders appear only for an empty gallery.
+const real = gallery.filter((g) => g.src);
+const items = (real.length ? real : gallery).slice(0, limit);
+const categories = galleryCategories.filter((c) => items.some((g) => g.category === c));
+// Grid layout: the first photo is large (2 × 2), so five photos fill a 4 × 2 grid.
+const featureFirst = layout === "grid" && real.length > 0;
 const ratios = ["4 / 3", "3 / 4", "1 / 1", "4 / 5", "3 / 2", "1 / 1"];
 ---
 <div data-gallery>
   {filters && (
     <div class="js-only mb-8 flex flex-wrap gap-2.5" role="group" aria-label="Filter gallery by category">
       <button type="button" class="filter-chip" aria-pressed="true" data-filter="all">All</button>
-      {galleryCategories.map((c) => <button type="button" class="filter-chip" aria-pressed="false" data-filter={c}>{c}</button>)}
+      {categories.map((c) => <button type="button" class="filter-chip" aria-pressed="false" data-filter={c}>{c}</button>)}
     </div>
   )}
   <p class="sr-only" aria-live="polite" data-gallery-status></p>
   <ul id={id} class:list={[layout === "masonry" ? "masonry" : "grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5"]}>
     {items.map((img, i) => (
-      <li class="gallery-item reveal" data-category={img.category}>
+      <li class:list={["gallery-item reveal", featureFirst && i === 0 && "col-span-2 md:row-span-2"]} data-category={img.category}>
         <figure>
           <button
             type="button"
@@ -32,7 +37,9 @@ const ratios = ["4 / 3", "3 / 4", "1 / 1", "4 / 5", "3 / 2", "1 / 1"];
               alt={img.alt}
               label={`Gallery image ${String(i + 1).padStart(2, "0")}`}
               size="1200 px long side"
-              ratio={layout === "masonry" ? ratios[i % ratios.length] : "1 / 1"}
+              ratio={layout === "masonry" ? (img.width ? `${img.width} / ${img.height}` : ratios[i % ratios.length]) : "1 / 1"}
+              width={img.width}
+              height={img.height}
               class="pointer-events-none transition duration-300 group-hover:shadow-[var(--shadow-lift)]"
             />
           </button>
