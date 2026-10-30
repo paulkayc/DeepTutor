@@ -46,10 +46,13 @@ the site, so it's easy to spot anything that still needs filling in.
 ## Common tasks
 
 ### Replace the logo
-1. Save the logo as `public/images/logo.svg` (or a PNG with a transparent background, about 240 × 80 px).
-2. In `src/config/site.js`, set `logo: "/images/logo.svg"`.
-3. Replace `public/favicon.svg` with a square version of the logo, and `public/og-image.png` with a
-   1200 × 630 px image. This image is what people see when the site is shared on WhatsApp or social media.
+The logo is already in place at `public/images/logo.webp` (with a `logo.png` copy). The client's
+original artwork is kept as `public/images/logo-original.jpg`. To change it:
+1. Save the new logo in `public/images/`. A file with a transparent background works best.
+2. In `src/config/site.js`, set `logo` to its path and `logoWidth` / `logoHeight` to its size in pixels.
+3. Replace `public/favicon-48.png` and `public/apple-touch-icon.png` (180 × 180) with square
+   versions of the logo mark, and `public/og-image.png` with a 1200 × 630 px image. The
+   og-image is what people see when the site is shared on WhatsApp or social media.
 
 ### Add photos
 Put the image in `public/images/` (sub-folders are fine) and set the matching `image`, `photo` or

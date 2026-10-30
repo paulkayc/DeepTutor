@@ -8,8 +8,8 @@
 
    PLACEHOLDER INDEX — everything the client still needs to supply
    ---------------------------------------------------------------------
-   Logo ........................ site.logo (below)            → public/images/logo.svg
-   Favicon ..................... public/favicon.svg
+   Logo ........................ site.logo (below)            → public/images/logo.webp (done)
+   Favicon ..................... public/favicon-48.png + apple-touch-icon.png (done)
    Open Graph (social) image ... site.ogImage (below)          → public/og-image.png
    Hero photo .................. src/data/home.js  heroImage   → public/images/hero.jpg
    Intro photo ................. src/data/home.js  introImage
@@ -53,10 +53,13 @@ export const site = {
   },
 
   // ---- Logo -----------------------------------------------------------
-  // [PLACEHOLDER] Put the logo file in /public/images/ and set the path,
-  // e.g. "/images/logo.svg". Recommended 240 × 80 px, SVG or transparent PNG.
-  // While this is empty a dashed "LOGO" box is shown.
-  logo: "",
+  // The logo file lives in /public/images/. To change it, replace the file
+  // (transparent PNG/WebP/SVG works best) and update the path and its pixel
+  // size below. Set logo: "" to show the dashed "LOGO" placeholder instead.
+  // The client's original artwork is kept at /public/images/logo-original.jpg.
+  logo: "/images/logo.webp",
+  logoWidth: 457,
+  logoHeight: 264,
 
   // [PLACEHOLDER] 1200 × 630 px image shown when the site is shared on
   // WhatsApp, Facebook, LinkedIn etc.

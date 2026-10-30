@@ -4,7 +4,14 @@ interface Props { compact?: boolean }
 const { compact = false } = Astro.props;
 ---
 {site.logo ? (
-  <img src={site.logo} alt="" width="240" height="80" class={compact ? "h-11 w-auto" : "h-14 w-auto"} />
+  <img
+    src={site.logo}
+    alt=""
+    width={site.logoWidth}
+    height={site.logoHeight}
+    decoding="async"
+    class={compact ? "h-14 w-auto lg:h-[4.75rem]" : "h-24 w-auto"}
+  />
 ) : (
   <span
     class:list={[
