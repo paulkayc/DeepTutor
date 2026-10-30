@@ -24,8 +24,8 @@
    Success stories ............. src/data/stories.js
    Upcoming programmes ......... src/data/events.js
    Gallery (12 images) ......... src/data/gallery.js          → public/images/gallery/
-   Office address .............. site.address (below)
-   Map ......................... site.mapEmbedUrl (below)
+   Office address .............. site.address (below) (done)
+   Map ......................... site.mapEmbedUrl (below) (done)
    Form endpoints .............. site.forms (below)
    Bank / payment details ...... site.supportDetails (below) (done)
    Social media links .......... site.social (below) (done)
@@ -77,12 +77,14 @@ export const site = {
     { days: "Sun", time: "Closed" },
   ],
 
-  // [PLACEHOLDER] Office address. Leave as null to show "[Add office address]".
-  address: null,
+  // Office address (Contact page, map and search engines).
+  address: "No 80 Aba Road, Umuahia, Abia State",
 
   // [PLACEHOLDER] Google Maps embed URL. In Google Maps: Share → Embed a map →
   // copy only the address inside src="…". Leave "" to show a placeholder box.
-  mapEmbedUrl: "",
+  mapEmbedUrl: "https://maps.google.com/maps?q=" + encodeURIComponent("80 Aba Road, Umuahia, Abia State, Nigeria") + "&z=16&output=embed",
+  // Opens the address in Google Maps (directions on phones).
+  mapLink: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("80 Aba Road, Umuahia, Abia State, Nigeria"),
 
   // ---- Forms ----------------------------------------------------------
   // CONFIGURATION VALUE: create a free form at https://formspree.io

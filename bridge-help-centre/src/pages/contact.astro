@@ -46,7 +46,7 @@ import { services } from "../data/services.js";
             <span class="icon-badge !size-12"><Icon name="pin" /></span>
             <div>
               <p class="text-sm font-bold uppercase tracking-wider text-ink-soft">Address</p>
-              {site.address ? <address class="not-italic">{site.address}</address> : <p class="placeholder-text">[Add office address]</p>}
+              {site.address ? <address class="not-italic"><a href={site.mapLink} target="_blank" rel="noopener" class="link text-lg">{site.address}</a></address> : <p class="placeholder-text">[Add office address]</p>}
             </div>
           </li>
         </ul>
@@ -81,7 +81,19 @@ import { services } from "../data/services.js";
     <div class="container-site">
       <h2 id="map-heading" class="sr-only">Map</h2>
       {site.mapEmbedUrl ? (
-        <iframe src={site.mapEmbedUrl} title="Map showing the location of The Bridge Help Centre" class="h-[420px] w-full rounded-3xl border-0 shadow-[var(--shadow-soft)]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <>
+          <div class="relative overflow-hidden rounded-3xl bg-blue-tint shadow-[var(--shadow-soft)]">
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 p-6 text-center" aria-hidden="true">
+              <Icon name="pin" size={36} class="text-magenta" />
+              <span class="font-bold">{site.address}</span>
+            </div>
+            <iframe src={site.mapEmbedUrl} title={`Map showing The Bridge Help Centre at ${site.address}`} class="relative block h-[320px] w-full border-0 lg:h-[420px]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+          <div class="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p class="flex items-center gap-2 font-semibold"><Icon name="pin" size={20} class="text-magenta-deep" />{site.address}</p>
+            <a href={site.mapLink} target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Get directions<Icon name="arrow" size={18} /><span class="sr-only"> in Google Maps (opens in a new tab)</span></a>
+          </div>
+        </>
       ) : (
         <div class="ph h-[320px] lg:h-[420px]" role="img" aria-label="Map placeholder — the centre's location will be shown here">
           <Icon name="pin" size={36} class="ph-icon" />
