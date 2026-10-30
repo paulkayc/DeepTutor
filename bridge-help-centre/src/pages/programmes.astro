@@ -8,6 +8,10 @@ import CtaBand from "../components/CtaBand.astro";
 import { whatsappLink } from "../config/site.js";
 import { services, servicesIntro } from "../data/services.js";
 
+// Header flyer: "My Why, My Focus, My Future" (1 Oct 2026). Shows a "Past programme" tag after its date.
+const flyerDate = "2026-10-01";
+const flyerIsPast = flyerDate < new Date().toISOString().slice(0, 10);
+
 const audiences = [
   {
     title: "For Parents",
@@ -37,10 +41,15 @@ const audiences = [
   description="School and student development, counselling, special education and learning support, mentorship and life skills, and youth and community empowerment across Nigeria."
 >
   <PageHero title="Our Programmes" subtitle={servicesIntro}>
-    <a slot="aside" href="/images/gallery/my-why-my-focus-flyer.webp" target="_blank" rel="noopener" class="mx-auto block max-w-md overflow-hidden rounded-3xl shadow-[var(--shadow-lift)] transition hover:-translate-y-1 lg:max-w-none" title="Open full size">
+    <a slot="aside" href="/images/gallery/my-why-my-focus-flyer.webp" target="_blank" rel="noopener" class="relative mx-auto block max-w-md overflow-hidden rounded-3xl shadow-[var(--shadow-lift)] transition hover:-translate-y-1 lg:max-w-none" title="Open full size">
+      {flyerIsPast && (
+        <span class="absolute left-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-sm font-extrabold uppercase tracking-wider text-ink shadow-[var(--shadow-soft)]">
+          <span class="size-2 rounded-full bg-ink-soft" aria-hidden="true"></span>Past programme
+        </span>
+      )}
       <img
         src="/images/gallery/my-why-my-focus-flyer.webp"
-        alt="Flyer for 'My Why, My Focus, My Future', a student development programme for ages 10 to 18 with facilitator Amara Ikonne: understanding why I am in school, developing focus, and taking ownership of my future. 1st October 2026, 11 AM on Google Meet. Contact 09026433052."
+        alt="Flyer for 'My Why, My Focus, My Future', a student development programme for ages 10 to 18 with facilitator Amara Ikonne: understanding why I am in school, developing focus, and taking ownership of my future. 1st October 2026, 11 AM on Google Meet. Contact 09026433052. This programme has already taken place."
         width="1080"
         height="1080"
         fetchpriority="high"
