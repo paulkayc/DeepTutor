@@ -35,3 +35,12 @@ The owner previews the site through a private claude.ai link instead of running 
 https://claude.ai/artifact/EHmkxctig8LKz9GzX9CdZx
 After each change: `npm run build`, then `python3 tools/make-preview.py dist <scratch folder>`,
 then republish that folder to the same artifact URL (index.html as the page, every other file in `files`).
+
+## Audit notes (keep these working)
+- New photos: run `python3 tools/make-image-sizes.py` so `-640.webp` copies exist (picked up by src/lib/images.js).
+- Security headers/CSP are generated at build (security-headers.mjs). If the inline start-up script in
+  Base.astro changes, the hash updates automatically; re-run tools/update-vercel-headers.mjs for Vercel.
+- External services allowed by the CSP: formspree.io (forms), maps.google.com / www.google.com (map).
+  Adding any other third-party script, font, iframe or form service requires updating security-headers.mjs.
+- Privacy page is noindex until site.privacyPolicyReady is true. Do not invent policy text.
+- Past events hide themselves; the Upcoming section disappears when no future events exist.

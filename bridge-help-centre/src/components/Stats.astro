@@ -1,7 +1,7 @@
 ---
-import { stats, statsNote } from "../data/stats.js";
-interface Props { large?: boolean; showNote?: boolean }
-const { large = false, showNote = false } = Astro.props;
+import { stats } from "../data/stats.js";
+interface Props { large?: boolean }
+const { large = false } = Astro.props;
 ---
 <ul class:list={["grid gap-6 sm:grid-cols-2", large ? "lg:grid-cols-4 lg:gap-8" : "lg:grid-cols-4"]}>
   {stats.map((s) => {
@@ -18,4 +18,3 @@ const { large = false, showNote = false } = Astro.props;
     );
   })}
 </ul>
-{showNote && <p class="placeholder-text mt-6 text-center text-sm">{statsNote}</p>}

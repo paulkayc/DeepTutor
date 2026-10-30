@@ -4,6 +4,7 @@
    prefer reduced motion) beside the event details as real text. */
 import Icon from "./Icon.astro";
 import { whatsappLink } from "../config/site.js";
+import { srcsetFor } from "../lib/images.js";
 interface Slide { src: string; alt: string }
 interface Props {
   event: {
@@ -27,7 +28,7 @@ const details = [
       {event.slides.map((s, i) => (
         <figure class:list={["slide", i === 0 && "is-active"]} data-slide aria-roledescription="slide" aria-label={`${i + 1} of ${event.slides.length}`}>
           <a href={s.src} target="_blank" rel="noopener" class="block h-full" title="Open full size">
-            <img src={s.src} alt={s.alt} width="864" height="1080" loading="lazy" decoding="async" class="h-full w-full object-cover" />
+            <img src={s.src} srcset={srcsetFor(s.src)} sizes="(min-width: 1024px) 40vw, (min-width: 448px) 28rem, 100vw" alt={s.alt} width="864" height="1080" loading="lazy" decoding="async" class="h-full w-full object-cover" />
           </a>
         </figure>
       ))}
@@ -35,8 +36,8 @@ const details = [
     {event.slides.length > 1 && (
       <div class="js-only mt-4 flex items-center justify-center gap-3">
         <button type="button" class="inline-flex size-11 items-center justify-center rounded-full border-2 border-blue bg-white" data-slideshow-toggle aria-label="Pause slideshow">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" data-icon-pause><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" data-icon-play hidden><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10-6.5a1 1 0 0 0 0-1.72l-10-6.5A1 1 0 0 0 8 5.5Z"/></svg>
+          <span class="inline-flex" data-icon-pause><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></span>
+          <span class="inline-flex" data-icon-play hidden><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10-6.5a1 1 0 0 0 0-1.72l-10-6.5A1 1 0 0 0 8 5.5Z"/></svg></span>
         </button>
         {event.slides.map((_, i) => (
           <button type="button" class="slide-dot" data-slide-dot={i} aria-label={`Show image ${i + 1} of ${event.slides.length}`} aria-current={i === 0 ? "true" : undefined}>

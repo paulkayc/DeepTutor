@@ -3,8 +3,8 @@
    validates accessibly, and shows a friendly success message with a WhatsApp backup. */
 import { whatsappLink, isPlaceholderEndpoint, site } from "../config/site.js";
 import Icon from "./Icon.astro";
-interface Props { id: string; endpoint: string; subject: string; submitLabel: string; successTitle?: string; successText?: string }
-const { id, endpoint, subject, submitLabel, successTitle = "Thank you — your message is on its way!", successText = "We will get back to you within two working days." } = Astro.props;
+interface Props { id: string; endpoint: string; subject: string; submitLabel: string; successTitle?: string; successText?: string; youngPersonNote?: boolean }
+const { id, endpoint, subject, submitLabel, youngPersonNote = false, successTitle = "Thank you — your message is on its way!", successText = "We will get back to you within two working days." } = Astro.props;
 ---
 <form
   id={id}
@@ -22,6 +22,11 @@ const { id, endpoint, subject, submitLabel, successTitle = "Thank you — your m
   </div>
   <p class="sr-only" data-form-summary role="alert"></p>
   <slot />
+  <div class="rounded-2xl bg-blue-tint px-5 py-4 text-sm leading-relaxed text-ink">
+    <p>Your message goes straight to our team so we can reply to you. Please don't include private medical or personal details here. We will talk with you about those in confidence.</p>
+    {youngPersonNote && <p class="mt-2">If you are under 18, please ask a parent, guardian or teacher to get in touch with us, or to help you send this message.</p>}
+    <p class="mt-2"><a href={site.privacyPolicyUrl} class="link">How we handle your information</a></p>
+  </div>
   <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center" data-hide-floats>
     <button type="submit" class="btn btn-primary" data-submit>{submitLabel}<Icon name="arrow" size={20} /></button>
     <p class="text-sm text-ink-soft">Fields marked <span class="text-magenta-deep">*</span> are required.</p>

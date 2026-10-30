@@ -10,7 +10,7 @@ const { service } = Astro.props;
   <div class="flex items-start gap-4">
     <span class="icon-badge !size-12 !rounded-full !bg-magenta !text-white [&_svg]:!text-white"><Icon name={service.icon} size={24} /></span>
     <h3 class="pt-1.5 text-xl font-bold leading-snug">
-      <a href={`/programmes#${service.id}`} class="hover:text-magenta-deep hover:underline hover:decoration-2 hover:underline-offset-4">{service.name}</a>
+      <a href={`/programmes/#${service.id}`} class="hover:text-magenta-deep hover:underline hover:decoration-2 hover:underline-offset-4">{service.name}</a>
     </h3>
   </div>
   <p class="mt-4 text-ink-soft">{service.summary}</p>

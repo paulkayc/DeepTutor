@@ -3,33 +3,24 @@
    ---------------------------------------------------------------------
    This is the main file to edit. Contact details, colours, the logo,
    form services and social links all live here. Page text that changes
-   often (services, statistics, events, gallery, stories…)
+   often (services, statistics, events, gallery…)
    lives in the files inside  src/data/ .
 
-   PLACEHOLDER INDEX — everything the client still needs to supply
+   WHERE THINGS LIVE
    ---------------------------------------------------------------------
-   Logo ........................ site.logo (below)            → public/images/logo.webp (done)
-   Favicon ..................... public/favicon-48.png + apple-touch-icon.png (done)
-   Open Graph (social) image ... site.ogImage (below)          → public/og-image.png
-   Hero photo .................. src/data/home.js  heroImage   → public/images/hero.jpg
-   Intro photo ................. src/data/home.js  introImage
-   Director photo .............. src/data/about.js director.photo
-   Our Story text + photo ...... src/data/about.js story
-   Vision statement ............ src/data/about.js vision
-   Values (editable) ........... src/data/about.js values
-   Team cards (optional) ....... src/data/about.js team
-   Milestones .................. src/data/about.js milestones
-   Programme photos (5) ........ src/data/services.js  image
-   Statistics .................. src/data/stats.js
-   Success stories ............. src/data/stories.js
-   Upcoming programmes ......... src/data/events.js
-   Gallery (12 images) ......... src/data/gallery.js          → public/images/gallery/
-   Office address .............. site.address (below) (done)
-   Map ......................... site.mapEmbedUrl (below) (done)
-   Form endpoints .............. site.forms (below)
-   Bank / payment details ...... site.supportDetails (below) (done)
-   Social media links .......... site.social (below) (done)
-   Website address ............. site.url (below)
+   Logo, contact details, address, map, forms, bank details,
+   social links, website address ......... this file
+   Home page photos ......................... src/data/home.js
+   Director, story, vision, mission, values,
+   team ..................................... src/data/about.js
+   Services / programmes (+ photos) ......... src/data/services.js
+   Impact numbers ........................... src/data/stats.js
+   Upcoming programme (+ slideshow) ......... src/data/events.js
+   Gallery photos ........................... src/data/gallery.js
+   Images ................................... public/images/
+
+   STILL NEEDED BEFORE LAUNCH: real website address (url), form
+   endpoints (forms), privacy policy text (src/pages/privacy.astro).
    ===================================================================== */
 
 export const site = {
@@ -37,9 +28,11 @@ export const site = {
   shortDescription:
     "A social enterprise for child and youth development in Nigeria.",
 
-  // [PLACEHOLDER] Replace with the real domain once it is bought (used for
-  // the sitemap, canonical links and social sharing previews).
-  url: "https://www.thebridgehelpcentre.org",
+  // The website's public address, used for search engines (sitemap, canonical
+  // links) and social-sharing previews. BEFORE LAUNCH: set it to the real
+  // domain, or set a SITE_URL environment variable on the host (Netlify's own
+  // URL is used automatically if neither is set).
+  url: (typeof process !== "undefined" && (process.env.SITE_URL || process.env.URL)) || "https://www.thebridgehelpcentre.org",
 
   // ---- Brand colours (used everywhere through CSS variables) ----------
   colors: {
@@ -59,9 +52,8 @@ export const site = {
   logoWidth: 457,
   logoHeight: 264,
 
-  // [PLACEHOLDER] 1200 × 630 px image shown when the site is shared on
-  // WhatsApp, Facebook, LinkedIn etc.
-  ogImage: "/og-image.png",
+  // 1200 × 630 px image shown when the site is shared on WhatsApp, Facebook etc.
+  ogImage: "/og-image.jpg",
 
   // ---- Contact --------------------------------------------------------
   phone: {
@@ -80,8 +72,9 @@ export const site = {
 
   // Office address (Contact page, map and search engines).
   address: "No 80 Aba Road, Umuahia, Abia State",
+  addressParts: { street: "No 80 Aba Road", city: "Umuahia", state: "Abia State" },
 
-  // [PLACEHOLDER] Google Maps embed URL. In Google Maps: Share → Embed a map →
+  // Google Maps embed URL. To change it: in Google Maps, Share → Embed a map →
   // copy only the address inside src="…". Leave "" to show a placeholder box.
   mapEmbedUrl: "https://maps.google.com/maps?q=" + encodeURIComponent("80 Aba Road, Umuahia, Abia State, Nigeria") + "&z=16&output=embed",
   // Opens the address in Google Maps (directions on phones).
@@ -95,8 +88,6 @@ export const site = {
   forms: {
     contactEndpoint: "https://formspree.io/f/YOUR_CONTACT_FORM_ID",
     getInvolvedEndpoint: "https://formspree.io/f/YOUR_GET_INVOLVED_FORM_ID",
-    // Optional newsletter (Formspree, Mailchimp embedded form action, Buttondown…).
-    newsletterEndpoint: "https://formspree.io/f/YOUR_NEWSLETTER_FORM_ID",
   },
 
   // Bank details for supporters (shown on the Get Involved page).
@@ -113,16 +104,19 @@ export const site = {
     { name: "Instagram", icon: "instagram", url: "https://www.instagram.com/thebridgehelpcentre_" },
   ],
 
-  privacyPolicyUrl: "/privacy",
+  privacyPolicyUrl: "/privacy/",
+  // Set to true once the full privacy policy text has been added (the page is
+  // hidden from search engines until then).
+  privacyPolicyReady: false,
 };
 
 /* ---- Navigation (order matters) ------------------------------------- */
 export const nav = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Our Programmes", href: "/programmes" },
-  { label: "Get Involved", href: "/get-involved" },
-  { label: "Contact Us", href: "/contact" },
+  { label: "About Us", href: "/about/" },
+  { label: "Our Programmes", href: "/programmes/" },
+  { label: "Get Involved", href: "/get-involved/" },
+  { label: "Contact Us", href: "/contact/" },
 ];
 
 /* ---- Link helpers --------------------------------------------------- */

@@ -43,6 +43,7 @@ const ratios = ["4 / 3", "3 / 4", "1 / 1", "4 / 5", "3 / 2", "1 / 1"];
               width={img.width}
               height={img.height}
               class="pointer-events-none transition duration-300 group-hover:shadow-[var(--shadow-lift)]"
+              sizes={layout === "masonry" ? "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" : (featureFirst && i === 0 ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 50vw")}
             />
           </button>
           {img.caption && layout === "masonry" && <figcaption class="mt-2.5 px-1 text-sm font-semibold text-ink-soft">{img.caption}</figcaption>}

@@ -1,14 +1,27 @@
 ---
+/* PRIVACY PAGE — interim version.
+   It only states facts about how this website works. The centre's full
+   privacy policy (who sees enquiries, how long they are kept, etc.) must be
+   written by the centre, ideally checked against the Nigeria Data Protection
+   Act 2023. When it is added, set site.privacyPolicyReady = true in
+   src/config/site.js so search engines can list this page. */
 import Base from "../layouts/Base.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../config/site.js";
 ---
-<Base title="Privacy Policy" description="How The Bridge Help Centre handles the personal information you share with us.">
-  <PageHero title="Privacy Policy" subtitle="How we look after the information you share with us." />
+<Base title="Privacy" description="How The Bridge Help Centre website handles the information you share with us." noindex={!site.privacyPolicyReady}>
+  <PageHero title="Privacy" subtitle="How this website handles the information you share with us." />
   <section class="section">
-    <div class="container-site measure space-y-5">
-      <p class="placeholder-text rounded-xl border-2 border-dashed border-blue bg-blue-tint px-4 py-3 font-bold not-italic text-ink">[PLACEHOLDER — Add the centre's privacy policy here. Ask a legal adviser to confirm it meets the Nigeria Data Protection Act 2023.]</p>
-      <p>We only collect the information you choose to send us through our forms, WhatsApp or email, and we use it only to reply to you. Questions? Email <a class="link" href={`mailto:${site.email}`}>{site.email}</a>.</p>
+    <div class="container-site measure space-y-5 text-lg">
+      <h2 class="h-sub">What this website collects</h2>
+      <p>This website only receives information you choose to send us: your name, email address, phone number (optional) and message when you use one of our forms. Your message is delivered to our team so that we can reply to you.</p>
+      <p>When you tap a WhatsApp, email or phone link, your conversation happens in that app, not on this website.</p>
+      <h2 class="h-sub">Cookies and tracking</h2>
+      <p>This website does not use advertising or analytics cookies. The Google map on our Contact page only loads if you choose to show it. Google may then set its own cookies.</p>
+      <h2 class="h-sub">Children and young people</h2>
+      <p>If you are under 18, please ask a parent, guardian or teacher to contact us with you.</p>
+      <h2 class="h-sub">Questions</h2>
+      <p>For questions about your information, email <a class="link" href={`mailto:${site.email}`}>{site.email}</a> or call <a class="link" href={`tel:${site.phone.international}`}>{site.phone.display}</a>.</p>
     </div>
   </section>
 </Base>

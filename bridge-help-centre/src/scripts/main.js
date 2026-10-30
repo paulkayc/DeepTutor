@@ -94,7 +94,7 @@ $$("[data-gallery]").forEach((gallery) => {
     const media = btn.firstElementChild.cloneNode(true);
     media.classList.remove("pointer-events-none");
     const img = media.querySelector("img");
-    if (img) img.loading = "eager";
+    if (img) { img.loading = "eager"; img.sizes = "min(64rem, 100vw)"; }
     stage.replaceChildren(media);
     caption.textContent = btn.dataset.caption || "";
     counter.textContent = `Image ${current + 1} of ${list.length}`;
@@ -198,27 +198,30 @@ $$("[data-tabs]").forEach((wrap) => {
   select(tabs[0]);
 });
 
-/* ---- Upcoming → Past programmes (runs daily in the visitor's browser,
-        so events move even if the site hasn't been rebuilt) ----------- */
-const pastList = document.querySelector("[data-past-list]");
-const upcomingList = document.querySelector("[data-upcoming-list]");
+/* ---- Past programmes: hide them in the visitor's browser once their
+        date has passed, even if the site hasn't been rebuilt ---------- */
 const today = new Date().toISOString().slice(0, 10);
-$$("[data-event-date]").forEach((card) => {
-  if (card.dataset.eventDate >= today) return;
-  const li = card.closest("li");
-  if (pastList && upcomingList?.contains(card)) {
-    pastList.prepend(li);
-    li.querySelectorAll("a[href^='https://wa.me']").forEach((a) => a.remove());
-  } else if (!pastList) {
-    li?.remove(); // Home page preview: simply hide past events
-  }
+$$("[data-event-date]").forEach((el) => {
+  if (el.dataset.eventDate >= today) return;
+  (el.closest("li") || el).remove();
 });
-if (pastList) {
-  const empty = document.querySelector("[data-past-empty]");
-  if (empty) empty.hidden = pastList.children.length > 0;
-  const upEmpty = document.querySelector("[data-upcoming-empty]");
-  if (upEmpty && upcomingList) upEmpty.hidden = upcomingList.children.length > 0;
-}
+const upcomingSection = document.querySelector("[data-upcoming-section]");
+if (upcomingSection && !upcomingSection.querySelector("[data-event-date]")) upcomingSection.remove();
+
+/* ---- Contact map: load the Google map only when asked --------------- */
+$$("[data-map]").forEach((box) => {
+  box.querySelector("[data-map-load]")?.addEventListener("click", () => {
+    const frame = document.createElement("iframe");
+    frame.src = box.dataset.map;
+    frame.title = box.dataset.mapTitle;
+    frame.className = "absolute inset-0 h-full w-full border-0";
+    frame.referrerPolicy = "no-referrer-when-downgrade";
+    frame.allowFullscreen = true;
+    box.append(frame);
+    box.querySelector("[data-map-placeholder]").setAttribute("aria-hidden", "true");
+    frame.focus();
+  });
+});
 
 /* ---- Copy buttons (e.g. bank account number) ----------------------- */
 $$("[data-copy]").forEach((btn) => {

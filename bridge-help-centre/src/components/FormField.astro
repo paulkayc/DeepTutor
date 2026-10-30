@@ -1,6 +1,6 @@
 ---
 interface Props {
-  name: string; label: string; type?: string; required?: boolean;
+  name: string; label: string; type?: astroHTML.JSX.HTMLInputTypeAttribute | "textarea"; required?: boolean;
   options?: string[]; autocomplete?: string; hint?: string; placeholder?: string; formId: string;
 }
 const { name, label, type = "text", required = false, options, autocomplete, hint, formId } = Astro.props;
@@ -18,7 +18,7 @@ const describedBy = [hint && `${id}-hint`, `${id}-error`].filter(Boolean).join("
   ) : type === "textarea" ? (
     <textarea id={id} name={name} class="input" rows="5" required={required} aria-describedby={describedBy}></textarea>
   ) : (
-    <input id={id} name={name} type={type} class="input" required={required} aria-describedby={describedBy} autocomplete={autocomplete} inputmode={type === "tel" ? "tel" : undefined} />
+    <input id={id} name={name} type={type as astroHTML.JSX.HTMLInputTypeAttribute} class="input" required={required} aria-describedby={describedBy} autocomplete={autocomplete} inputmode={type === "tel" ? "tel" : undefined} />
   )}
   <p id={`${id}-error`} class="field-error" aria-live="polite"></p>
 </div>

@@ -49,7 +49,7 @@ original artwork is kept as `public/images/logo-original.jpg`. To change it:
 1. Save the new logo in `public/images/`. A file with a transparent background works best.
 2. In `src/config/site.js`, set `logo` to its path and `logoWidth` / `logoHeight` to its size in pixels.
 3. Replace `public/favicon-48.png` and `public/apple-touch-icon.png` (180 × 180) with square
-   versions of the logo mark, and `public/og-image.png` with a 1200 × 630 px image. The
+   versions of the logo mark, and `public/og-image.jpg` with a 1200 × 630 px image. The
    og-image is what people see when the site is shared on WhatsApp or social media.
 
 ### Add photos
@@ -103,3 +103,20 @@ In Google Maps, go to Share → Embed a map, copy the address inside `src="…"`
 - Manrope is self-hosted (from the `@fontsource` package) and preloaded, so the site doesn't wait
   on a request to Google Fonts before showing text.
 - The hero headline shrinks on small phones so that each sentence stays on one line.
+
+## Before going live (checklist)
+1. **Website address:** set `url` in `src/config/site.js` to the real domain (or set a `SITE_URL`
+   environment variable on the host). It is used for search engines and sharing previews.
+2. **Forms:** create Formspree forms (or similar) and paste the two endpoints into `forms` in
+   `src/config/site.js`. Until then the forms show a WhatsApp/email fallback instead of sending.
+3. **Privacy:** replace the interim text in `src/pages/privacy.astro` with the centre's own policy,
+   then set `privacyPolicyReady: true` in `src/config/site.js`.
+
+## Maintenance tools
+- `python3 tools/make-image-sizes.py`: after adding photos, creates lighter 640px copies that
+  phones use automatically.
+- Security headers (Content-Security-Policy etc.) are written to `dist/_headers` by every build
+  (`security-headers.mjs`). Netlify and Cloudflare Pages apply this automatically. For Vercel, run
+  `node tools/update-vercel-headers.mjs` after building when the build warns that vercel.json is out of date.
+- `python3 tools/make-preview.py dist <folder>`: makes the flat copy used for the online preview link.
+- Type check (optional): `npm install --no-save @astrojs/check typescript` then `npx astro check`.

@@ -38,8 +38,8 @@ export const values = [
   { name: "Safety", text: "We keep every space we create safe, confidential and child-centred.", icon: "lock" },
 ];
 
-/* [PLACEHOLDER] Optional team cards. Delete the array items (or set team = [])
-   to hide the "Our Team" grid. photo: 800 × 800 px. Optional: profession, photoAlt. */
+/* Team cards. Delete an item to remove a card (or set team = [] to hide
+   the "Our Team" section). photo: 800 × 800 px. Optional: profession, photoAlt. */
 export const team = [
   {
     name: "Mrs. Amarachi Ikonne",
@@ -62,13 +62,4 @@ export const team = [
     photo: "/images/team/kenneth-anele.webp",
     photoAlt: "Portrait of Mr Kenneth Anele, Special Needs and Developmental Intervention Specialist, smiling with arms folded in maroon scrubs",
   },
-];
-
-/* [PLACEHOLDER] Milestones for the Our Impact timeline. Add a line to add one. */
-export const milestones = [
-  { year: "[Year]", text: "[The Bridge Help Centre is founded]" },
-  { year: "[Year]", text: "[First school outreach programme delivered]" },
-  { year: "[Year]", text: "[Counselling service opens to individual families]" },
-  { year: "[Year]", text: "[Partnership with a government agency or NGO]" },
-  { year: "[Year]", text: "[Milestone — e.g. 1,000 young people reached]" },
 ];

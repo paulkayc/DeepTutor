@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import Icon from "../components/Icon.astro";
+import { srcsetFor } from "../lib/images.js";
 import SectionHeading from "../components/SectionHeading.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import QuoteBand from "../components/QuoteBand.astro";
@@ -17,12 +18,13 @@ import { events } from "../data/events.js";
 const today = new Date().toISOString().slice(0, 10);
 const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 3);
 // The next programme that has slideshow images is featured; otherwise show the next three as cards.
+const heroSrcset = srcsetFor(home.heroImage, home.heroImageWidth);
 const featured = events.filter((e) => e.date >= today && e.slides?.length).sort((a, b) => a.date.localeCompare(b.date))[0];
 ---
 <Base
-  preloadImage={{ src: home.heroImage, srcset: home.heroImageSmall ? `${home.heroImageSmall} 640w, ${home.heroImage} ${home.heroImageWidth}w` : undefined }}
+  preloadImage={{ src: home.heroImage, srcset: heroSrcset }}
   title="The Bridge Help Centre"
-  description="The Bridge Help Centre is a social enterprise for child and youth development in Nigeria — counselling, mentorship, learning support and school programmes for children and young people."
+  description="The Bridge Help Centre in Umuahia supports children and young people in Nigeria through counselling, mentorship, learning support and school programmes."
 >
   <!-- 1. Hero: full-width photo band at the very top, headline below it -->
   <section class="relative isolate overflow-hidden bg-blue-tint" aria-labelledby="hero-heading">
@@ -30,7 +32,7 @@ const featured = events.filter((e) => e.date >= today && e.slides?.length).sort(
       <div class="relative aspect-[2/1] w-full sm:aspect-auto sm:h-[clamp(16rem,40vw,36rem)]">
         <img
           src={home.heroImage}
-          srcset={home.heroImageSmall ? `${home.heroImageSmall} 640w, ${home.heroImage} ${home.heroImageWidth}w` : undefined}
+          srcset={heroSrcset}
           sizes="100vw"
           alt={home.heroImageAlt}
           width={home.heroImageWidth}
@@ -62,12 +64,12 @@ const featured = events.filter((e) => e.date >= today && e.slides?.length).sort(
         </p>
         <p class="hero-copy measure mt-5 text-lg leading-relaxed text-ink-soft lg:text-xl">{servicesIntro}</p>
         <div class="mt-10 flex flex-col gap-4 sm:flex-row">
-          <a href="/programmes" class="btn btn-primary">Explore Our Programmes<Icon name="arrow" size={20} /></a>
+          <a href="/programmes/" class="btn btn-primary">Explore Our Programmes<Icon name="arrow" size={20} /></a>
         </div>
       </div>
     </div>
 
-    <a href="#our-services" class="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-sm font-semibold lg:flex" aria-label="Scroll to Our Services">
+    <a href="#our-services" class="absolute bottom-4 left-1/2 hidden min-h-14 min-w-11 -translate-x-1/2 flex-col items-center justify-center gap-2 text-sm font-semibold lg:flex" aria-label="Scroll to Our Services">
       <span class="scroll-cue" aria-hidden="true"></span>
     </a>
   </section>
@@ -97,6 +99,8 @@ const featured = events.filter((e) => e.date >= today && e.slides?.length).sort(
       <div class="reveal mx-auto mt-16 max-w-4xl overflow-hidden rounded-3xl shadow-[var(--shadow-soft)]">
         <img
           src="/images/home/impact-students.webp"
+          srcset={srcsetFor("/images/home/impact-students.webp")}
+          sizes="(min-width: 1024px) 56rem, 100vw"
           alt="Secondary school students in light-blue uniforms smiling and taking notes during a Bridge Help Centre session"
           width="858"
           height="588"
@@ -111,21 +115,21 @@ const featured = events.filter((e) => e.date >= today && e.slides?.length).sort(
   <!-- 6. Meet the Director -->
   <DirectorBlock />
 
-  <!-- 7. Upcoming programmes -->
-  <section class="section" aria-labelledby="upcoming-heading">
-    <div class="container-site">
-      <SectionHeading title="Upcoming Programmes" id="upcoming-heading" />
-      {featured ? (
-        <EventSlideshow event={featured} />
-      ) : (
-        <>
+  <!-- 7. Upcoming programmes (hidden when there is nothing coming up) -->
+  {(featured || upcoming.length > 0) && (
+    <section class="section" aria-labelledby="upcoming-heading" data-upcoming-section>
+      <div class="container-site">
+        <SectionHeading title="Upcoming Programmes" id="upcoming-heading" />
+        {featured ? (
+          <EventSlideshow event={featured} />
+        ) : (
           <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {upcoming.map((e) => <li><EventCard event={e} /></li>)}
           </ul>
-        </>
-      )}
-    </div>
-  </section>
+        )}
+      </div>
+    </section>
+  )}
 
   <!-- 8. Gallery preview -->
   <section class="section pt-0 lg:pt-0" aria-labelledby="gallery-heading">

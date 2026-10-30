@@ -3,6 +3,7 @@
    dashed placeholder box (with the recommended size and what belongs there).
    Placeholders keep descriptive alt text via role="img" + aria-label. */
 import Icon from "./Icon.astro";
+import { srcsetFor } from "../lib/images.js";
 interface Props {
   src?: string;
   alt: string;
@@ -14,12 +15,14 @@ interface Props {
   eager?: boolean;        // above-the-fold images
   width?: number;
   height?: number;
+  sizes?: string;        // how wide the image shows, for picking the right file
 }
-const { src, alt, label, size, hint, ratio = "4 / 3", class: cls = "", eager = false, width = 1200, height = 900 } = Astro.props;
+const { src, alt, label, size, hint, ratio = "4 / 3", class: cls = "", eager = false, width = 1200, height = 900, sizes = "(min-width: 1024px) 50vw, 100vw" } = Astro.props;
+const srcset = srcsetFor(src);
 ---
 {src ? (
   <div class:list={["media", cls]} style={`aspect-ratio:${ratio}`}>
-    <img src={src} alt={alt} width={width} height={height} loading={eager ? "eager" : "lazy"} decoding="async" fetchpriority={eager ? "high" : undefined} />
+    <img src={src} srcset={srcset} sizes={srcset ? sizes : undefined} alt={alt} width={width} height={height} loading={eager ? "eager" : "lazy"} decoding="async" fetchpriority={eager ? "high" : undefined} />
   </div>
 ) : (
   <div class:list={["ph", cls]} style={`aspect-ratio:${ratio}`} role="img" aria-label={alt} data-placeholder={label}>
