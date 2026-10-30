@@ -29,3 +29,9 @@ When the owner sends images, crop/optimise them (WebP, sensible size), place the
 ## Gotcha
 The repository root `.gitignore` ignores every `data/` folder. This folder's `.gitignore`
 re-includes `src/data/`. Keep that rule, and check `git status` shows new data files before committing.
+
+## Online preview for the owner
+The owner previews the site through a private claude.ai link instead of running it locally:
+https://claude.ai/artifact/EHmkxctig8LKz9GzX9CdZx
+After each change: `npm run build`, then `python3 tools/make-preview.py dist <scratch folder>`,
+then republish that folder to the same artifact URL (index.html as the page, every other file in `files`).
