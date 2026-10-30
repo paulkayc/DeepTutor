@@ -42,7 +42,13 @@ export const values = [
 /* [PLACEHOLDER] Optional team cards. Delete the array items (or set team = [])
    to hide the "Our Team" grid. photo: 800 × 800 px. Optional: profession, photoAlt. */
 export const team = [
-  { name: "[Team member name]", role: "[Role]", photo: "" },
+  {
+    name: "Amarachi Ikonne",
+    role: "Founder",
+    profession: "Child/Youth Counsellor",
+    photo: "/images/team/amarachi-ikonne.webp",
+    photoAlt: "Portrait of Amarachi Ikonne, Founder of The Bridge Help Centre, smiling in a soft pink dress",
+  },
   {
     name: "Dr Kelechi Ikonne",
     role: "Director",
