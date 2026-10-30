@@ -36,7 +36,19 @@ const audiences = [
   title="Our Programmes"
   description="School and student development, counselling, special education and learning support, mentorship and life skills, and youth and community empowerment across Nigeria."
 >
-  <PageHero title="Our Programmes" subtitle={servicesIntro} />
+  <PageHero title="Our Programmes" subtitle={servicesIntro}>
+    <a slot="aside" href="/images/gallery/my-why-my-focus-flyer.webp" target="_blank" rel="noopener" class="mx-auto block max-w-md overflow-hidden rounded-3xl shadow-[var(--shadow-lift)] transition hover:-translate-y-1 lg:max-w-none" title="Open full size">
+      <img
+        src="/images/gallery/my-why-my-focus-flyer.webp"
+        alt="Flyer for 'My Why, My Focus, My Future', a student development programme for ages 10 to 18 with facilitator Amara Ikonne: understanding why I am in school, developing focus, and taking ownership of my future. 1st October 2026, 11 AM on Google Meet. Contact 09026433052."
+        width="1080"
+        height="1080"
+        fetchpriority="high"
+        decoding="async"
+        class="block h-auto w-full"
+      />
+    </a>
+  </PageHero>
 
   <!-- Sticky in-page navigation -->
   <nav aria-label="Programmes on this page" class="sticky top-20 z-20 border-b-2 border-blue-tint bg-white/95 backdrop-blur lg:top-24">
