@@ -50,7 +50,13 @@ export const team = [
     photo: "/images/team/kelechi-ikonne.webp",
     photoAlt: "Portrait of Dr Kelechi Ikonne, Director of The Bridge Help Centre, in a blue suit and tie",
   },
-  { name: "[Team member name]", role: "[Role]", photo: "" },
+  {
+    name: "Mr Kenneth Anele",
+    role: "Member",
+    profession: "Special Needs & Developmental Intervention Specialist",
+    photo: "/images/team/kenneth-anele.webp",
+    photoAlt: "Portrait of Mr Kenneth Anele, Special Needs and Developmental Intervention Specialist, smiling with arms folded in maroon scrubs",
+  },
 ];
 
 /* [PLACEHOLDER] Milestones for the Our Impact timeline. Add a line to add one. */
