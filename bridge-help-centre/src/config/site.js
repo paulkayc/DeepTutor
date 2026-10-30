@@ -19,7 +19,6 @@
    Gallery photos ........................... src/data/gallery.js
    Images ................................... public/images/
 
-   STILL NEEDED BEFORE LAUNCH: form endpoints (forms).
    ===================================================================== */
 
 export const site = {
@@ -79,15 +78,6 @@ export const site = {
   // Opens the address in Google Maps (directions on phones).
   mapLink: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("80 Aba Road, Umuahia, Abia State, Nigeria"),
 
-  // ---- Forms ----------------------------------------------------------
-  // CONFIGURATION VALUE: create a free form at https://formspree.io
-  // (sending to thebridgehelpcenter@gmail.com) and paste its endpoint here,
-  // e.g. "https://formspree.io/f/abcdwxyz". Any service that accepts a normal
-  // HTML POST (Formspree, Web3Forms, Getform…) will work.
-  forms: {
-    contactEndpoint: "https://formspree.io/f/YOUR_CONTACT_FORM_ID",
-  },
-
   // Get Involved page: the centre's Google Form.
   //  - getInvolvedForm: the link to the form (opens in a new tab).
   //  - getInvolvedFormEmbed: optional. For the most reliable in-page form, paste
@@ -135,5 +125,3 @@ export const emailLink = (subject) =>
 
 export const telLink = `tel:${site.phone.international}`;
 
-/** True when a form endpoint still contains the YOUR_… placeholder. */
-export const isPlaceholderEndpoint = (url) => !url || url.includes("YOUR_");

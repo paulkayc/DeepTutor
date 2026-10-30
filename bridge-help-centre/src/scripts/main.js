@@ -59,8 +59,8 @@ if ("IntersectionObserver" in window && !reduceMotion) {
   $$(".reveal").forEach((el) => el.classList.add("is-visible"));
 }
 
-/* ---- Floating buttons step aside for the footer, CTA bands and form
-        submit rows so they never cover links or buttons ---------------- */
+/* ---- Floating buttons step aside for the footer and CTA bands so they
+        never cover links or buttons -------------------------------------- */
 const floating = document.querySelector("[data-floating]");
 if (floating && "IntersectionObserver" in window) {
   const visible = new Set();
@@ -174,30 +174,6 @@ $$("[data-slideshow]").forEach((show) => {
   update();
 });
 
-/* ---- Tabs (educational materials) ---------------------------------- */
-$$("[data-tabs]").forEach((wrap) => {
-  const tabs = $$("[role=tab]", wrap);
-  const select = (tab, focus) => {
-    tabs.forEach((t) => {
-      const on = t === tab;
-      t.setAttribute("aria-selected", String(on));
-      t.tabIndex = on ? 0 : -1;
-      const panel = document.getElementById(t.getAttribute("aria-controls"));
-      panel.hidden = !on;
-      if (on) $$(".reveal", panel).forEach((el) => el.classList.add("is-visible"));
-    });
-    if (focus) tab.focus();
-  };
-  tabs.forEach((tab, i) => {
-    tab.addEventListener("click", () => select(tab));
-    tab.addEventListener("keydown", (e) => {
-      const map = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 };
-      if (e.key in map) { e.preventDefault(); select(tabs[(map[e.key] + tabs.length) % tabs.length], true); }
-    });
-  });
-  select(tabs[0]);
-});
-
 /* ---- Past programmes: hide them in the visitor's browser once their
         date has passed, even if the site hasn't been rebuilt ---------- */
 const today = new Date().toISOString().slice(0, 10);
@@ -236,64 +212,5 @@ $$("[data-copy]").forEach((btn) => {
       label.textContent = "Selected — press copy";
     }
     setTimeout(() => (label.textContent = "Copy"), 2500);
-  });
-});
-
-/* ---- Forms: accessible validation + async submit -------------------- */
-$$("[data-form]").forEach((form) => {
-  const summary = form.querySelector("[data-form-summary]");
-  const fields = $$("input:not([type=hidden]):not([name=_gotcha]), select, textarea", form);
-
-  const messageFor = (field) => {
-    const label = form.querySelector(`label[for="${field.id}"]`)?.firstChild?.textContent?.trim() || "This field";
-    if (field.validity.valueMissing)
-      return field.tagName === "SELECT" ? `Please choose an option for “${label}”.` : `Please enter your ${label.toLowerCase()}.`;
-    if (field.validity.typeMismatch && field.type === "email") return "Please enter a valid email address, like name@example.com.";
-    if (field.type === "tel" && field.value && !/^[+\d][\d\s()-]{6,}$/.test(field.value)) return "Please enter a valid phone number, like 0803 123 4567.";
-    return "";
-  };
-  const check = (field) => {
-    const msg = messageFor(field);
-    const err = document.getElementById(`${field.id}-error`);
-    if (err) err.textContent = msg;
-    field.setAttribute("aria-invalid", msg ? "true" : "false");
-    return !msg;
-  };
-  fields.forEach((f) => f.addEventListener("blur", () => { if (f.value || f.getAttribute("aria-invalid")) check(f); }));
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const invalid = fields.filter((f) => !check(f));
-    if (invalid.length) {
-      summary.textContent = `Please check ${invalid.length} field${invalid.length > 1 ? "s" : ""} and try again.`;
-      invalid[0].focus();
-      return;
-    }
-    summary.textContent = "";
-    const email = form.querySelector("input[type=email]");
-    const replyTo = form.querySelector("[data-replyto]");
-    if (email && replyTo) replyTo.value = email.value;
-
-    const ok = form.closest("section, div").querySelector(`[data-form-success="${form.id}"]`) || document.querySelector(`[data-form-success="${form.id}"]`);
-    const fail = document.querySelector(`[data-form-failure="${form.id}"]`);
-    const button = form.querySelector("[data-submit]");
-    const showResult = (el) => { form.hidden = true; el.classList.remove("hidden"); el.focus(); };
-
-    if (form.dataset.unconfigured) {
-      console.warn("Form endpoint not configured yet — set it in src/config/site.js (forms).");
-      showResult(fail);
-      return;
-    }
-    button.disabled = true;
-    button.setAttribute("aria-busy", "true");
-    try {
-      const res = await fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
-      showResult(res.ok ? ok : fail);
-    } catch {
-      showResult(fail);
-    } finally {
-      button.disabled = false;
-      button.removeAttribute("aria-busy");
-    }
   });
 });

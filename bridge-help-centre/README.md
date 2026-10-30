@@ -78,14 +78,11 @@ The Home page ("Moments from Our Work") shows the first 8 images.
 In `src/data/stats.js`, replace `"[NUMBER]"` with a number (e.g. `1200`) and update `statsNote`.
 The numbers count up gently on screen, except for visitors who have turned on reduced motion.
 
-### Connect the forms
-The Contact, Get Involved and newsletter forms send to any service that accepts a normal HTML form
-post. To use [Formspree](https://formspree.io) (free tier):
-1. Sign up with **thebridgehelpcenter@gmail.com** and create a form for each one.
-2. Copy each endpoint (e.g. `https://formspree.io/f/abcdwxyz`) into `forms` in `src/config/site.js`.
-
-Until an endpoint is set, a submitted form shows a friendly message that points people to WhatsApp
-and email, so nobody's message is silently lost. Web3Forms and Getform work the same way.
+### The form
+The Get Involved page shows the centre's Google Form. To use a different form: in Google Forms press
+**Send → the < > tab**, copy the address inside `src="…"`, and paste it into `getInvolvedFormEmbed` in
+`src/config/site.js` (put the form's normal link in `getInvolvedForm`). Responses arrive in Google Forms
+under the **Responses** tab.
 
 ### Show bank details for supporters
 Fill in `supportDetails` in `src/config/site.js`, for example
@@ -107,9 +104,8 @@ In Google Maps, go to Share → Embed a map, copy the address inside `src="…"`
 ## Before going live (checklist)
 1. **Website address:** thebridgehelpcentre.org (set as `url` in `src/config/site.js`). On the host,
    connect both `thebridgehelpcentre.org` and `www.thebridgehelpcentre.org`; www redirects to the main address.
-2. **Contact form:** create a Formspree form and paste its endpoint into `forms.contactEndpoint` in
-   `src/config/site.js`. Until then it shows a WhatsApp/email fallback. (The Get Involved page uses the
-   centre's Google Form: `getInvolvedForm` / `getInvolvedFormEmbed`.)
+2. **Forms:** the only form is the centre's Google Form on the Get Involved page (`getInvolvedForm` /
+   `getInvolvedFormEmbed` in `src/config/site.js`). Responses arrive in Google Forms.
 
 ## Maintenance tools
 - `python3 tools/make-image-sizes.py`: after adding photos, creates lighter 640px copies that

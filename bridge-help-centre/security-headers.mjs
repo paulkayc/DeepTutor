@@ -2,7 +2,7 @@
    At the end of every build this writes dist/_headers (read by Netlify and
    Cloudflare Pages) with a Content-Security-Policy that allows only this
    site's own files, the inline start-up script (by its hash), the Google map
-   on the Contact page and the form service (Formspree). vercel.json carries
+   on the Contact page and the Google Form on Get Involved. vercel.json carries
    the same rules for Vercel; the build warns if it falls out of date. */
 import fs from "node:fs";
 import path from "node:path";
@@ -30,8 +30,8 @@ export function buildCsp(hashes) {
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data:",
     "font-src 'self' data:",
-    "connect-src 'self' https://formspree.io",
-    "form-action 'self' https://formspree.io",
+    "connect-src 'self'",
+    "form-action 'self'",
     "frame-src https://maps.google.com https://www.google.com https://docs.google.com https://forms.gle",
     "object-src 'none'",
     "base-uri 'self'",
