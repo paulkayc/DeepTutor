@@ -28,7 +28,7 @@ const isPlaceholder = (t: string) => t.trim().startsWith("[");
       <div class="reveal">
         <p class="eyebrow">Where it began</p>
         <h2 id="story-heading" class="h-section">Our Story</h2>
-        <div class="measure mt-6 space-y-5">
+        <div class="hero-copy measure mt-6 space-y-5 text-lg leading-relaxed lg:text-[1.1875rem]">
           {story.paragraphs.map((p, i) => (
             <p class:list={[isPlaceholder(p) && "placeholder-text", i === 0 && isPlaceholder(p) && "rounded-xl border-2 border-dashed border-blue bg-blue-tint px-4 py-3 font-bold not-italic text-ink"]}>{p}</p>
           ))}
