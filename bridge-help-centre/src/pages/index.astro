@@ -5,7 +5,6 @@ import SectionHeading from "../components/SectionHeading.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import QuoteBand from "../components/QuoteBand.astro";
 import Stats from "../components/Stats.astro";
-import StoryCard from "../components/StoryCard.astro";
 import DirectorBlock from "../components/DirectorBlock.astro";
 import EventCard from "../components/EventCard.astro";
 import Gallery from "../components/Gallery.astro";
@@ -13,7 +12,6 @@ import CtaBand from "../components/CtaBand.astro";
 import { whatsappLink } from "../config/site.js";
 import { home } from "../data/home.js";
 import { services, servicesIntro } from "../data/services.js";
-import { stories } from "../data/stories.js";
 import { events } from "../data/events.js";
 
 const today = new Date().toISOString().slice(0, 10);
@@ -93,12 +91,16 @@ const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.loc
     <div class="container-site">
       <h2 id="impact-heading" class="fancy-title mb-10 lg:mb-14">Our Impact</h2>
       <Stats />
-      <div class="mt-16">
-        <StoryCard story={stories[0]} featured>
-          <div class="mt-8">
-            <a href="/impact" class="btn btn-secondary">Read More Stories</a>
-          </div>
-        </StoryCard>
+      <div class="reveal mx-auto mt-16 max-w-4xl overflow-hidden rounded-3xl shadow-[var(--shadow-soft)]">
+        <img
+          src="/images/home/impact-students.webp"
+          alt="Secondary school students in light-blue uniforms smiling and taking notes during a Bridge Help Centre session"
+          width="858"
+          height="588"
+          loading="lazy"
+          decoding="async"
+          class="block h-auto w-full"
+        />
       </div>
     </div>
   </section>
