@@ -105,6 +105,21 @@
   @media (min-width: 64rem) { .director-bio { font-size: 1.4375rem; } }
   /* Home hero paragraphs share the director biography's serif. */
   .hero-copy { font-family: var(--font-display); }
+  /* "OUR SERVICES" heading: bold capitals with a magenta-to-blue colour blend. */
+  .services-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem);
+    line-height: 1.05;
+    width: fit-content;
+    color: var(--color-magenta);
+    background: linear-gradient(90deg, var(--color-magenta) 0%, var(--color-magenta-deep) 45%, color-mix(in srgb, var(--color-blue) 55%, var(--color-ink)) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
   .tagline { font-family: var(--font-display); font-style: italic; font-weight: 500; color: var(--color-magenta-deep); }
   .h-display {
     @apply font-extrabold;

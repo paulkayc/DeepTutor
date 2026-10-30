@@ -1,11 +1,32 @@
 ---
+/* One service box on the Home page: icon marker, service name (links to its
+   section on Our Programmes) and its own WhatsApp + email buttons. */
 import Icon from "./Icon.astro";
-interface Props { service: { id: string; name: string; summary: string; icon: string } }
+import { whatsappLink, emailLink } from "../config/site.js";
+interface Props { service: { id: string; name: string; icon: string } }
 const { service } = Astro.props;
 ---
-<a href={`/programmes#${service.id}`} class="card card-hover reveal group flex h-full flex-col">
-  <span class="icon-badge"><Icon name={service.icon} size={28} /></span>
-  <h3 class="h-sub mt-6">{service.name}</h3>
-  <p class="mt-3 text-ink-soft">{service.summary}</p>
-  <span class="link-arrow mt-auto pt-5" aria-hidden="true">Learn more <Icon name="arrow" size={20} /></span>
-</a>
+<article class="card card-hover reveal flex h-full flex-col !p-7">
+  <div class="flex items-start gap-4">
+    <span class="icon-badge !size-12 !rounded-full !bg-magenta !text-white [&_svg]:!text-white"><Icon name={service.icon} size={24} /></span>
+    <h3 class="pt-1.5 text-xl font-bold leading-snug">
+      <a href={`/programmes#${service.id}`} class="hover:text-magenta-deep hover:underline hover:decoration-2 hover:underline-offset-4">{service.name}</a>
+    </h3>
+  </div>
+  <div class="mt-auto flex flex-wrap gap-3 pt-7">
+    <a
+      href={whatsappLink(`Hello, I would like to enquire about ${service.name}`)}
+      target="_blank"
+      rel="noopener"
+      class="inline-flex min-h-11 items-center gap-2 rounded-full bg-magenta px-4 text-[0.9375rem] font-bold text-white transition hover:-translate-y-0.5 hover:bg-magenta-deep"
+    >
+      <Icon name="whatsapp" size={20} />WhatsApp<span class="sr-only"> us about {service.name} (opens in a new tab)</span>
+    </a>
+    <a
+      href={emailLink(`Enquiry: ${service.name}`)}
+      class="inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-blue bg-white px-4 text-[0.9375rem] font-bold text-ink transition hover:-translate-y-0.5 hover:border-ink"
+    >
+      <Icon name="mail" size={20} />Email<span class="sr-only"> us about {service.name}</span>
+    </a>
+  </div>
+</article>

@@ -10,7 +10,7 @@ import DirectorBlock from "../components/DirectorBlock.astro";
 import EventCard from "../components/EventCard.astro";
 import Gallery from "../components/Gallery.astro";
 import CtaBand from "../components/CtaBand.astro";
-import { whatsappLink, emailLink } from "../config/site.js";
+import { whatsappLink } from "../config/site.js";
 import { home } from "../data/home.js";
 import { services, servicesIntro } from "../data/services.js";
 import { stories } from "../data/stories.js";
@@ -74,30 +74,7 @@ const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.loc
   <!-- 2. Our Services (directly under the hero) -->
   <section id="our-services" class="section scroll-mt-24" aria-labelledby="services-heading">
     <div class="container-site">
-      <SectionHeading eyebrow="What We Do" title="Our Services" id="services-heading">
-        <p class="lead measure mt-5">{servicesIntro}</p>
-        <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-          <p class="font-semibold">Ask us about any service:</p>
-          <a
-            href={whatsappLink("Hello, I would like to know more about your services")}
-            target="_blank"
-            rel="noopener"
-            class="group inline-flex min-h-12 items-center gap-3 font-bold"
-            aria-label="Chat with us on WhatsApp about our services (opens in a new tab)"
-          >
-            <span class="inline-flex size-12 items-center justify-center rounded-full bg-magenta text-white shadow-[var(--shadow-soft)] transition group-hover:-translate-y-0.5 group-hover:bg-magenta-deep"><Icon name="whatsapp" size={24} /></span>
-            <span aria-hidden="true">WhatsApp</span>
-          </a>
-          <a
-            href={emailLink("Enquiry about your services")}
-            class="group inline-flex min-h-12 items-center gap-3 font-bold"
-            aria-label="Email us about our services"
-          >
-            <span class="inline-flex size-12 items-center justify-center rounded-full bg-blue text-ink shadow-[var(--shadow-soft)] transition group-hover:-translate-y-0.5"><Icon name="mail" size={24} /></span>
-            <span aria-hidden="true">Email</span>
-          </a>
-        </div>
-      </SectionHeading>
+      <h2 id="services-heading" class="services-title mb-10 lg:mb-14">Our Services</h2>
       <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-6">
         {services.map((s, i) => (
           <li class:list={["lg:col-span-2", i === 3 && "lg:col-start-2"]}>
