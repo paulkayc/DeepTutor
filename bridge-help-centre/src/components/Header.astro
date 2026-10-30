@@ -9,7 +9,7 @@ const isCurrent = (href: string) => (href === "/" ? path === "/" : path === href
   <div class="mx-auto flex h-20 w-full max-w-[1400px] items-center gap-3 px-6 lg:h-24">
     <a href="/" class="mr-auto flex min-h-11 items-center gap-3 rounded-lg">
       <Logo compact />
-      <span class:list={["text-[0.95rem] font-extrabold leading-tight sm:text-lg", site.logo && "sr-only"]}>The Bridge<br class="sm:hidden" /> Help Centre</span>
+      <span class="text-[0.8125rem] font-extrabold uppercase leading-tight tracking-[0.04em] sm:text-base lg:text-lg">The Bridge<br /> Help Centre</span>
     </a>
 
     <nav aria-label="Main" class="hidden nav:block">
@@ -30,12 +30,11 @@ const isCurrent = (href: string) => (href === "/" ? path === "/" : path === href
       href={whatsappLink()}
       target="_blank"
       rel="noopener"
-      class="btn btn-primary btn-sm shrink-0 !px-4 sm:!px-5 nav:ml-2"
+      class="btn btn-primary btn-sm shrink-0 max-sm:!size-12 max-sm:!p-0 sm:!px-5 nav:ml-2"
       aria-label="Chat on WhatsApp (opens in a new tab)"
     >
       <Icon name="whatsapp" size={22} />
-      <span class="hidden min-[400px]:inline">Chat on WhatsApp</span>
-      <span class="min-[400px]:hidden" aria-hidden="true">Chat</span>
+      <span class="hidden sm:inline">Chat on WhatsApp</span>
     </a>
 
     <button

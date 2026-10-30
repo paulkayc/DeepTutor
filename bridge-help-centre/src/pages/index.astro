@@ -63,15 +63,15 @@ const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.loc
 
   <!-- 2. Introduction -->
   <section id="who-we-are" class="section" aria-labelledby="intro-heading">
-    <div class="container-site grid items-center gap-12 lg:grid-cols-[7fr_5fr] lg:gap-20">
+    <div class="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
       <div class="reveal">
         <p class="eyebrow">Who We Are</p>
         <h2 id="intro-heading" class="h-section max-w-xl">Walking with young people, every step of the way</h2>
         <p class="lead measure mt-6">We collaborate with parents, schools, communities, and government partners to create nurturing environments where children and young people can learn, grow, and reach their potential.</p>
         <a href="/about" class="link-arrow mt-8">Learn about our story<Icon name="arrow" size={20} /></a>
       </div>
-      <div class="reveal mx-auto w-full max-w-md lg:max-w-none">
-        <Media src={home.introImage} alt={home.introImageAlt} label="Introduction photo" size="800 × 1000 px" hint="A facilitator alongside young people — warm and candid." ratio="4 / 5" width={800} height={1000} />
+      <div class="reveal w-full">
+        <Media src={home.introImage} alt={home.introImageAlt} label="Introduction photo" size="1536 × 1024 px" hint="A facilitator alongside young people — warm and candid." ratio="3 / 2" width={1536} height={1024} class="shadow-[var(--shadow-soft)]" />
       </div>
     </div>
   </section>
