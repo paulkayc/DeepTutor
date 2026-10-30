@@ -2,7 +2,7 @@
 import { whatsappLink } from "../config/site.js";
 import Media from "./Media.astro";
 import Icon from "./Icon.astro";
-interface Props { event: { title: string; date: string; location?: string; description: string; image?: string }; layout?: "card" | "row"; headingLevel?: 3 | 4 }
+interface Props { event: { title: string; date: string; location?: string; description: string; image?: string; imageRatio?: string }; layout?: "card" | "row"; headingLevel?: 3 | 4 }
 const { event, layout = "card" } = Astro.props;
 const d = new Date(event.date + "T12:00:00");
 const day = d.toLocaleDateString("en-GB", { day: "numeric" });
@@ -12,7 +12,7 @@ const register = whatsappLink(`Hello, I would like to register interest in ${eve
 ---
 <article class:list={["card card-hover reveal flex !p-0 overflow-hidden", layout === "row" ? "flex-col md:flex-row" : "flex-col"]} data-event-date={event.date}>
   <div class:list={["relative", layout === "row" && "md:w-[42%] md:shrink-0"]}>
-    <Media src={event.image} alt={`Photo for ${event.title}`} label="Programme photo" size="1200 × 800 px" ratio="3 / 2" class="!rounded-none !border-x-0 !border-t-0" width={1200} height={800} />
+    <Media src={event.image} alt={`Photo for ${event.title}`} label="Programme photo" size="1200 × 800 px" ratio={event.imageRatio || "3 / 2"} class="!rounded-none !border-x-0 !border-t-0" width={1200} height={800} />
     <p class="date-badge absolute left-4 top-4" aria-hidden="true"><span class="text-2xl">{day}</span><span class="mt-1 text-xs uppercase tracking-wider">{month}</span></p>
   </div>
   <div class="flex flex-1 flex-col p-7">

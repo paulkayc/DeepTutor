@@ -322,6 +322,14 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 .lightbox[open] { animation: fade-in 0.2s ease-out; }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 
+/* ---- Programme slideshow (crossfade) -------------------------------- */
+.slide { position: absolute; inset: 0; margin: 0; opacity: 0; visibility: hidden; transition: opacity 0.9s ease, visibility 0s linear 0.9s; }
+.slide.is-active { opacity: 1; visibility: visible; transition: opacity 0.9s ease, visibility 0s; }
+.slide-dot { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border-radius: 999px; cursor: pointer; }
+.slide-dot > span { width: 0.75rem; height: 0.75rem; border-radius: 999px; background: var(--color-blue); transition: width 0.3s, background 0.3s; }
+.slide-dot[aria-current="true"] > span { width: 1.75rem; background: var(--color-magenta); }
+@media (prefers-reduced-motion: reduce) { .slide, .slide.is-active { transition: none; } }
+
 /* ---- Tabs / chips --------------------------------------------------- */
 .filter-chip {
   display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0.5rem 1.25rem;

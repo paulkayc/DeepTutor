@@ -7,6 +7,7 @@ import QuoteBand from "../components/QuoteBand.astro";
 import Stats from "../components/Stats.astro";
 import DirectorBlock from "../components/DirectorBlock.astro";
 import EventCard from "../components/EventCard.astro";
+import EventSlideshow from "../components/EventSlideshow.astro";
 import Gallery from "../components/Gallery.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { whatsappLink } from "../config/site.js";
@@ -16,6 +17,8 @@ import { events } from "../data/events.js";
 
 const today = new Date().toISOString().slice(0, 10);
 const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 3);
+// The next programme that has slideshow images is featured; otherwise show the next three as cards.
+const featured = events.filter((e) => e.date >= today && e.slides?.length).sort((a, b) => a.date.localeCompare(b.date))[0];
 ---
 <Base
   title="The Bridge Help Centre"
@@ -111,13 +114,19 @@ const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.loc
   <!-- 7. Upcoming programmes -->
   <section class="section" aria-labelledby="upcoming-heading">
     <div class="container-site">
-      <SectionHeading eyebrow="Coming Up" title="Upcoming Programmes" id="upcoming-heading" />
-      <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {upcoming.map((e) => <li><EventCard event={e} /></li>)}
-      </ul>
-      <div class="mt-12">
-        <a href="/resources#upcoming" class="btn btn-secondary">See All Programmes</a>
-      </div>
+      <SectionHeading title="Upcoming Programmes" id="upcoming-heading" />
+      {featured ? (
+        <EventSlideshow event={featured} />
+      ) : (
+        <>
+          <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {upcoming.map((e) => <li><EventCard event={e} /></li>)}
+          </ul>
+          <div class="mt-12">
+            <a href="/resources#upcoming" class="btn btn-secondary">See All Programmes</a>
+          </div>
+        </>
+      )}
     </div>
   </section>
 

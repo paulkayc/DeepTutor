@@ -127,6 +127,53 @@ $$("[data-gallery]").forEach((gallery) => {
   });
 });
 
+/* ---- Programme slideshow: crossfades every 6s; pauses on hover/focus,
+        off-screen, or via the pause button; still for reduced motion ---- */
+$$("[data-slideshow]").forEach((show) => {
+  const slides = $$("[data-slide]", show);
+  if (slides.length < 2) return;
+  const dots = $$("[data-slide-dot]", show);
+  const toggle = show.querySelector("[data-slideshow-toggle]");
+  let current = 0;
+  let timer = null;
+  let userPaused = reduceMotion;
+  let hovering = false;
+  let onScreen = false;
+
+  const go = (i) => {
+    current = (i + slides.length) % slides.length;
+    slides.forEach((s, n) => {
+      const on = n === current;
+      s.classList.toggle("is-active", on);
+      s.setAttribute("aria-hidden", String(!on));
+      s.querySelectorAll("a").forEach((a) => (on ? a.removeAttribute("tabindex") : a.setAttribute("tabindex", "-1")));
+      // Load the next image just before it is shown.
+      if (on || n === (current + 1) % slides.length) s.querySelector("img").loading = "eager";
+    });
+    dots.forEach((d, n) => (n === current ? d.setAttribute("aria-current", "true") : d.removeAttribute("aria-current")));
+  };
+  const update = () => {
+    clearInterval(timer);
+    timer = !userPaused && !hovering && onScreen ? setInterval(() => go(current + 1), 6000) : null;
+    if (toggle) {
+      toggle.setAttribute("aria-label", userPaused ? "Play slideshow" : "Pause slideshow");
+      toggle.querySelector("[data-icon-pause]").hidden = userPaused;
+      toggle.querySelector("[data-icon-play]").hidden = !userPaused;
+    }
+  };
+  dots.forEach((d) => d.addEventListener("click", () => { go(Number(d.dataset.slideDot)); update(); }));
+  toggle?.addEventListener("click", () => { userPaused = !userPaused; update(); });
+  show.addEventListener("mouseenter", () => { hovering = true; update(); });
+  show.addEventListener("mouseleave", () => { hovering = false; update(); });
+  show.addEventListener("focusin", () => { hovering = true; update(); });
+  show.addEventListener("focusout", () => { hovering = false; update(); });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; update(); }, { threshold: 0.25 }).observe(show);
+  }
+  go(0);
+  update();
+});
+
 /* ---- Tabs (educational materials) ---------------------------------- */
 $$("[data-tabs]").forEach((wrap) => {
   const tabs = $$("[role=tab]", wrap);
