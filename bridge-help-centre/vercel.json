@@ -52,5 +52,18 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.thebridgehelpcentre.org"
+        }
+      ],
+      "destination": "https://thebridgehelpcentre.org/:path",
+      "permanent": true
+    }
   ]
 }

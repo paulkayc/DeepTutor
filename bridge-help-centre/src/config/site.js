@@ -19,8 +19,7 @@
    Gallery photos ........................... src/data/gallery.js
    Images ................................... public/images/
 
-   STILL NEEDED BEFORE LAUNCH: real website address (url), form
-   endpoints (forms), privacy policy text (src/pages/privacy.astro).
+   STILL NEEDED BEFORE LAUNCH: form endpoints (forms).
    ===================================================================== */
 
 export const site = {
@@ -28,11 +27,9 @@ export const site = {
   shortDescription:
     "A social enterprise for child and youth development in Nigeria.",
 
-  // The website's public address, used for search engines (sitemap, canonical
-  // links) and social-sharing previews. BEFORE LAUNCH: set it to the real
-  // domain, or set a SITE_URL environment variable on the host (Netlify's own
-  // URL is used automatically if neither is set).
-  url: (typeof process !== "undefined" && (process.env.SITE_URL || process.env.URL)) || "https://www.thebridgehelpcentre.org",
+  // The website's official address (used for search engines, the sitemap and
+  // social-sharing previews). A SITE_URL environment variable can override it.
+  url: (typeof process !== "undefined" && process.env.SITE_URL) || "https://thebridgehelpcentre.org",
 
   // ---- Brand colours (used everywhere through CSS variables) ----------
   colors: {

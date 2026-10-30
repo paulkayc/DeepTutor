@@ -105,8 +105,8 @@ In Google Maps, go to Share → Embed a map, copy the address inside `src="…"`
 - The hero headline shrinks on small phones so that each sentence stays on one line.
 
 ## Before going live (checklist)
-1. **Website address:** set `url` in `src/config/site.js` to the real domain (or set a `SITE_URL`
-   environment variable on the host). It is used for search engines and sharing previews.
+1. **Website address:** thebridgehelpcentre.org (set as `url` in `src/config/site.js`). On the host,
+   connect both `thebridgehelpcentre.org` and `www.thebridgehelpcentre.org`; www redirects to the main address.
 2. **Forms:** create Formspree forms (or similar) and paste the two endpoints into `forms` in
    `src/config/site.js`. Until then the forms show a WhatsApp/email fallback instead of sending.
 
