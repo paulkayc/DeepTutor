@@ -34,9 +34,7 @@ Then open http://localhost:4321. Run `npm run build` to create the finished site
 | Upcoming programmes | `src/data/events.js` |
 | Gallery | `src/data/gallery.js` + `public/images/gallery/` |
 | Success stories | `src/data/stories.js` |
-| Articles & news | `src/data/articles.js` |
 | Director, story, vision, values, team, milestones | `src/data/about.js` |
-| Reports, publications, educational materials | `src/data/resources.js` |
 | Home page hero and intro photos | `src/data/home.js` |
 
 The top of `src/config/site.js` lists every placeholder and the file it lives in. Placeholder text
@@ -65,7 +63,7 @@ placeholder is swapped for the photo automatically. Tips:
 ### Add an upcoming programme
 In `src/data/events.js`, copy one `{ … }` block, paste it into the list and change the title, date
 (`"YYYY-MM-DD"`), location, description and image. The "Register Interest" WhatsApp message is
-created for you. Once the date has passed, the event moves to "Past Programmes" on its own.
+created for you. The next upcoming programme with slideshow images is featured on the Home page.
 
 ### Add a gallery image
 Put the photo in `public/images/gallery/`. Then fill in one line in `src/data/gallery.js`:
@@ -75,11 +73,6 @@ Put the photo in `public/images/gallery/`. Then fill in one line in `src/data/ga
 ```
 
 The Home page ("Moments from Our Work") shows the first 8 images.
-
-### Add an article
-Copy a block in `src/data/articles.js` and give it a new `slug`. Write the body as a list of
-paragraphs, and start a paragraph with `## ` to make it a sub-heading. The article gets its own
-page at `/resources/articles/<slug>/`.
 
 ### Update the statistics
 In `src/data/stats.js`, replace `"[NUMBER]"` with a number (e.g. `1200`) and update `statsNote`.

@@ -2,9 +2,8 @@
    ---------------------------------------------------------------------
    To ADD an event: copy one { … } block, paste it into the list and change
    the details. To REMOVE an event: delete its block.
-   date must be written as "YYYY-MM-DD". Events whose date has passed move
-   automatically into "Past Programmes" on the Resources page (this happens
-   both when the site is built and in the visitor's browser).
+   date must be written as "YYYY-MM-DD". The next upcoming event that has
+   slides is featured on the Home page; past events are hidden there.
    image: 1200 × 800 px, e.g. "/images/events/holiday-camp.jpg" ([PLACEHOLDER] while "").
    Optional: imageRatio (e.g. "4 / 5" for a flyer), time, price, speaker, subtitle,
    speakerBio (paragraphs) and slides (images for the Home page slideshow).

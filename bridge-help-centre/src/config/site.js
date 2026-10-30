@@ -3,7 +3,7 @@
    ---------------------------------------------------------------------
    This is the main file to edit. Contact details, colours, the logo,
    form services and social links all live here. Page text that changes
-   often (services, statistics, events, gallery, stories, articles…)
+   often (services, statistics, events, gallery, stories…)
    lives in the files inside  src/data/ .
 
    PLACEHOLDER INDEX — everything the client still needs to supply
@@ -24,9 +24,6 @@
    Success stories ............. src/data/stories.js
    Upcoming programmes ......... src/data/events.js
    Gallery (12 images) ......... src/data/gallery.js          → public/images/gallery/
-   Articles & news ............. src/data/articles.js
-   Reports / publications /
-   educational materials ....... src/data/resources.js
    Office address .............. site.address (below)
    Map ......................... site.mapEmbedUrl (below)
    Form endpoints .............. site.forms (below)
@@ -122,7 +119,6 @@ export const nav = [
   { label: "About Us", href: "/about" },
   { label: "Our Programmes", href: "/programmes" },
   { label: "Get Involved", href: "/get-involved" },
-  { label: "Resources", href: "/resources" },
   { label: "Contact Us", href: "/contact" },
 ];
 

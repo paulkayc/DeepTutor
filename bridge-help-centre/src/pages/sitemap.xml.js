@@ -1,8 +1,7 @@
 import { site, nav } from "../config/site.js";
-import { articles } from "../data/articles.js";
 
 export function GET() {
-  const paths = [...nav.map((n) => n.href), "/privacy", ...articles.map((a) => `/resources/articles/${a.slug}`)];
+  const paths = [...nav.map((n) => n.href), "/privacy"];
   const urls = paths.map((p) => `  <url><loc>${new URL(p, site.url).href}</loc></url>`).join("\n");
   return new Response(
     `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,

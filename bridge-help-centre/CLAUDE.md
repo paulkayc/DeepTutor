@@ -22,7 +22,7 @@ When the owner sends images, crop/optimise them (WebP, sensible size), place the
 
 ## Where things live
 - Contact details, colours, logo, form endpoints, social links: `src/config/site.js`
-- Page content: `src/data/*.js` (services, stats, events, gallery, stories, articles, about, resources, home)
+- Page content: `src/data/*.js` (services, stats, events, gallery, stories, about, home)
 - Pages: `src/pages/`; shared pieces: `src/components/`; styles: `src/styles/global.css`
 - Images: `public/images/` (gallery photos in `public/images/gallery/`)
 
