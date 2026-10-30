@@ -1,5 +1,5 @@
 ---
-import { site, nav, whatsappLink } from "../config/site.js";
+import { site, nav } from "../config/site.js";
 import Logo from "./Logo.astro";
 import Icon from "./Icon.astro";
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
@@ -28,17 +28,6 @@ const isCurrent = (href: string) => (href === "/" ? path === "/" : path === href
         ))}
       </ul>
     </nav>
-
-    <a
-      href={whatsappLink()}
-      target="_blank"
-      rel="noopener"
-      class="btn btn-primary btn-sm shrink-0 max-sm:!size-12 max-sm:!p-0 sm:!px-5 nav:ml-2"
-      aria-label="Chat on WhatsApp (opens in a new tab)"
-    >
-      <Icon name="whatsapp" size={22} />
-      <span class="hidden sm:inline">Chat on WhatsApp</span>
-    </a>
 
     <button
       type="button"
@@ -79,10 +68,6 @@ const isCurrent = (href: string) => (href === "/" ? path === "/" : path === href
           ))}
         </ul>
       </nav>
-      <div class="grid gap-3 border-t-2 border-blue-tint p-6">
-        <a href={whatsappLink()} target="_blank" rel="noopener" class="btn btn-primary w-full"><Icon name="whatsapp" />Chat on WhatsApp</a>
-        <a href={`mailto:${site.email}`} class="btn btn-secondary w-full"><Icon name="mail" />Email Us</a>
-      </div>
     </div>
   </dialog>
 </header>

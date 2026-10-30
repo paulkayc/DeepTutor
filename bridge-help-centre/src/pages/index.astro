@@ -10,7 +10,6 @@ import EventCard from "../components/EventCard.astro";
 import EventSlideshow from "../components/EventSlideshow.astro";
 import Gallery from "../components/Gallery.astro";
 import CtaBand from "../components/CtaBand.astro";
-import { whatsappLink } from "../config/site.js";
 import { home } from "../data/home.js";
 import { services, servicesIntro } from "../data/services.js";
 import { events } from "../data/events.js";
@@ -60,9 +59,8 @@ const featured = events.filter((e) => e.date >= today && e.slides?.length).sort(
           We collaborate with parents, schools, communities, and government partners to create nurturing environments where children and young people can learn, grow, and reach their potential.
         </p>
         <p class="hero-copy measure mt-5 text-lg leading-relaxed text-ink-soft lg:text-xl">{servicesIntro}</p>
-        <div class="mt-10 flex flex-col gap-4 sm:flex-row" data-hide-floats>
-          <a href={whatsappLink()} target="_blank" rel="noopener" class="btn btn-primary"><Icon name="whatsapp" />Chat on WhatsApp</a>
-          <a href="/programmes" class="btn btn-secondary">Explore Our Programmes</a>
+        <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+          <a href="/programmes" class="btn btn-primary">Explore Our Programmes<Icon name="arrow" size={20} /></a>
         </div>
       </div>
     </div>
