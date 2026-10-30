@@ -30,6 +30,15 @@ for route, (src, name) in pages.items():
     h = re.sub(r'<script type="module" src="[^"]+"></script>', lambda _: '<script type="module">' + js + '</script>', h)
     h = re.sub(r'<link rel="sitemap"[^>]*>', '', h)
     h = re.sub(r'\b(href|src)="(/(?!/)[^"]*)"', fix_url, h)
+    def fix_srcset(m):
+        parts = []
+        for item in m.group(2).split(','):
+            url, *rest = item.strip().split(' ')
+            if url.startswith('/') and not url.startswith('//'):
+                assets.add(url.lstrip('/')); url = url.lstrip('/').replace('_astro/', 'fonts/')
+            parts.append(' '.join([url, *rest]))
+        return f'{m.group(1)}="{", ".join(parts)}"'
+    h = re.sub(r'\b(srcset|imagesrcset)="([^"]*)"', fix_srcset, h)
     h = re.sub(r'url\(/(_astro/[^)]+)\)', lambda m: (assets.add(m.group(1)), "url(" + m.group(1).replace("_astro/", "fonts/") + ")")[1], h)
     open(os.path.join(out, name), 'w').write(h)
 for a in assets:
