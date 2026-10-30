@@ -64,7 +64,10 @@ import Icon from "./Icon.astro";
     </div>
   </div>
   <div class="container-site flex flex-col gap-2 border-t border-blue py-6 text-sm sm:flex-row sm:items-center sm:justify-between">
-    <p>© 2026 The Bridge Help Centre. All rights reserved.</p>
+    <div class="space-y-1">
+      <p>A registered social enterprise for child and youth development in Nigeria (RC Number: {site.rcNumber}).</p>
+      <p>© 2026 The Bridge Help Centre. All rights reserved.</p>
+    </div>
     <a href={site.privacyPolicyUrl} class="inline-flex min-h-11 items-center underline-offset-4 hover:underline">Privacy Policy</a>
   </div>
 </footer>

@@ -24,6 +24,8 @@
 
 export const site = {
   name: "The Bridge Help Centre",
+  // Corporate Affairs Commission (CAC) registration number.
+  rcNumber: "9403557",
   shortDescription:
     "A social enterprise for child and youth development in Nigeria.",
 

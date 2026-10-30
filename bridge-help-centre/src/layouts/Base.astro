@@ -30,6 +30,7 @@ const schema = {
   email: site.email,
   telephone: site.phone.international,
   areaServed: "Nigeria",
+  identifier: { "@type": "PropertyValue", propertyID: "CAC RC Number", value: site.rcNumber },
   ...(site.address ? {
     address: { "@type": "PostalAddress", streetAddress: site.addressParts.street, addressLocality: site.addressParts.city, addressRegion: site.addressParts.state, addressCountry: "NG" },
   } : {}),
