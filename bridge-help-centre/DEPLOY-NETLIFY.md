@@ -16,19 +16,28 @@ Node.js 24, the www → thebridgehelpcentre.org redirect). Security headers are 
 4. Click **Deploy**. After 1–2 minutes you get a temporary address like
    `something.netlify.app`. Open it and check the site.
 
-## 2. Connect thebridgehelpcentre.org
-1. In the Netlify site: **Domain management → Add a domain** → type `thebridgehelpcentre.org` → **Verify → Add domain**.
-   Netlify also adds `www.thebridgehelpcentre.org` automatically.
-2. Netlify then shows how to point the domain. Choose ONE:
-   - **Easiest: use Netlify DNS.** Netlify shows 4 "name servers" (like `dns1.p01.nsone.net`).
-     Log in where you bought the domain, find **Nameservers**, choose **custom**, and paste those 4.
-   - **Or keep your current DNS** and add these records where you bought the domain
-     (use the exact values Netlify shows you):
-     - Type **A**, name `@`, value Netlify's load-balancer IP (shown by Netlify, currently `75.2.60.5`)
-     - Type **CNAME**, name `www`, value your `something.netlify.app` address
-3. Wait (usually minutes, up to 24–48 hours). Netlify then switches on **HTTPS** automatically
-   (Domain management → HTTPS shows "Your site has HTTPS enabled").
-4. Make sure `thebridgehelpcentre.org` (without www) is the **Primary domain**.
+## 2. Connect thebridgehelpcentre.org (domain registered at Cloudflare)
+Cloudflare-registered domains must keep Cloudflare DNS, so do NOT change nameservers.
+
+**In Netlify**
+1. Your site → **Domain management → Add a domain** → `thebridgehelpcentre.org` → **Verify**.
+   If Netlify says the domain is already registered, choose **Add domain** anyway.
+2. Netlify also adds `www.thebridgehelpcentre.org`. Note your Netlify address (e.g. `something.netlify.app`).
+3. Make `thebridgehelpcentre.org` the **Primary domain** (⋯ menu next to it → Set as primary domain).
+
+**In Cloudflare** (dash.cloudflare.com → click `thebridgehelpcentre.org` → **DNS → Records**)
+1. Delete any existing **A**, **AAAA** or **CNAME** records named `@`/`thebridgehelpcentre.org` or `www`
+   (e.g. Cloudflare "parking" records). Leave MX/TXT email records alone.
+2. **Add record:** Type `CNAME`, Name `@`, Target `something.netlify.app`, **Proxy status: DNS only (grey cloud)**, Save.
+3. **Add record:** Type `CNAME`, Name `www`, Target `something.netlify.app`, **Proxy status: DNS only (grey cloud)**, Save.
+
+The grey cloud ("DNS only") matters: with the orange cloud on, Netlify cannot create the
+site's security certificate.
+
+**Back in Netlify**
+4. Domain management shows both domains as verified within minutes (allow up to a few hours).
+5. **HTTPS → Verify DNS configuration → Provision certificate.** When it says
+   "Your site has HTTPS enabled", https://thebridgehelpcentre.org is live.
 
 ## 3. After it is live
 - Open https://thebridgehelpcentre.org on your phone and click through every page.
