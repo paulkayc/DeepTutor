@@ -12,7 +12,7 @@ export const stories = [
   {
     name: "[First name]", age: "[Age]",
     photo: "/images/stories/story-01.webp",
-    photoAlt: "A Bridge Help Centre facilitator in a pink T-shirt speaking with a class of students in light-blue uniforms",
+    photoAlt: "Secondary school students in light-blue uniforms smiling and taking notes during a Bridge Help Centre session",
     quote: "[One-line quote in their own words]",
     story: "[What they were facing.] [How The Bridge Help Centre walked with them.] [Where they are now.]",
     link: "",
