@@ -6,7 +6,12 @@ export const director = {
   photo: "/images/director.webp",
   photoAlt: "Portrait of Mrs. Amarachi Ikonne, Director of The Bridge Help Centre, smiling, in a black dress with a white beaded necklace",
   // exact
-  bio: "Mrs. Amarachi Ikonne is a trained counselor and dedicated youth advocate with a passion for supporting young people as they navigate the challenges of growing, learning, and discovering their purpose. She has worked with teenagers and young adults for over 16 years.",
+  // Biography paragraphs (owner's wording).
+  bio: [
+    "Mrs. Amarachi Ikonne is a trained counselor and dedicated youth advocate with a passion for supporting young people as they navigate the challenges of growing, learning, and discovering their purpose. She has worked with teenagers and young adults for over 16 years.",
+    "She is a graduate of Mass Communication and holds a Diploma in Education and Counseling.",
+    "Through counselling, psychoeducation, mentorship, and advocacy, she supports children, adolescents, and young people in navigating life challenges, developing healthy coping skills, and reaching their potential. Her work is focused on helping young people grow into confident individuals who can live purposefully and contribute meaningfully to society.",
+  ],
 };
 
 export const story = {

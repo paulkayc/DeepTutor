@@ -14,7 +14,9 @@ const { id = "director" } = Astro.props;
     </div>
     <div class="reveal">
       <p class="font-[family-name:var(--font-display)] text-2xl font-bold lg:text-3xl">{director.name}</p>
-      <p class="director-bio measure mt-5">{director.bio}</p>
+      <div class="director-bio measure mt-5 space-y-4">
+        {director.bio.map((para) => <p>{para}</p>)}
+      </div>
     </div>
   </div>
 </section>
