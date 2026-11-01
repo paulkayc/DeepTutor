@@ -4,7 +4,6 @@ import PageHero from "../components/PageHero.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import Media from "../components/Media.astro";
 import Icon from "../components/Icon.astro";
-import DirectorBlock from "../components/DirectorBlock.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { story, vision, mission, values, team } from "../data/about.js";
 const isPlaceholder = (t: string) => t.trim().startsWith("[");
@@ -68,9 +67,6 @@ const isPlaceholder = (t: string) => t.trim().startsWith("[");
       </ul>
     </div>
   </section>
-
-  <!-- Leadership -->
-  <DirectorBlock id="leadership" />
 
   {team.length > 0 && (
     <section class="section" aria-labelledby="team-heading">
