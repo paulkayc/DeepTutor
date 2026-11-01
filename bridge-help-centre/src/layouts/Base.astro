@@ -76,7 +76,7 @@ const schema = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <script is:inline>document.documentElement.classList.add("js");</script>
+    <script is:inline>document.documentElement.classList.add("js");if("scrollRestoration" in history)history.scrollRestoration="manual";addEventListener("pageshow",function(){if(!location.hash)scrollTo(0,0)});</script>
     <!-- Manrope (Google Font), self-hosted for speed and preloaded -->
     {preloadImage && <link rel="preload" as="image" href={preloadImage.src} imagesrcset={preloadImage.srcset} imagesizes="100vw" fetchpriority="high" />}
     <link rel="preload" as="font" type="font/woff2" href={manropeWoff2} crossorigin />
