@@ -38,7 +38,7 @@ No secret keys or passwords are needed. Security headers and the sitemap are cre
 Cloudflare-registered domains must keep Cloudflare DNS, so do NOT change nameservers.
 
 **In Netlify:** Domain management → **Add a domain** → `thebridgehelpcentre.org` → Verify → Add.
-Then ⋯ next to it → **Set as primary domain**.
+Then ⋯ next to **www.thebridgehelpcentre.org** → **Set as primary domain**.
 
 **In Cloudflare** (dash.cloudflare.com → `thebridgehelpcentre.org` → **DNS → Records**):
 1. Delete existing **A / AAAA / CNAME** records named `@` (thebridgehelpcentre.org) or `www`.
@@ -47,7 +47,7 @@ Then ⋯ next to it → **Set as primary domain**.
 3. **Add record:** CNAME, Name `www`, Target `something.netlify.app`, Proxy status **DNS only (grey cloud)**.
 
 **Back in Netlify:** Domain management → **HTTPS → Verify DNS configuration → Provision certificate**.
-When it says "Your site has HTTPS enabled", https://thebridgehelpcentre.org is live.
+When it says "Your site has HTTPS enabled", https://www.thebridgehelpcentre.org is live.
 
 ## D. After it is live
 - Click through every page on your phone.

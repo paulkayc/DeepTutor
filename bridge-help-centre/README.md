@@ -102,8 +102,8 @@ In Google Maps, go to Share → Embed a map, copy the address inside `src="…"`
 - The hero headline shrinks on small phones so that each sentence stays on one line.
 
 ## Before going live (checklist)
-1. **Website address:** thebridgehelpcentre.org (set as `url` in `src/config/site.js`). On the host,
-   connect both `thebridgehelpcentre.org` and `www.thebridgehelpcentre.org`; www redirects to the main address.
+1. **Website address:** www.thebridgehelpcentre.org (set as `url` in `src/config/site.js`). On the host,
+   connect both addresses; thebridgehelpcentre.org redirects to www.
 2. **Forms:** the only form is the centre's Google Form on the Get Involved page (`getInvolvedForm` /
    `getInvolvedFormEmbed` in `src/config/site.js`). Responses arrive in Google Forms.
 

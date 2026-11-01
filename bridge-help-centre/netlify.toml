@@ -8,9 +8,9 @@
 # Security and caching headers are written to dist/_headers by the build
 # (see security-headers.mjs), which Netlify applies automatically.
 
-# Send the "www." address to the main address (thebridgehelpcentre.org).
+# Send the address without "www." to the main address (www.thebridgehelpcentre.org).
 [[redirects]]
-  from = "https://www.thebridgehelpcentre.org/*"
-  to = "https://thebridgehelpcentre.org/:splat"
+  from = "https://thebridgehelpcentre.org/*"
+  to = "https://www.thebridgehelpcentre.org/:splat"
   status = 301
   force = true

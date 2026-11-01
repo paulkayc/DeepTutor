@@ -59,10 +59,10 @@
       "has": [
         {
           "type": "host",
-          "value": "www.thebridgehelpcentre.org"
+          "value": "thebridgehelpcentre.org"
         }
       ],
-      "destination": "https://thebridgehelpcentre.org/:path",
+      "destination": "https://www.thebridgehelpcentre.org/:path",
       "permanent": true
     }
   ]

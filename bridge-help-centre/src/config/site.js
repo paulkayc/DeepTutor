@@ -30,7 +30,7 @@ export const site = {
 
   // The website's official address (used for search engines, the sitemap and
   // social-sharing previews). A SITE_URL environment variable can override it.
-  url: (typeof process !== "undefined" && process.env.SITE_URL) || "https://thebridgehelpcentre.org",
+  url: (typeof process !== "undefined" && process.env.SITE_URL) || "https://www.thebridgehelpcentre.org",
 
   // ---- Brand colours (used everywhere through CSS variables) ----------
   colors: {

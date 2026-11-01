@@ -8,6 +8,6 @@ for (const l of lines) {
   if (!l.startsWith(" ")) groups.push(cur = { source: l.trim().replace(/\*$/, "(.*)"), headers: [] });
   else { const [k, ...v] = l.trim().split(": "); cur.headers.push({ key: k, value: v.join(": ") }); }
 }
-const redirects = [{ source: "/:path(.*)", has: [{ type: "host", value: "www.thebridgehelpcentre.org" }], destination: "https://thebridgehelpcentre.org/:path", permanent: true }];
+const redirects = [{ source: "/:path(.*)", has: [{ type: "host", value: "thebridgehelpcentre.org" }], destination: "https://www.thebridgehelpcentre.org/:path", permanent: true }];
 fs.writeFileSync("vercel.json", JSON.stringify({ trailingSlash: true, headers: groups, redirects }, null, 2) + "\n");
 console.log("vercel.json updated");

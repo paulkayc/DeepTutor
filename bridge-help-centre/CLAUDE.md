@@ -45,4 +45,4 @@ then republish that folder to the same artifact URL (index.html as the page, eve
   Adding any other third-party script, font, iframe or form service requires updating security-headers.mjs.
 - Privacy Policy is the centre's own wording (src/pages/privacy.astro). Do not invent policy text.
 - Past events hide themselves; the Upcoming section disappears when no future events exist.
-- Official domain: https://thebridgehelpcentre.org (no www). Owner confirmed photo consent for children (30 Oct 2026).
+- Official domain: https://www.thebridgehelpcentre.org (with www; the bare domain redirects to it). Owner confirmed photo consent for children (30 Oct 2026).
