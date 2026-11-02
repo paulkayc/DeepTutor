@@ -1,0 +1,40 @@
+{
+  "phone": "0902 643 3052",
+  "email": "thebridgehelpcenter@gmail.com",
+  "hours": [
+    {
+      "days": "Mon – Fri",
+      "time": "10am – 4pm"
+    },
+    {
+      "days": "Sat",
+      "time": "By appointment"
+    },
+    {
+      "days": "Sun",
+      "time": "Closed"
+    }
+  ],
+  "address": {
+    "street": "No 80 Aba Road",
+    "city": "Umuahia",
+    "state": "Abia State"
+  },
+  "getInvolvedForm": "https://forms.gle/5ctH4N3UdYXbgnY66",
+  "getInvolvedFormEmbed": "https://docs.google.com/forms/d/e/1FAIpQLSeIDAADKzeF57skvIZfJ3sfbqfLy13afaBx3uevB8TQVN6CnQ/viewform?embedded=true",
+  "bank": {
+    "accountName": "The Bridge Help Center Ltd/Gte",
+    "accountNumber": "0149917444",
+    "bank": "Sterling Bank"
+  },
+  "social": [
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/share/1HhiWFayto/"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/thebridgehelpcentre_"
+    }
+  ]
+}

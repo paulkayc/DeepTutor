@@ -19,7 +19,27 @@
    Gallery photos ........................... src/data/gallery.js
    Images ................................... public/images/
 
+   EASY EDITING: contact details, opening hours, address, forms, bank details
+   and social links are stored in src/content/contact.json, which the online
+   editor (Pages CMS) changes. Everything else stays in this file.
    ===================================================================== */
+
+import contact from "../content/contact.json" with { type: "json" };
+
+const clean = (v) => (typeof v === "string" ? v.trim() : "");
+// "0902 643 3052" → "2349026433052" (Nigerian numbers written with a leading 0).
+const intlDigits = (display) => {
+  const d = clean(display).replace(/\D/g, "");
+  return d.startsWith("0") ? "234" + d.slice(1) : d;
+};
+const phoneDigits = intlDigits(contact.phone);
+const hours = (contact.hours || []).filter((h) => clean(h.days) || clean(h.time));
+const addr = contact.address || {};
+const addressText = [addr.street, addr.city, addr.state].map(clean).filter(Boolean).join(", ");
+// Google Maps finds the place more reliably without a leading "No".
+const mapQuery = addressText.replace(/^No\.?\s+/i, "") + ", Nigeria";
+const bank = contact.bank || {};
+const socialIcons = { facebook: "facebook", instagram: "instagram", x: "x", twitter: "x", linkedin: "linkedin", whatsapp: "whatsapp" };
 
 export const site = {
   name: "The Bridge Help Centre",
@@ -54,51 +74,47 @@ export const site = {
   ogImage: "/og-image.jpg",
 
   // ---- Contact --------------------------------------------------------
+  // (from src/content/contact.json)
   phone: {
-    display: "0902 643 3052",
-    international: "+2349026433052",
+    display: clean(contact.phone),
+    international: "+" + phoneDigits,
   },
-  email: "thebridgehelpcenter@gmail.com",
-  whatsappNumber: "2349026433052", // digits only, no "+" — used for wa.me links
+  email: clean(contact.email),
+  whatsappNumber: phoneDigits, // digits only, no "+" — used for wa.me links
 
-  hoursText: "Mon – Fri: 10am – 4pm | Sat: By appointment | Sun: Closed",
-  hours: [
-    { days: "Mon – Fri", time: "10am – 4pm" },
-    { days: "Sat", time: "By appointment" },
-    { days: "Sun", time: "Closed" },
-  ],
+  hoursText: hours.map((h) => `${clean(h.days)}: ${clean(h.time)}`).join(" | "),
+  hours: hours.map((h) => ({ days: clean(h.days), time: clean(h.time) })),
 
   // Office address (Contact page, map and search engines).
-  address: "No 80 Aba Road, Umuahia, Abia State",
-  addressParts: { street: "No 80 Aba Road", city: "Umuahia", state: "Abia State" },
+  address: addressText,
+  addressParts: { street: clean(addr.street), city: clean(addr.city), state: clean(addr.state) },
 
   // Google Maps embed URL. To change it: in Google Maps, Share → Embed a map →
   // copy only the address inside src="…". Leave "" to show a placeholder box.
-  mapEmbedUrl: "https://maps.google.com/maps?q=" + encodeURIComponent("80 Aba Road, Umuahia, Abia State, Nigeria") + "&z=16&output=embed",
+  mapEmbedUrl: "https://maps.google.com/maps?q=" + encodeURIComponent(mapQuery) + "&z=16&output=embed",
   // Opens the address in Google Maps (directions on phones).
-  mapLink: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("80 Aba Road, Umuahia, Abia State, Nigeria"),
+  mapLink: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(mapQuery),
 
   // Get Involved page: the centre's Google Form.
   //  - getInvolvedForm: the link to the form (opens in a new tab).
   //  - getInvolvedFormEmbed: optional. For the most reliable in-page form, paste
   //    the embed link here: in Google Forms press Send → the < > tab → copy only
   //    the address inside src="…" (it ends in "embedded=true").
-  getInvolvedForm: "https://forms.gle/5ctH4N3UdYXbgnY66",
-  getInvolvedFormEmbed: "https://docs.google.com/forms/d/e/1FAIpQLSeIDAADKzeF57skvIZfJ3sfbqfLy13afaBx3uevB8TQVN6CnQ/viewform?embedded=true",
+  getInvolvedForm: clean(contact.getInvolvedForm),
+  getInvolvedFormEmbed: clean(contact.getInvolvedFormEmbed),
 
   // Bank details for supporters (shown on the Get Involved page).
   // Set supportDetails: null to hide the block.
-  supportDetails: {
-    accountName: "The Bridge Help Center Ltd/Gte",
-    accountNumber: "0149917444",
-    bank: "Sterling Bank",
-  },
+  // (from src/content/contact.json; hidden when the account number is empty)
+  supportDetails: clean(bank.accountNumber)
+    ? { accountName: clean(bank.accountName), accountNumber: clean(bank.accountNumber), bank: clean(bank.bank) }
+    : null,
 
   // Social media links (add a line to show another icon).
-  social: [
-    { name: "Facebook", icon: "facebook", url: "https://www.facebook.com/share/1HhiWFayto/" },
-    { name: "Instagram", icon: "instagram", url: "https://www.instagram.com/thebridgehelpcentre_" },
-  ],
+  // (from src/content/contact.json — Facebook, Instagram, X, LinkedIn and WhatsApp have icons)
+  social: (contact.social || [])
+    .filter((s) => clean(s.url))
+    .map((s) => ({ name: clean(s.name), icon: socialIcons[clean(s.name).toLowerCase()] || "arrow", url: clean(s.url) })),
 
   privacyPolicyUrl: "/privacy/",
   // Set to true once the full privacy policy text has been added (the page is

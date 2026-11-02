@@ -21,8 +21,12 @@ When the owner sends images, crop/optimise them (WebP, sensible size), place the
 `public/images/`, write descriptive alt text, and wire them in through the data files.
 
 ## Where things live
-- Contact details, colours, logo, form endpoints, social links: `src/config/site.js`
-- Page content: `src/data/*.js` (services, stats, events, gallery, stories, about, home)
+- **Editable content (changed by staff through Pages CMS):** `src/content/*.json`
+  — events, gallery, about (director, story, vision, mission, team), contact (phone, email, hours,
+  address, forms, bank, social), stats, home (top photo). Edit these JSON files for content changes,
+  keep their keys unchanged, and keep `cms/.pages.yml` in step if you add or rename a field.
+- `src/data/*.js` read and tidy the JSON (and hold services and values, which are not in the editor).
+- Colours, logo, website address, navigation: `src/config/site.js`
 - Pages: `src/pages/`; shared pieces: `src/components/`; styles: `src/styles/global.css`
 - Images: `public/images/` (gallery photos in `public/images/gallery/`)
 
@@ -37,7 +41,12 @@ After each change: `npm run build`, then `python3 tools/make-preview.py dist <sc
 then republish that folder to the same artifact URL (index.html as the page, every other file in `files`).
 
 ## Audit notes (keep these working)
-- New photos: run `python3 tools/make-image-sizes.py` so `-640.webp` copies exist (picked up by src/lib/images.js).
+- Photos: `tools/optimise-images.mjs` runs before every build (npm `prebuild`). It shrinks photos over
+  1600 px / 600 KB, turns sideways phone photos upright and makes the `-640.webp` copies used by
+  src/lib/images.js. (`tools/make-image-sizes.py` does the same job by hand.)
+- Pages CMS (https://app.pagescms.org) edits the JSON in `src/content/`. Its settings are in
+  `cms/.pages.yml`; in the organisation's GitHub repository that file lives at the repository root as
+  `.pages.yml`. Staff edits arrive as commits on `main` — pull before changing content files.
 - Security headers/CSP are generated at build (security-headers.mjs). If the inline start-up script in
   Base.astro changes, the hash updates automatically; re-run tools/update-vercel-headers.mjs for Vercel.
 - External services allowed by the CSP: maps.google.com / www.google.com (map),

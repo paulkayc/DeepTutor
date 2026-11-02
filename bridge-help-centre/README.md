@@ -26,22 +26,25 @@ Then open http://localhost:4321. Run `npm run build` to create the finished site
 
 ## Where everything lives
 
+**Staff edit most content online with Pages CMS — see [EDITING-GUIDE.md](EDITING-GUIDE.md).**
+It saves to the JSON files below; the website reads them at build time.
+
 | What | File |
 | --- | --- |
-| Phone, email, WhatsApp, hours, address, map, brand colours, logo, form endpoints, social links, bank details | `src/config/site.js` |
-| The five services (names, bullets, photos) | `src/data/services.js` |
-| Statistics | `src/data/stats.js` |
-| Upcoming programmes | `src/data/events.js` |
-| Gallery | `src/data/gallery.js` + `public/images/gallery/` |
-| Success stories | `src/data/stories.js` |
-| Director, story, vision, values, team, milestones | `src/data/about.js` |
-| Home page hero and intro photos | `src/data/home.js` |
+| Upcoming programmes | `src/content/events.json` |
+| Gallery | `src/content/gallery.json` |
+| Director, Our Story, vision, mission, team | `src/content/about.json` |
+| Phone, email, hours, address, forms, bank details, social links | `src/content/contact.json` |
+| Impact numbers | `src/content/stats.json` |
+| Home page top photo | `src/content/home.json` |
+| The five services (client's exact wording) and values | `src/data/services.js`, `src/data/about.js` |
+| Brand colours, logo, website address, navigation | `src/config/site.js` |
+| Editor settings (Pages CMS) | `cms/.pages.yml` → copied to the repository root as `.pages.yml` |
 
-The top of `src/config/site.js` lists every placeholder and the file it lives in. Placeholder text
-always sits in square brackets (for example `[Add vision statement]`) and shows in grey italics on
-the site, so it's easy to spot anything that still needs filling in.
+Photos are shrunk and given phone-sized copies automatically before every build
+(`tools/optimise-images.mjs`).
 
-## Common tasks
+## Common tasks (by hand)
 
 ### Replace the logo
 The logo is already in place at `public/images/logo.webp` (with a `logo.png` copy). The client's
@@ -52,42 +55,10 @@ original artwork is kept as `public/images/logo-original.jpg`. To change it:
    versions of the logo mark, and `public/og-image.jpg` with a 1200 × 630 px image. The
    og-image is what people see when the site is shared on WhatsApp or social media.
 
-### Add photos
-Put the image in `public/images/` (sub-folders are fine) and set the matching `image`, `photo` or
-`src` field to its path, for example `image: "/images/programmes/counselling.jpg"`. The dashed
-placeholder is swapped for the photo automatically. Tips:
-- Save photos as **.webp** (or a well-compressed .jpg) at the recommended size shown in each placeholder.
-- Write a short `alt` description of what the photo shows. Screen-reader users rely on it.
-- Only use photos of children with the right consent. For stories, change names where needed.
-
-### Add an upcoming programme
-In `src/data/events.js`, copy one `{ … }` block, paste it into the list and change the title, date
-(`"YYYY-MM-DD"`), location, description and image. The "Register Interest" WhatsApp message is
-created for you. The next upcoming programme with slideshow images is featured on the Home page.
-
-### Add a gallery image
-Put the photo in `public/images/gallery/`. Then fill in one line in `src/data/gallery.js`:
-
-```js
-{ src: "/images/gallery/outreach-lagos.webp", alt: "Students at a school outreach in Lagos", caption: "School outreach", category: "School Outreach" },
-```
-
-The Home page ("Moments from Our Work") shows the first 8 images.
-
-### Update the statistics
-In `src/data/stats.js`, replace `"[NUMBER]"` with a number (e.g. `1200`) and update `statsNote`.
-The numbers count up gently on screen, except for visitors who have turned on reduced motion.
-
-### The form
-The Get Involved page shows the centre's Google Form. To use a different form: in Google Forms press
-**Send → the < > tab**, copy the address inside `src="…"`, and paste it into `getInvolvedFormEmbed` in
-`src/config/site.js` (put the form's normal link in `getInvolvedForm`). Responses arrive in Google Forms
-under the **Responses** tab.
-
-### Show bank details for supporters
-Fill in `supportDetails` in `src/config/site.js`, for example
-`{ bank: "…", accountName: "…", accountNumber: "…" }`. The block appears on the Get Involved page.
-While `supportDetails` is `null`, the block stays hidden.
+### Add photos, events, gallery images, numbers, contact or bank details
+Use the online editor (EDITING-GUIDE.md). To do it by hand instead, change the matching JSON file in
+`src/content/` and put photos in `public/images/`. Write a short description (alt text) for every photo,
+and only use photos of children with the right consent.
 
 ### Add the map
 In Google Maps, go to Share → Embed a map, copy the address inside `src="…"`, and paste it into

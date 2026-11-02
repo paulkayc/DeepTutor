@@ -20,6 +20,8 @@ const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.loc
 // The next programme that has slideshow images is featured; otherwise show the next three as cards.
 const heroSrcset = srcsetFor(home.heroImage, home.heroImageWidth);
 const featured = events.filter((e) => e.date >= today && e.slides?.length).sort((a, b) => a.date.localeCompare(b.date))[0];
+// Other upcoming programmes appear as cards below the featured slideshow.
+const others = featured ? upcoming.filter((e) => e !== featured) : [];
 ---
 <Base
   preloadImage={{ src: home.heroImage, srcset: heroSrcset }}
@@ -121,7 +123,14 @@ const featured = events.filter((e) => e.date >= today && e.slides?.length).sort(
       <div class="container-site">
         <SectionHeading title="Upcoming Programmes" id="upcoming-heading" />
         {featured ? (
-          <EventSlideshow event={featured} />
+          <>
+            <EventSlideshow event={featured} />
+            {others.length > 0 && (
+              <ul class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:mt-14">
+                {others.map((e) => <li><EventCard event={e} /></li>)}
+              </ul>
+            )}
+          </>
         ) : (
           <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {upcoming.map((e) => <li><EventCard event={e} /></li>)}

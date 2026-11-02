@@ -1,0 +1,200 @@
+# Pages CMS settings for The Bridge Help Centre website.
+# This file must sit at the TOP of the GitHub repository (next to the
+# "bridge-help-centre" folder) and be named ".pages.yml".
+# Editor: https://app.pagescms.org
+
+media:
+  input: bridge-help-centre/public/images
+  output: /images
+  categories: [image]
+  rename: safe
+
+content:
+  # ---------------------------------------------------------------- events
+  - name: events
+    label: Upcoming programmes
+    description: Events shown on the Home page. Past events hide themselves automatically.
+    type: file
+    path: bridge-help-centre/src/content/events.json
+    format: json
+    fields:
+      - name: events
+        label: Programmes
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.date} — {fields.title}"
+        fields:
+          - { name: title, label: Title, type: string, required: true }
+          - { name: subtitle, label: Subtitle (optional), type: string }
+          - { name: date, label: Date, type: date, required: true }
+          - { name: time, label: "Time (e.g. 6:00 PM)", type: string }
+          - { name: location, label: "Location (e.g. Online (Google Meet))", type: string }
+          - { name: price, label: "Price (e.g. Free)", type: string }
+          - { name: speaker, label: Speaker (optional), type: string }
+          - { name: description, label: Short description, type: text }
+          - { name: image, label: Main image or flyer, type: image }
+          - name: imageRatio
+            label: Shape of the main image
+            type: select
+            options:
+              values:
+                - { value: "4 / 5", label: "Tall flyer (4:5)" }
+                - { value: "1 / 1", label: "Square" }
+                - { value: "3 / 2", label: "Wide photo (3:2)" }
+          - name: slides
+            label: Slideshow images (optional — the first event with slides is shown as a slideshow)
+            type: object
+            list: true
+            fields:
+              - { name: src, label: Image, type: image }
+              - { name: alt, label: "Describe the image (for blind visitors)", type: text }
+          - name: speakerBio
+            label: About the speaker (one box per paragraph, optional)
+            type: text
+            list: true
+          - { name: registerForm, label: "Registration form link (e.g. https://forms.gle/...)", type: string }
+          - name: registerFormEmbed
+            label: Registration form embed link (optional)
+            description: "In Google Forms: Send → the < > tab → copy only the address inside src=\"…\" (it ends in embedded=true)."
+            type: string
+
+  # --------------------------------------------------------------- gallery
+  - name: gallery
+    label: Gallery
+    description: "Photos in \"Moments from Our Work\" on the Home page. The first 8 are shown."
+    type: file
+    path: bridge-help-centre/src/content/gallery.json
+    format: json
+    fields:
+      - name: photos
+        label: Photos
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.caption}"
+        fields:
+          - { name: src, label: Photo, type: image, required: true }
+          - { name: alt, label: "Describe the photo (for blind visitors)", type: text, required: true }
+          - { name: caption, label: Caption (optional), type: string }
+          - name: category
+            label: Category
+            type: select
+            options:
+              values: ["School Outreach", "Counselling", "Mentorship", "Community"]
+
+  # ----------------------------------------------------------------- about
+  - name: about
+    label: About Us and Director
+    type: file
+    path: bridge-help-centre/src/content/about.json
+    format: json
+    fields:
+      - name: director
+        label: Meet Our Director (Home page)
+        type: object
+        fields:
+          - { name: name, label: Name, type: string }
+          - { name: photo, label: Photo, type: image }
+          - { name: photoAlt, label: "Describe the photo (for blind visitors)", type: text }
+          - { name: bio, label: Biography (one box per paragraph), type: text, list: true }
+      - name: story
+        label: Our Story (About Us page)
+        type: object
+        fields:
+          - { name: image, label: Photo, type: image }
+          - { name: imageAlt, label: "Describe the photo (for blind visitors)", type: text }
+          - { name: paragraphs, label: Story (one box per paragraph), type: text, list: true }
+      - { name: vision, label: Our Vision, type: text }
+      - { name: mission, label: Our Mission, type: text }
+      - name: team
+        label: Our Team (About Us page)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.name}"
+        fields:
+          - { name: name, label: Name, type: string, required: true }
+          - { name: role, label: "Role (e.g. Director)", type: string }
+          - { name: profession, label: "Profession (e.g. Paediatrician)", type: string }
+          - { name: photo, label: Square photo, type: image }
+          - { name: photoAlt, label: "Describe the photo (for blind visitors)", type: text }
+
+  # --------------------------------------------------------------- contact
+  - name: contact
+    label: Contact details, hours and bank details
+    description: Used in the header buttons, footer, Contact Us and Get Involved pages.
+    type: file
+    path: bridge-help-centre/src/content/contact.json
+    format: json
+    fields:
+      - name: phone
+        label: Phone / WhatsApp number
+        description: "Write it the Nigerian way, e.g. 0902 643 3052. The WhatsApp and call buttons use this number."
+        type: string
+        required: true
+      - { name: email, label: Email address, type: string, required: true }
+      - name: hours
+        label: Opening hours
+        type: object
+        list: true
+        fields:
+          - { name: days, label: "Days (e.g. Mon – Fri)", type: string }
+          - { name: time, label: "Time (e.g. 10am – 4pm, or Closed)", type: string }
+      - name: address
+        label: Address
+        type: object
+        fields:
+          - { name: street, label: Street, type: string }
+          - { name: city, label: City, type: string }
+          - { name: state, label: State, type: string }
+      - { name: getInvolvedForm, label: "Get Involved form link (e.g. https://forms.gle/...)", type: string }
+      - name: getInvolvedFormEmbed
+        label: Get Involved form embed link
+        description: "In Google Forms: Send → the < > tab → copy only the address inside src=\"…\" (it ends in embedded=true)."
+        type: string
+      - name: bank
+        label: Bank details (Get Involved page — leave the account number empty to hide them)
+        type: object
+        fields:
+          - { name: accountName, label: Account name, type: string }
+          - { name: accountNumber, label: Account number, type: string }
+          - { name: bank, label: Bank, type: string }
+      - name: social
+        label: Social media links
+        description: Facebook, Instagram, X, LinkedIn and WhatsApp get their own icons.
+        type: object
+        list: true
+        fields:
+          - { name: name, label: "Name (e.g. Facebook)", type: string }
+          - { name: url, label: "Link (starting with https://)", type: string }
+
+  # ----------------------------------------------------------------- stats
+  - name: stats
+    label: Impact numbers
+    description: The counting numbers on the Home page.
+    type: file
+    path: bridge-help-centre/src/content/stats.json
+    format: json
+    fields:
+      - name: stats
+        label: Numbers
+        type: object
+        list: true
+        fields:
+          - { name: value, label: "Number (digits only, e.g. 1000)", type: number, required: true }
+          - { name: suffix, label: "After the number (e.g. +)", type: string }
+          - { name: label, label: "Label (e.g. Young People Reached)", type: string, required: true }
+
+  # ------------------------------------------------------------------ home
+  - name: home
+    label: Home page top photo
+    type: file
+    path: bridge-help-centre/src/content/home.json
+    format: json
+    fields:
+      - { name: heroImage, label: "Top photo (wide/landscape)", type: image }
+      - { name: heroImageAlt, label: "Describe the photo (for blind visitors)", type: text }

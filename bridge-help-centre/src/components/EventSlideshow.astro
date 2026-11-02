@@ -26,7 +26,7 @@ const details = [
 <div class="grid items-start gap-10 lg:grid-cols-[5fr_6fr] lg:gap-16" data-event-date={event.date}>
   <div class="slideshow mx-auto w-full max-w-md lg:max-w-none" data-slideshow aria-roledescription="carousel" aria-label={`${event.title}: flyer and speaker profile`}>
     <div class="relative aspect-[4/5] overflow-hidden rounded-3xl bg-blue-tint shadow-[var(--shadow-soft)]" aria-live="off" data-slideshow-track>
-      {event.slides.map((s, i) => (
+      {event.slides.map((s: Slide, i: number) => (
         <figure class:list={["slide", i === 0 && "is-active"]} data-slide aria-roledescription="slide" aria-label={`${i + 1} of ${event.slides.length}`}>
           <a href={s.src} target="_blank" rel="noopener" class="block h-full" title="Open full size">
             <img src={s.src} srcset={srcsetFor(s.src)} sizes="(min-width: 1024px) 40vw, (min-width: 448px) 28rem, 100vw" alt={s.alt} width="864" height="1080" loading="lazy" decoding="async" class="h-full w-full object-cover" />
@@ -40,7 +40,7 @@ const details = [
           <span class="inline-flex" data-icon-pause><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></span>
           <span class="inline-flex" data-icon-play hidden><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10-6.5a1 1 0 0 0 0-1.72l-10-6.5A1 1 0 0 0 8 5.5Z"/></svg></span>
         </button>
-        {event.slides.map((_, i) => (
+        {event.slides.map((_: Slide, i: number) => (
           <button type="button" class="slide-dot" data-slide-dot={i} aria-label={`Show image ${i + 1} of ${event.slides.length}`} aria-current={i === 0 ? "true" : undefined}>
             <span aria-hidden="true"></span>
           </button>
@@ -94,7 +94,7 @@ const details = [
           <Icon name="chevronDown" size={22} class="accordion-chevron shrink-0 transition-transform" />
         </summary>
         <div class="hero-copy space-y-4 px-6 pb-6 text-[1.0625rem] leading-relaxed">
-          {event.speakerBio.map((p) => <p>{p}</p>)}
+          {event.speakerBio.map((p: string) => <p>{p}</p>)}
         </div>
       </details>
     )}

@@ -1,0 +1,19 @@
+{
+  "stats": [
+    {
+      "value": 1000,
+      "suffix": "+",
+      "label": "Young People Reached"
+    },
+    {
+      "value": 4,
+      "suffix": "+",
+      "label": "Schools Partnered"
+    },
+    {
+      "value": 4,
+      "suffix": "",
+      "label": "Communities Served"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "photos": [
+    {
+      "src": "/images/gallery/school-outreach-talk.webp",
+      "alt": "A Bridge Help Centre facilitator in a red T-shirt speaking to a packed classroom of students in light-blue uniforms",
+      "caption": "School outreach in action",
+      "category": "School Outreach"
+    },
+    {
+      "src": "/images/gallery/school-assembly.webp",
+      "alt": "Hundreds of pupils in white and blue school uniforms seated outdoors for a Bridge Help Centre outreach",
+      "caption": "School assembly outreach",
+      "category": "School Outreach"
+    },
+    {
+      "src": "/images/gallery/outreach-team.webp",
+      "alt": "Two photos of The Bridge Help Centre team in pink and white branded T-shirts standing together outside a school during an outreach",
+      "caption": "Our team at a school outreach",
+      "category": "School Outreach"
+    },
+    {
+      "src": "/images/gallery/speaking-with-students.webp",
+      "alt": "A Bridge Help Centre speaker holding a microphone talks with smiling pupils in white uniforms at an outdoor school outreach",
+      "caption": "Speaking with students",
+      "category": "School Outreach"
+    },
+    {
+      "src": "/images/gallery/students-session.webp",
+      "alt": "Secondary school students smiling and taking notes at their desks during a Bridge Help Centre session",
+      "caption": "Students during a session",
+      "category": "School Outreach"
+    },
+    {
+      "src": "/images/gallery/team-planning.webp",
+      "alt": "Two Bridge Help Centre team members in red branded T-shirts looking at a phone together during an outreach",
+      "caption": "Team members on outreach day",
+      "category": "Community"
+    },
+    {
+      "src": "/images/gallery/team-at-school.webp",
+      "alt": "Two photos of Bridge Help Centre team members and a partner smiling outside a school building",
+      "caption": "The Bridge Help Centre team",
+      "category": "Community"
+    },
+    {
+      "src": "/images/gallery/my-why-my-focus-flyer.webp",
+      "alt": "Flyer for 'My Why, My Focus, My Future', a student development programme for ages 10 to 18 with facilitator Amara Ikonne, 1st October 2026, 11 AM on Google Meet",
+      "caption": "My Why, My Focus, My Future (1 Oct 2026)",
+      "category": "Mentorship"
+    }
+  ]
+}
