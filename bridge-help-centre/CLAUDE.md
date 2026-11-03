@@ -51,6 +51,11 @@ then republish that folder to the same artifact URL (index.html as the page, eve
   Base.astro changes, the hash updates automatically; re-run tools/update-vercel-headers.mjs for Vercel.
 - External services allowed by the CSP: maps.google.com / www.google.com (map),
   docs.google.com / forms.gle (Get Involved Google Form, site.getInvolvedForm).
+  Cloudflare Web Analytics (static.cloudflareinsights.com script, cloudflareinsights.com connect) is
+  allowed only while `src/content/settings.json` has an analyticsToken (no cookies, so no consent banner).
+- SEO: Base.astro outputs Organization + WebSite JSON-LD (and Event JSON-LD for upcoming programmes on
+  Home), optional Google/Bing verification meta tags from settings.json, and `/llms.txt` (a summary for
+  AI assistants, built from the content files).
   Adding any other third-party script, font, iframe or form service requires updating security-headers.mjs.
 - Privacy Policy is the centre's own wording (src/pages/privacy.astro). Do not invent policy text.
 - Past events hide themselves; the Upcoming section disappears when no future events exist.

@@ -7,6 +7,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
+import settings from "./src/content/settings.json" with { type: "json" };
+
+// Cloudflare Web Analytics (only when a token is set in the "Website settings").
+const analytics = String(settings.analyticsToken || "").trim() !== "";
 
 function inlineScriptHashes(dir) {
   const hashes = new Set();
@@ -26,11 +30,11 @@ function inlineScriptHashes(dir) {
 export function buildCsp(hashes) {
   return [
     "default-src 'self'",
-    `script-src 'self' ${hashes.join(" ")}`.trim(),
+    `script-src 'self' ${hashes.join(" ")}${analytics ? " https://static.cloudflareinsights.com" : ""}`.trim(),
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data:",
     "font-src 'self' data:",
-    "connect-src 'self'",
+    `connect-src 'self'${analytics ? " https://cloudflareinsights.com" : ""}`,
     "form-action 'self'",
     "frame-src https://maps.google.com https://www.google.com https://docs.google.com https://forms.gle",
     "object-src 'none'",

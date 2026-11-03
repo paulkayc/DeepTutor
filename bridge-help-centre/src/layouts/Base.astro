@@ -12,20 +12,26 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FloatingContact from "../components/FloatingContact.astro";
 
-interface Props { title: string; description: string; ogType?: string; preloadImage?: { src: string; srcset?: string }; noindex?: boolean }
-const { title, description, ogType = "website", preloadImage, noindex = false } = Astro.props;
-const fullTitle = title === site.name ? `${site.name} | Child & Youth Development in Nigeria` : `${title} | ${site.name}`;
+import { services } from "../data/services.js";
+
+interface Props { title: string; description: string; ogType?: string; preloadImage?: { src: string; srcset?: string }; noindex?: boolean; extraSchema?: object[] }
+const { title, description, ogType = "website", preloadImage, noindex = false, extraSchema = [] } = Astro.props;
+const fullTitle = title === site.name ? `${site.name} Umuahia | Child & Youth Development` : `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL(site.ogImage, site.url).href;
 const c = site.colors;
 const brandVars = `:root{--brand-white:${c.white};--brand-blue:${c.babyBlue};--brand-magenta:${c.magenta};--brand-ink:${c.ink}}`;
 
-const schema = {
-  "@context": "https://schema.org",
+const orgId = new URL("/#organization", site.url).href;
+const organization = {
   "@type": "Organization",
+  "@id": orgId,
   name: site.name,
+  alternateName: site.alternateNames,
+  slogan: site.slogan,
   description: site.shortDescription,
   url: site.url,
+  knowsAbout: services.map((s) => s.name),
   logo: site.logo ? new URL(site.logo, site.url).href : undefined,
   email: site.email,
   telephone: site.phone.international,
@@ -47,6 +53,14 @@ const schema = {
     ],
   },
 };
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    organization,
+    { "@type": "WebSite", "@id": new URL("/#website", site.url).href, url: site.url, name: site.name, alternateName: site.alternateNames, inLanguage: "en-NG", publisher: { "@id": orgId } },
+    ...extraSchema,
+  ],
+};
 ---
 <!doctype html>
 <html lang="en-NG">
@@ -60,6 +74,8 @@ const schema = {
     <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap.xml" />
+    {site.googleVerification && <meta name="google-site-verification" content={site.googleVerification} />}
+    {site.bingVerification && <meta name="msvalidate.01" content={site.bingVerification} />}
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
@@ -83,6 +99,9 @@ const schema = {
     <link rel="preload" as="font" type="font/woff2" href={frauncesWoff2} crossorigin />
     <style is:inline set:html={brandVars}></style>
     <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, "\\u003c")} />
+    {site.analyticsToken && (
+      <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: site.analyticsToken })}></script>
+    )}
   </head>
   <body>
     <a href="#main" class="sr-only rounded-xl bg-white px-5 py-3 font-bold text-ink shadow-[var(--shadow-lift)] focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50">Skip to main content</a>

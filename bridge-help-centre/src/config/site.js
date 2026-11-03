@@ -25,6 +25,7 @@
    ===================================================================== */
 
 import contact from "../content/contact.json" with { type: "json" };
+import settings from "../content/settings.json" with { type: "json" };
 
 const clean = (v) => (typeof v === "string" ? v.trim() : "");
 // "0902 643 3052" → "2349026433052" (Nigerian numbers written with a leading 0).
@@ -43,6 +44,9 @@ const socialIcons = { facebook: "facebook", instagram: "instagram", x: "x", twit
 
 export const site = {
   name: "The Bridge Help Centre",
+  // Other ways people write the name (helps search engines and AI assistants).
+  alternateNames: ["The Bridge Help Center", "Bridge Help Centre", "The Bridge Help Centre Umuahia"],
+  slogan: "Guiding lives, building futures",
   // Corporate Affairs Commission (CAC) registration number.
   rcNumber: "9403557",
   shortDescription:
@@ -115,6 +119,14 @@ export const site = {
   social: (contact.social || [])
     .filter((s) => clean(s.url))
     .map((s) => ({ name: clean(s.name), icon: socialIcons[clean(s.name).toLowerCase()] || "arrow", url: clean(s.url) })),
+
+  // Visitor statistics and search-engine verification (src/content/settings.json,
+  // online editor → "Website settings"). Empty values switch each one off.
+  //  - analyticsToken: Cloudflare Web Analytics token (no cookies, no personal data).
+  //  - googleVerification / bingVerification: the code from a "HTML tag" check.
+  analyticsToken: clean(settings.analyticsToken).replace(/[^A-Za-z0-9_-]/g, ""),
+  googleVerification: clean(settings.googleVerification),
+  bingVerification: clean(settings.bingVerification),
 
   privacyPolicyUrl: "/privacy/",
   // Set to true once the full privacy policy text has been added (the page is

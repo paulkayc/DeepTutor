@@ -198,3 +198,24 @@ content:
     fields:
       - { name: heroImage, label: "Top photo (wide/landscape)", type: image }
       - { name: heroImageAlt, label: "Describe the photo (for blind visitors)", type: text }
+
+  # -------------------------------------------------------------- settings
+  - name: settings
+    label: Website settings (statistics and Google)
+    description: Only change these when following the setup guide. Leave a box empty to switch it off.
+    type: file
+    path: bridge-help-centre/src/content/settings.json
+    format: json
+    fields:
+      - name: analyticsToken
+        label: Cloudflare Web Analytics token
+        description: "From Cloudflare → Analytics & Logs → Web Analytics → your site → Manage site. Copy only the token (the letters and numbers after \"token\": in the snippet)."
+        type: string
+      - name: googleVerification
+        label: Google Search Console code (optional)
+        description: "Only needed if you verify with the \"HTML tag\" method. Copy only the code inside content=\"…\"."
+        type: string
+      - name: bingVerification
+        label: Bing Webmaster Tools code (optional)
+        description: "Only needed if you verify with the \"HTML Meta Tag\" method. Copy only the code inside content=\"…\"."
+        type: string

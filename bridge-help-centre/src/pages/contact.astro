@@ -3,10 +3,12 @@ import Base from "../layouts/Base.astro";
 import PageHero from "../components/PageHero.astro";
 import Icon from "../components/Icon.astro";
 import { site, whatsappLink, telLink } from "../config/site.js";
+const firstHours = site.hoursText.split(" | ")[0];
+const pageDescription = `Call or WhatsApp ${site.phone.display}, email ${site.email}, or visit us at ${site.address}.` + (firstHours ? ` Open ${firstHours}.` : "");
 ---
 <Base
   title="Contact Us"
-  description="Call 0902 643 3052, chat on WhatsApp or email thebridgehelpcenter@gmail.com. Open Monday to Friday, 10am to 4pm."
+  description={pageDescription}
 >
   <PageHero title="Contact Us" subtitle="We would love to hear from you." />
 

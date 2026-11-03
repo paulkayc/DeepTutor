@@ -14,6 +14,7 @@ import CtaBand from "../components/CtaBand.astro";
 import { home } from "../data/home.js";
 import { services, servicesIntro } from "../data/services.js";
 import { events } from "../data/events.js";
+import { site } from "../config/site.js";
 
 const today = new Date().toISOString().slice(0, 10);
 const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 3);
@@ -22,11 +23,40 @@ const heroSrcset = srcsetFor(home.heroImage, home.heroImageWidth);
 const featured = events.filter((e) => e.date >= today && e.slides?.length).sort((a, b) => a.date.localeCompare(b.date))[0];
 // Other upcoming programmes appear as cards below the featured slideshow.
 const others = featured ? upcoming.filter((e) => e !== featured) : [];
+
+// Search engines: describe upcoming programmes as events (Nigeria time, UTC+1).
+const toIsoTime = (t = "") => {
+  const m = t.trim().match(/^(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m\.?$/i);
+  if (!m) return "";
+  let h = Number(m[1]) % 12;
+  if (m[3].toLowerCase() === "p") h += 12;
+  return `T${String(h).padStart(2, "0")}:${m[2] || "00"}:00+01:00`;
+};
+const eventSchema = upcoming.map((e) => {
+  const online = /online|google meet|zoom|virtual/i.test(e.location || "");
+  const pageUrl = new URL("/#upcoming-heading", site.url).href;
+  return {
+    "@type": "Event",
+    name: e.title,
+    description: e.description || e.subtitle,
+    startDate: e.date + toIsoTime(e.time),
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: online ? "https://schema.org/OnlineEventAttendanceMode" : "https://schema.org/OfflineEventAttendanceMode",
+    location: online
+      ? { "@type": "VirtualLocation", url: e.registerForm || pageUrl }
+      : { "@type": "Place", name: e.location || site.name, address: { "@type": "PostalAddress", streetAddress: e.location || site.addressParts.street, addressLocality: site.addressParts.city, addressRegion: site.addressParts.state, addressCountry: "NG" } },
+    image: e.image ? [new URL(e.image, site.url).href] : undefined,
+    organizer: { "@id": new URL("/#organization", site.url).href },
+    ...(e.speaker ? { performer: { "@type": "Person", name: e.speaker } } : {}),
+    ...(/^free$/i.test(e.price || "") ? { isAccessibleForFree: true, offers: { "@type": "Offer", price: 0, priceCurrency: "NGN", availability: "https://schema.org/InStock", url: e.registerForm || pageUrl } } : {}),
+  };
+});
 ---
 <Base
   preloadImage={{ src: home.heroImage, srcset: heroSrcset }}
   title="The Bridge Help Centre"
-  description="The Bridge Help Centre in Umuahia supports children and young people in Nigeria through counselling, mentorship, learning support and school programmes."
+  description="The Bridge Help Centre in Umuahia, Abia State supports children and young people in Nigeria through counselling, mentorship, learning support and school programmes."
+  extraSchema={eventSchema}
 >
   <!-- 1. Hero: full-width photo band at the very top, headline below it -->
   <section class="relative isolate overflow-hidden bg-blue-tint" aria-labelledby="hero-heading">
