@@ -1,0 +1,33 @@
+---
+/* Extra pages built by staff in the online editor (src/data/pages.js). */
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import Blocks from "../components/Blocks.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { pages } from "../data/pages.js";
+import { srcsetFor, sizeOf } from "../lib/images.js";
+import { site } from "../config/site.js";
+
+export function getStaticPaths() {
+  return pages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+const { page } = Astro.props;
+const heroSize = page.image ? sizeOf(page.image) : undefined;
+const heroSrcset = page.image ? srcsetFor(page.image, heroSize?.width) : undefined;
+const description = page.description || page.subtitle || `${page.title} — ${site.name}, ${site.addressParts.city}, ${site.addressParts.state}.`;
+---
+<Base title={page.title} description={description}>
+  <PageHero title={page.title} subtitle={page.subtitle || undefined}>
+    {page.image && (
+      <img slot="aside" class="mx-auto w-full max-w-md rounded-3xl shadow-[var(--shadow-lift)] lg:max-w-none" src={page.image} srcset={heroSrcset} sizes={heroSrcset ? "(min-width: 1024px) 40vw, 100vw" : undefined} alt={page.imageAlt} width={heroSize?.width || 1200} height={heroSize?.height || 900} decoding="async" />
+    )}
+  </PageHero>
+  {page.blocks.length > 0 && (
+    <section class="section">
+      <div class="container-site">
+        <Blocks blocks={page.blocks} id={page.slug} />
+      </div>
+    </section>
+  )}
+  <CtaBand />
+</Base>

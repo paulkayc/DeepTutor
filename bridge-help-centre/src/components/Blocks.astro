@@ -1,0 +1,96 @@
+---
+/* Renders the content blocks staff build in the online editor (extra pages
+   and Home page extra sections). Every block uses the site's own styles, so
+   anything built this way matches the rest of the website. */
+import Icon from "./Icon.astro";
+import Gallery from "./Gallery.astro";
+import { richText, safeHref, isExternal } from "../lib/rich-text.js";
+import { srcsetFor, sizeOf } from "../lib/images.js";
+interface Props { blocks: any[]; id: string }
+const { blocks, id } = Astro.props;
+
+const clean = (v: unknown) => (typeof v === "string" ? v.trim() : "");
+const img = (src: string) => {
+  const size = sizeOf(src);
+  return { src, srcset: srcsetFor(src, size?.width), width: size?.width || 1200, height: size?.height || 900 };
+};
+const linkAttrs = (href: string) => (isExternal(href) ? { target: "_blank", rel: "noopener" } : {});
+const youtubeId = (url: string) => url.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/)?.[1];
+
+// Tidy each block and drop the ones with nothing to show.
+const list = (blocks || []).map((b: any, i: number) => {
+  const type = clean(b?._block);
+  switch (type) {
+    case "heading": return clean(b.text) && { type, i, text: clean(b.text) };
+    case "text": return richText(b.text) && { type, i, html: richText(b.text) };
+    case "image": return clean(b.src) && { type, i, ...img(clean(b.src)), alt: clean(b.alt), caption: clean(b.caption), wide: b.wide === true };
+    case "imageText": return (clean(b.src) || clean(b.text)) && { type, i, ...img(clean(b.src)), hasImage: !!clean(b.src), alt: clean(b.alt), heading: clean(b.heading), html: richText(b.text), right: clean(b.imageSide) === "right" };
+    case "gallery": {
+      const photos = (Array.isArray(b.photos) ? b.photos : []).filter((p: any) => clean(p?.src)).map((p: any) => {
+        const s = sizeOf(clean(p.src));
+        return { src: clean(p.src), width: s?.width, height: s?.height, alt: clean(p.alt), caption: clean(p.caption) };
+      });
+      return photos.length && { type, i, photos };
+    }
+    case "quote": return clean(b.text) && { type, i, text: clean(b.text), author: clean(b.author) };
+    case "buttons": {
+      const buttons = (Array.isArray(b.buttons) ? b.buttons : []).map((x: any) => ({ label: clean(x?.label), href: safeHref(x?.link), primary: clean(x?.style) !== "secondary" })).filter((x: any) => x.label && x.href);
+      return buttons.length && { type, i, buttons };
+    }
+    case "video": {
+      const href = safeHref(b.link);
+      return href && { type, i, href, title: clean(b.title) || "Watch the video", isYoutube: !!youtubeId(href) };
+    }
+    default: return null;
+  }
+}).filter(Boolean) as any[];
+---
+{list.length > 0 && (
+  <div class="flex flex-col gap-10 lg:gap-14" data-blocks>
+    {list.map((b) => (
+      b.type === "heading" ? (
+        <h2 class="h-section measure">{b.text}</h2>
+      ) : b.type === "text" ? (
+        <div class="hero-copy measure space-y-5 text-lg leading-relaxed lg:text-[1.1875rem]" set:html={b.html} />
+      ) : b.type === "image" ? (
+        <figure class:list={[b.wide ? "w-full" : "mx-auto w-full max-w-3xl"]}>
+          <img class="w-full rounded-3xl shadow-[var(--shadow-soft)]" src={b.src} srcset={b.srcset} sizes={b.srcset ? (b.wide ? "(min-width: 1248px) 1200px, 100vw" : "(min-width: 816px) 768px, 100vw") : undefined} alt={b.alt} width={b.width} height={b.height} loading="lazy" decoding="async" />
+          {b.caption && <figcaption class="mt-3 px-1 text-sm font-semibold text-ink-soft">{b.caption}</figcaption>}
+        </figure>
+      ) : b.type === "imageText" ? (
+        <div class:list={["grid items-center gap-8 lg:gap-16", b.hasImage && "lg:grid-cols-2"]}>
+          {b.hasImage && (
+            <img class:list={["w-full rounded-3xl shadow-[var(--shadow-soft)]", b.right && "lg:order-2"]} src={b.src} srcset={b.srcset} sizes={b.srcset ? "(min-width: 1024px) 50vw, 100vw" : undefined} alt={b.alt} width={b.width} height={b.height} loading="lazy" decoding="async" />
+          )}
+          <div class="min-w-0">
+            {b.heading && <h2 class="h-section">{b.heading}</h2>}
+            {b.html && <div class:list={["hero-copy measure space-y-5 text-lg leading-relaxed lg:text-[1.1875rem]", b.heading && "mt-6"]} set:html={b.html} />}
+          </div>
+        </div>
+      ) : b.type === "gallery" ? (
+        <Gallery items={b.photos} layout="masonry" id={`${id}-gallery-${b.i}`} />
+      ) : b.type === "quote" ? (
+        <figure class="measure mx-auto border-l-4 border-magenta pl-6 lg:pl-8">
+          <blockquote class="font-[family-name:var(--font-display)] text-2xl italic leading-snug lg:text-3xl"><p>“{b.text}”</p></blockquote>
+          {b.author && <figcaption class="mt-4 font-bold text-magenta-deep">— {b.author}</figcaption>}
+        </figure>
+      ) : b.type === "buttons" ? (
+        <div class="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          {b.buttons.map((x: any) => (
+            <a href={x.href} class:list={["btn", x.primary ? "btn-primary" : "btn-secondary"]} {...linkAttrs(x.href)}>{x.label}<Icon name="arrow" size={20} /></a>
+          ))}
+        </div>
+      ) : b.type === "video" ? (
+        <a href={b.href} target="_blank" rel="noopener" class="card card-hover flex max-w-xl items-center gap-5 !p-6">
+          <span class="inline-flex size-14 shrink-0 items-center justify-center rounded-full bg-magenta text-white" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5.5v13l11-6.5-11-6.5Z" /></svg>
+          </span>
+          <span class="min-w-0">
+            <span class="block text-lg font-extrabold">{b.title}</span>
+            <span class="text-ink-soft">{b.isYoutube ? "Watch on YouTube" : "Watch the video"} (opens in a new tab)</span>
+          </span>
+        </a>
+      ) : null
+    ))}
+  </div>
+)}

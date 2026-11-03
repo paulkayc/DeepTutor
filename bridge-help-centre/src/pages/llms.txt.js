@@ -5,6 +5,7 @@ import { site, nav } from "../config/site.js";
 import { services } from "../data/services.js";
 import { vision, mission, director } from "../data/about.js";
 import { events } from "../data/events.js";
+import { pages } from "../data/pages.js";
 
 export function GET() {
   const url = (p) => new URL(p, site.url).href;
@@ -37,6 +38,7 @@ export function GET() {
     "",
     "## Pages",
     ...nav.map((n) => `- [${n.label}](${url(n.href)})`),
+    ...pages.map((p) => `- [${p.title}](${url(p.href)})${p.description ? ": " + p.description : ""}`),
     ...(site.privacyPolicyReady ? [`- [Privacy Policy](${url(site.privacyPolicyUrl)})`] : []),
     "",
   ];

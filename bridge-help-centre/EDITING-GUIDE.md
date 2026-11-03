@@ -14,8 +14,10 @@ Every time you click **Save**, the live website (www.thebridgehelpcentre.org) up
 | **Contact details, hours and bank details** | Phone/WhatsApp, email, opening hours, address, forms, bank details, social media links |
 | **Impact numbers** | The counting numbers on the Home page |
 | **Home page top photo** | The big photo at the top of the Home page |
+| **Extra pages** | New pages you build yourself from blocks (text, photos, buttons…) |
+| **Home page extra sections** | Extra blocks on the Home page, below "Moments from Our Work" |
 
-Bigger changes (new pages or sections, colours, layout, the five service descriptions) need a
+Changes to colours, the layout of the existing pages, or the five service descriptions need a
 developer or Claude.
 
 ## Signing in (first time)
@@ -55,6 +57,29 @@ The Home page shows the first 8 photos. To change the order, drag the photos up 
 1. Click **Contact details, hours and bank details**.
 2. Change the text you need.
 3. Click **Save**.
+
+### Add a new page
+1. Click **Extra pages**, then **Add an entry** (or **New**).
+2. Type the **Page title**, for example "Holiday Camp 2026". The title becomes the web address:
+   www.thebridgehelpcentre.org/holiday-camp-2026/
+3. Leave **Show this page on the website** switched on. Tick **Show in the top menu** if it should
+   appear at the top (up to 2 extra pages fit there; every page is listed at the bottom of the site).
+4. Under **Page content**, click **Add** and choose a block: Heading, Text, Photo, Photo beside text,
+   Photo gallery, Quote, Buttons or Video link. Add as many as you like and drag them into order.
+5. Click **Save**. After about 2 minutes the page is live.
+
+Open **Example page** in the list to see every kind of block. It is switched off, so it never shows
+on the website. To hide a page without deleting it, switch off **Show this page on the website**.
+
+### Add a section to the Home page
+Click **Home page extra sections**, add blocks the same way, and click **Save**. They appear below
+"Moments from Our Work".
+
+### Writing in a Text block
+- Leave an empty line to start a new paragraph.
+- Start a line with `- ` to make a bullet point.
+- Put `**two stars**` around words to make them **bold**.
+- Web addresses and email addresses become clickable by themselves.
 
 ## Good to know
 

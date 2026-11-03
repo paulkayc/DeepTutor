@@ -9,6 +9,87 @@ media:
   categories: [image]
   rename: safe
 
+components:
+  # The building blocks for extra pages and Home page extra sections.
+  pageBlocks:
+    label: Content blocks
+    type: block
+    list: true
+    blocks:
+      - name: heading
+        label: Heading
+        fields:
+          - { name: text, label: Heading, type: string }
+      - name: text
+        label: Text
+        fields:
+          - name: text
+            label: Text
+            description: "Leave an empty line between paragraphs. Start a line with - for a bullet. Put **two stars** around words for bold. Web links become clickable."
+            type: text
+      - name: image
+        label: Photo
+        fields:
+          - { name: src, label: Photo, type: image }
+          - { name: alt, label: "Describe the photo (for blind visitors)", type: text }
+          - { name: caption, label: Caption (optional), type: string }
+          - { name: wide, label: Full width, type: boolean }
+      - name: imageText
+        label: Photo beside text
+        fields:
+          - { name: src, label: Photo, type: image }
+          - { name: alt, label: "Describe the photo (for blind visitors)", type: text }
+          - { name: heading, label: Heading (optional), type: string }
+          - { name: text, label: Text, type: text, description: "Same tips as the Text block." }
+          - name: imageSide
+            label: Photo on the
+            type: select
+            options:
+              values:
+                - { value: left, label: Left }
+                - { value: right, label: Right }
+      - name: gallery
+        label: Photo gallery
+        fields:
+          - name: photos
+            label: Photos
+            type: object
+            list: true
+            fields:
+              - { name: src, label: Photo, type: image }
+              - { name: alt, label: "Describe the photo (for blind visitors)", type: text }
+              - { name: caption, label: Caption (optional), type: string }
+      - name: quote
+        label: Quote
+        fields:
+          - { name: text, label: Quote, type: text }
+          - { name: author, label: "Who said it (optional)", type: string }
+      - name: buttons
+        label: Buttons
+        fields:
+          - name: buttons
+            label: Buttons
+            type: object
+            list: true
+            fields:
+              - { name: label, label: "Button text (e.g. Register now)", type: string }
+              - name: link
+                label: Link
+                description: "A web address (https://…), a page on this site (e.g. /contact/), or WhatsApp: https://wa.me/2349026433052"
+                type: string
+              - name: style
+                label: Style
+                type: select
+                options:
+                  values:
+                    - { value: primary, label: "Pink (main)" }
+                    - { value: secondary, label: "White (second)" }
+      - name: video
+        label: Video link
+        fields:
+          - { name: title, label: "Title (e.g. Highlights from our outreach)", type: string }
+          - { name: link, label: "YouTube or Facebook video link", type: string }
+
 content:
   # ---------------------------------------------------------------- events
   - name: events
@@ -219,3 +300,46 @@ content:
         label: Bing Webmaster Tools code (optional)
         description: "Only needed if you verify with the \"HTML Meta Tag\" method. Copy only the code inside content=\"…\"."
         type: string
+
+  # ----------------------------------------------------------- extra pages
+  - name: pages
+    label: Extra pages
+    description: "New pages for the website. The page title becomes its web address, e.g. \"Holiday Camp\" → www.thebridgehelpcentre.org/holiday-camp/. Open \"Example page\" to see every kind of block."
+    type: collection
+    path: bridge-help-centre/src/content/pages
+    format: json
+    filename: "{fields.title}.json"
+    fields:
+      - { name: title, label: Page title, type: string, required: true }
+      - name: published
+        label: Show this page on the website
+        description: Switch off to hide the page without deleting it.
+        type: boolean
+        default: true
+      - name: showInMenu
+        label: Show in the top menu
+        description: "Up to 2 extra pages fit in the top menu. Every page is also listed at the bottom of the website."
+        type: boolean
+      - { name: menuLabel, label: "Short name for the menu (optional, e.g. Partners)", type: string }
+      - { name: subtitle, label: "Short introduction under the title (optional)", type: text }
+      - name: description
+        label: "Summary for Google (optional)"
+        description: "One or two sentences that Google shows under the page title in search results."
+        type: text
+      - { name: image, label: "Photo or flyer beside the title (optional)", type: image }
+      - { name: imageAlt, label: "Describe that photo (for blind visitors)", type: text }
+      - name: blocks
+        label: Page content
+        component: pageBlocks
+
+  # ------------------------------------------------- home page extra sections
+  - name: homeSections
+    label: Home page extra sections
+    description: "Extra content shown on the Home page, below \"Moments from Our Work\"."
+    type: file
+    path: bridge-help-centre/src/content/home-sections.json
+    format: json
+    fields:
+      - name: sections
+        label: Sections
+        component: pageBlocks

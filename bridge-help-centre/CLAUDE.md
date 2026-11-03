@@ -25,6 +25,12 @@ When the owner sends images, crop/optimise them (WebP, sensible size), place the
   — events, gallery, about (director, story, vision, mission, team), contact (phone, email, hours,
   address, forms, bank, social), stats, home (top photo). Edit these JSON files for content changes,
   keep their keys unchanged, and keep `cms/.pages.yml` in step if you add or rename a field.
+- **Extra pages** (staff page builder): one JSON file per page in `src/content/pages/` (file name = web
+  address), rendered by `src/pages/[slug].astro` with `src/components/Blocks.astro`. Home page extra
+  sections: `src/content/home-sections.json`. Block types: heading, text, image, imageText, gallery,
+  quote, buttons, video (see `components.pageBlocks` in `cms/.pages.yml`). Text is formatted by
+  `src/lib/rich-text.js` (escaped; paragraphs, - bullets, **bold**, auto-links). Menus come from
+  `src/data/pages.js` (`menu`, `footerLinks`): up to 2 extra pages in the top menu, all in the footer.
 - `src/data/*.js` read and tidy the JSON (and hold services and values, which are not in the editor).
 - Colours, logo, website address, navigation: `src/config/site.js`
 - Pages: `src/pages/`; shared pieces: `src/components/`; styles: `src/styles/global.css`
