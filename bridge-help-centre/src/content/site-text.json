@@ -14,5 +14,28 @@
     "registrationText": "A registered social enterprise for child and youth development in Nigeria (RC Number: 9403557).",
     "copyrightText": "© {year} The Bridge Help Centre. All rights reserved.",
     "privacyLabel": "Privacy Policy"
+  },
+  "pages": {
+    "home": {
+      "menuLabel": "Home"
+    },
+    "about": {
+      "menuLabel": "About Us",
+      "heading": "About The Bridge Help Centre",
+      "subtitle": "A social enterprise for child and youth development in Nigeria, equipping children and young people to thrive academically, psychologically, socially, and personally."
+    },
+    "programmes": {
+      "menuLabel": "Our Programmes",
+      "heading": "Our Programmes"
+    },
+    "getInvolved": {
+      "menuLabel": "Get Involved",
+      "heading": "Get Involved"
+    },
+    "contact": {
+      "menuLabel": "Contact Us",
+      "heading": "Contact Us",
+      "subtitle": "We would love to hear from you."
+    }
   }
 }

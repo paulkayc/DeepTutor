@@ -45,6 +45,20 @@ export const ctaText = {
   callLabel: pick(c.callLabel, "Or call us:"),
 };
 
+// Page names: menu label (also the browser-tab title), big heading and the line under it.
+const pg = site.pages || {};
+const page = (key, menu, heading, subtitle = "") => ({
+  menuLabel: pick(pg[key]?.menuLabel, menu),
+  heading: pick(pg[key]?.heading, heading),
+  subtitle: pg[key] && "subtitle" in pg[key] ? clean(pg[key].subtitle) : subtitle,
+});
+export const pageText = {
+  about: page("about", "About Us", "About The Bridge Help Centre"),
+  programmes: page("programmes", "Our Programmes", "Our Programmes"),
+  getInvolved: page("getInvolved", "Get Involved", "Get Involved"),
+  contact: page("contact", "Contact Us", "Contact Us", "We would love to hear from you."),
+};
+
 const f = site.footer || {};
 const year = String(new Date().getFullYear());
 export const footerText = {

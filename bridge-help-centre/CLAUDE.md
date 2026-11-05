@@ -32,7 +32,8 @@ When the owner sends images, crop/optimise them (WebP, sensible size), place the
   `src/lib/rich-text.js` (escaped; paragraphs, - bullets, **bold**, auto-links). Menus come from
   `src/data/pages.js` (`menu`, `footerLinks`): up to 2 extra pages in the top menu, all in the footer.
 - Home page headings/texts (hero, quote, Our Impact heading+photo, director/upcoming/gallery headings):
-  `src/content/home-text.json`; pink contact band and footer texts/quick links: `src/content/site-text.json`.
+  `src/content/home-text.json`; pink contact band, footer texts/quick links and page names (menu labels, page
+  hero titles/subtitles; addresses fixed): `src/content/site-text.json` (`nav` in site.js reads the labels).
   Read via `src/data/text.js`, where empty values fall back to the original wording.
 - Our Services: `src/content/services.json` (editor → "Our Services"); each service keeps a hidden fixed `id`
   (its /programmes/#id link, used by programmes.astro audience links). `src/data/services.js` numbers them.

@@ -6,15 +6,17 @@ import Media from "../components/Media.astro";
 import Icon from "../components/Icon.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { story, vision, mission, values, team } from "../data/about.js";
+import { pageText } from "../data/text.js";
+const t = pageText.about;
 const isPlaceholder = (t: string) => t.trim().startsWith("[");
 ---
 <Base
-  title="About Us"
+  title={t.menuLabel}
   description="The story, vision, mission and team of The Bridge Help Centre in Umuahia, Abia State, led by Director Mrs. Amarachi Ikonne."
 >
   <PageHero
-    title="About The Bridge Help Centre"
-    subtitle="A social enterprise for child and youth development in Nigeria, equipping children and young people to thrive academically, psychologically, socially, and personally."
+    title={t.heading}
+    subtitle={t.subtitle || undefined}
   />
 
   <!-- Our Story -->

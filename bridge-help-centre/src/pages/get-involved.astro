@@ -5,6 +5,8 @@ import Icon from "../components/Icon.astro";
 import { srcsetFor } from "../lib/images.js";
 import { site, whatsappLink } from "../config/site.js";
 import { canEmbedForm, formLink } from "../lib/forms.js";
+import { pageText } from "../data/text.js";
+const t = pageText.getInvolved;
 // Google Forms show inside the page; any other form service opens in a new tab.
 const embedForm = [site.getInvolvedFormEmbed, site.getInvolvedForm].find((u) => canEmbedForm(u));
 const formHref = formLink(site.getInvolvedForm) || formLink(site.getInvolvedFormEmbed);
@@ -19,10 +21,10 @@ const ways = [
 const bank = site.supportDetails;
 ---
 <Base
-  title="Get Involved"
+  title={t.menuLabel}
   description="Volunteer, partner, mentor or support The Bridge Help Centre in Umuahia, Abia State and help children and young people in Nigeria thrive."
 >
-  <PageHero title="Get Involved">
+  <PageHero title={t.heading} subtitle={t.subtitle || undefined}>
     <a slot="aside" href="/images/events/call-for-volunteers.webp" target="_blank" rel="noopener" class="mx-auto block max-w-md overflow-hidden rounded-3xl shadow-[var(--shadow-lift)] transition hover:-translate-y-1 lg:max-w-none" title="Open full size">
       <img
         src="/images/events/call-for-volunteers.webp"

@@ -26,6 +26,7 @@
 
 import contact from "../content/contact.json" with { type: "json" };
 import settings from "../content/settings.json" with { type: "json" };
+import siteText from "../content/site-text.json" with { type: "json" };
 
 const clean = (v) => (typeof v === "string" ? v.trim() : "");
 // "0902 643 3052" → "2349026433052" (Nigerian numbers written with a leading 0).
@@ -134,12 +135,16 @@ export const site = {
 };
 
 /* ---- Navigation (order matters) ------------------------------------- */
+/* Menu names can be changed in the editor ("Footer and contact band" → Page names);
+   the web addresses stay fixed. Empty names fall back to these defaults. */
+const pageNames = siteText.pages || {};
+const label = (key, fallback) => clean(pageNames[key]?.menuLabel) || fallback;
 export const nav = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/about/" },
-  { label: "Our Programmes", href: "/programmes/" },
-  { label: "Get Involved", href: "/get-involved/" },
-  { label: "Contact Us", href: "/contact/" },
+  { label: label("home", "Home"), href: "/" },
+  { label: label("about", "About Us"), href: "/about/" },
+  { label: label("programmes", "Our Programmes"), href: "/programmes/" },
+  { label: label("getInvolved", "Get Involved"), href: "/get-involved/" },
+  { label: label("contact", "Contact Us"), href: "/contact/" },
 ];
 
 /* ---- Link helpers --------------------------------------------------- */

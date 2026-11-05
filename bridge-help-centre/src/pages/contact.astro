@@ -3,14 +3,16 @@ import Base from "../layouts/Base.astro";
 import PageHero from "../components/PageHero.astro";
 import Icon from "../components/Icon.astro";
 import { site, whatsappLink, telLink } from "../config/site.js";
+import { pageText } from "../data/text.js";
+const t = pageText.contact;
 const firstHours = site.hoursText.split(" | ")[0];
 const pageDescription = `Call or WhatsApp ${site.phone.display}, email ${site.email}, or visit us at ${site.address}.` + (firstHours ? ` Open ${firstHours}.` : "");
 ---
 <Base
-  title="Contact Us"
+  title={t.menuLabel}
   description={pageDescription}
 >
-  <PageHero title="Contact Us" subtitle="We would love to hear from you." />
+  <PageHero title={t.heading} subtitle={t.subtitle || undefined} />
 
   <section class="section" aria-label="Contact details and map">
     <div class="container-site grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">

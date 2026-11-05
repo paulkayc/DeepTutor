@@ -8,6 +8,8 @@ import { srcsetFor } from "../lib/images.js";
 import CtaBand from "../components/CtaBand.astro";
 import { whatsappLink } from "../config/site.js";
 import { services, servicesIntro } from "../data/services.js";
+import { pageText } from "../data/text.js";
+const t = pageText.programmes;
 
 // Header flyer: "My Why, My Focus, My Future" (1 Oct 2026). Shows a "Past programme" tag after its date.
 const flyerDate = "2026-10-01";
@@ -38,10 +40,10 @@ const audiences = [
 ];
 ---
 <Base
-  title="Our Programmes"
+  title={t.menuLabel}
   description="Counselling, mentorship and life skills, special education and learning support, school outreaches and youth empowerment in Umuahia, Abia State and across Nigeria."
 >
-  <PageHero title="Our Programmes" subtitle={servicesIntro}>
+  <PageHero title={t.heading} subtitle={servicesIntro}>
     <a slot="aside" href="/images/gallery/my-why-my-focus-flyer.webp" target="_blank" rel="noopener" class="relative mx-auto block max-w-md overflow-hidden rounded-3xl shadow-[var(--shadow-lift)] transition hover:-translate-y-1 lg:max-w-none" title="Open full size">
       {flyerIsPast && (
         <span class="absolute left-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-sm font-extrabold uppercase tracking-wider text-ink shadow-[var(--shadow-soft)]">

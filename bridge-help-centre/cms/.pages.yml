@@ -261,12 +261,50 @@ content:
 
   # -------------------------------------------------- footer and contact band
   - name: siteText
-    label: Footer and contact band
-    description: "The pink \"Let's walk this journey together\" band and the footer at the bottom of every page. A box left empty goes back to the original wording."
+    label: Page names, footer and contact band
+    description: "Page names in the menu and page titles, the pink \"Let's walk this journey together\" band and the footer at the bottom of every page. A box left empty goes back to the original wording."
     type: file
     path: bridge-help-centre/src/content/site-text.json
     format: json
     fields:
+      - name: pages
+        label: Page names
+        description: "The names in the top menu and footer (also shown on the browser tab), and the big title at the top of each page. The web addresses stay the same."
+        type: object
+        fields:
+          - name: home
+            label: Home
+            type: object
+            fields:
+              - { name: menuLabel, label: Name in the menu, type: string }
+          - name: about
+            label: About Us
+            type: object
+            fields:
+              - { name: menuLabel, label: Name in the menu, type: string }
+              - { name: heading, label: Big title at the top of the page, type: string }
+              - { name: subtitle, label: Line under the title (optional), type: text }
+          - name: programmes
+            label: Our Programmes
+            description: "The line under the title is the introduction in \"Our Services\"."
+            type: object
+            fields:
+              - { name: menuLabel, label: Name in the menu, type: string }
+              - { name: heading, label: Big title at the top of the page, type: string }
+          - name: getInvolved
+            label: Get Involved
+            type: object
+            fields:
+              - { name: menuLabel, label: Name in the menu, type: string }
+              - { name: heading, label: Big title at the top of the page, type: string }
+              - { name: subtitle, label: Line under the title (optional), type: text }
+          - name: contact
+            label: Contact Us
+            type: object
+            fields:
+              - { name: menuLabel, label: Name in the menu, type: string }
+              - { name: heading, label: Big title at the top of the page, type: string }
+              - { name: subtitle, label: Line under the title (optional), type: text }
       - name: cta
         label: Pink contact band
         type: object
