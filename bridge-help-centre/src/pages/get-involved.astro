@@ -4,6 +4,10 @@ import PageHero from "../components/PageHero.astro";
 import Icon from "../components/Icon.astro";
 import { srcsetFor } from "../lib/images.js";
 import { site, whatsappLink } from "../config/site.js";
+import { canEmbedForm, formLink } from "../lib/forms.js";
+// Google Forms show inside the page; any other form service opens in a new tab.
+const embedForm = [site.getInvolvedFormEmbed, site.getInvolvedForm].find((u) => canEmbedForm(u));
+const formHref = formLink(site.getInvolvedForm) || formLink(site.getInvolvedFormEmbed);
 
 /* Kept deliberately short — the owner asked for a clean page with little text. */
 const ways = [
@@ -90,23 +94,31 @@ const bank = site.supportDetails;
   <section class="section" aria-labelledby="form-heading" id="interest-form">
     <div class="container-site mx-auto max-w-3xl">
       <h2 id="form-heading" class="h-section text-center">Tell us how you'd like to help</h2>
-      <p class="mb-8 mt-4 text-center text-sm text-ink-soft">
-        Having trouble with the form? <a href={site.getInvolvedForm} target="_blank" rel="noopener" class="link">Open it in a new tab</a>.
-        The form is provided by Google, which may set cookies. <a href={site.privacyPolicyUrl} class="link">Privacy Policy</a>
-      </p>
-      <div class="card relative overflow-hidden !p-0">
-        <div class="absolute inset-x-0 top-0 flex flex-col items-center gap-3 px-6 pt-16 text-center" aria-hidden="true">
-          <span class="icon-badge"><Icon name="file" size={28} /></span>
-          <p class="font-semibold">Loading the form…</p>
-          <p class="text-sm text-ink-soft">If it doesn't appear, use the "Open it in a new tab" link above.</p>
+      {embedForm ? (
+        <>
+          <p class="mb-8 mt-4 text-center text-sm text-ink-soft">
+            Having trouble with the form? <a href={formHref || embedForm} target="_blank" rel="noopener" class="link">Open it in a new tab</a>.
+            The form is provided by Google, which may set cookies. <a href={site.privacyPolicyUrl} class="link">Privacy Policy</a>
+          </p>
+          <div class="card relative overflow-hidden !p-0">
+            <div class="absolute inset-x-0 top-0 flex flex-col items-center gap-3 px-6 pt-16 text-center" aria-hidden="true">
+              <span class="icon-badge"><Icon name="file" size={28} /></span>
+              <p class="font-semibold">Loading the form…</p>
+              <p class="text-sm text-ink-soft">If it doesn't appear, use the "Open it in a new tab" link above.</p>
+            </div>
+            <iframe
+              src={embedForm}
+              title="Get Involved form (Google Forms)"
+              class="relative block h-[1150px] w-full border-0 sm:h-[1000px]"
+              loading="lazy"
+            >Loading…</iframe>
+          </div>
+        </>
+      ) : formHref && (
+        <div class="mt-8 flex justify-center">
+          <a href={formHref} target="_blank" rel="noopener" class="btn btn-primary"><Icon name="file" size={22} />Open the form<span class="sr-only"> (opens in a new tab)</span></a>
         </div>
-        <iframe
-          src={site.getInvolvedFormEmbed || site.getInvolvedForm}
-          title="Get Involved form (Google Forms)"
-          class="relative block h-[1150px] w-full border-0 sm:h-[1000px]"
-          loading="lazy"
-        >Loading…</iframe>
-      </div>
+      )}
     </div>
   </section>
 

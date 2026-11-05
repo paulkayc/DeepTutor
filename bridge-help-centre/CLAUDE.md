@@ -63,6 +63,8 @@ then republish that folder to the same artifact URL (index.html as the page, eve
   Home), optional Google/Bing verification meta tags from settings.json, and `/llms.txt` (a summary for
   AI assistants, built from the content files).
   Adding any other third-party script, font, iframe or form service requires updating security-headers.mjs.
+- Forms: `src/lib/forms.js` decides how a form link is shown. Google Forms (docs.google.com, forms.gle)
+  are embedded; any other form link (e.g. Lovable) becomes a button that opens it in a new tab.
 - Privacy Policy is the centre's own wording (src/pages/privacy.astro). Do not invent policy text.
 - Past events hide themselves; the Upcoming section disappears when no future events exist.
 - Official domain: https://www.thebridgehelpcentre.org (with www; the bare domain redirects to it). Owner confirmed photo consent for children (30 Oct 2026).

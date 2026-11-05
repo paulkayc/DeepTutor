@@ -135,7 +135,10 @@ content:
             label: About the speaker (one box per paragraph, optional)
             type: text
             list: true
-          - { name: registerForm, label: "Registration form link (e.g. https://forms.gle/...)", type: string }
+          - name: registerForm
+            label: "Registration form link (e.g. https://forms.gle/...)"
+            description: "Any form link works. Google Forms open inside the page; other forms (e.g. Lovable) open in a new tab from the Register button."
+            type: string
           - name: registerFormEmbed
             label: Registration form embed link (optional)
             description: "In Google Forms: Send → the < > tab → copy only the address inside src=\"…\" (it ends in embedded=true)."
@@ -232,7 +235,10 @@ content:
           - { name: street, label: Street, type: string }
           - { name: city, label: City, type: string }
           - { name: state, label: State, type: string }
-      - { name: getInvolvedForm, label: "Get Involved form link (e.g. https://forms.gle/...)", type: string }
+      - name: getInvolvedForm
+        label: "Get Involved form link (e.g. https://forms.gle/...)"
+        description: "Any form link works. Google Forms show inside the page; other forms open in a new tab from an \"Open the form\" button."
+        type: string
       - name: getInvolvedFormEmbed
         label: Get Involved form embed link
         description: "In Google Forms: Send → the < > tab → copy only the address inside src=\"…\" (it ends in embedded=true)."
