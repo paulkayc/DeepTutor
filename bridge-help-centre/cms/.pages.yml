@@ -136,12 +136,12 @@ content:
             type: text
             list: true
           - name: registerForm
-            label: "Registration form link (e.g. https://forms.gle/...)"
-            description: "Any form link works. Google Forms open inside the page; other forms (e.g. Lovable) open in a new tab from the Register button."
+            label: "Registration form link (optional)"
+            description: "Paste the link to any online form (e.g. Lovable, Google Forms, Jotform). Visitors open it from the \"Register with our form\" button. Leave empty to show only the WhatsApp button."
             type: string
           - name: registerFormEmbed
-            label: Registration form embed link (optional)
-            description: "In Google Forms: Send → the < > tab → copy only the address inside src=\"…\" (it ends in embedded=true)."
+            label: Google Forms embed link (optional, Google Forms only)
+            description: "Only for Google Forms that should appear inside the page. In Google Forms: Send → the < > tab → copy only the address inside src=\"…\". Leave empty otherwise."
             type: string
 
   # --------------------------------------------------------------- gallery
@@ -236,12 +236,12 @@ content:
           - { name: city, label: City, type: string }
           - { name: state, label: State, type: string }
       - name: getInvolvedForm
-        label: "Get Involved form link (e.g. https://forms.gle/...)"
-        description: "Any form link works. Google Forms show inside the page; other forms open in a new tab from an \"Open the form\" button."
+        label: "Get Involved form link (optional)"
+        description: "Paste the link to any online form (e.g. Lovable, Google Forms, Jotform). Visitors open it from an \"Open the form\" button on the Get Involved page. Leave empty to hide that section."
         type: string
       - name: getInvolvedFormEmbed
-        label: Get Involved form embed link
-        description: "In Google Forms: Send → the < > tab → copy only the address inside src=\"…\" (it ends in embedded=true)."
+        label: Google Forms embed link (optional, Google Forms only)
+        description: "Only for a Google Form that should appear inside the page. Leave empty otherwise."
         type: string
       - name: bank
         label: Bank details (Get Involved page — leave the account number empty to hide them)

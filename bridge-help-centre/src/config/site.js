@@ -99,11 +99,10 @@ export const site = {
   // Opens the address in Google Maps (directions on phones).
   mapLink: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(mapQuery),
 
-  // Get Involved page: the centre's Google Form.
-  //  - getInvolvedForm: the link to the form (opens in a new tab).
-  //  - getInvolvedFormEmbed: optional. For the most reliable in-page form, paste
-  //    the embed link here: in Google Forms press Send → the < > tab → copy only
-  //    the address inside src="…" (it ends in "embedded=true").
+  // Get Involved page form (set in the editor; see src/lib/forms.js).
+  //  - getInvolvedForm: link to any online form (opens in a new tab).
+  //  - getInvolvedFormEmbed: optional, Google Forms only, to show it inside the page.
+  //  Both empty: the form section is hidden.
   getInvolvedForm: clean(contact.getInvolvedForm),
   getInvolvedFormEmbed: clean(contact.getInvolvedFormEmbed),
 
