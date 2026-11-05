@@ -8,7 +8,7 @@ Every time you click **Save**, the live website (www.thebridgehelpcentre.org) up
 
 | In the editor | What it changes on the website |
 | --- | --- |
-| **Upcoming programmes** | Events on the Home page (date, flyer, slideshow, speaker, registration form) |
+| **Upcoming programs** | Events on the Home page (date, flyer, slideshow, speaker, registration form) |
 | **Gallery** | Photos in "Moments from Our Work" on the Home page |
 | **About Us and Director** | Meet Our Director (Home), Our Story, Vision, Mission and Our Team (About Us) |
 | **Contact details, hours and bank details** | Phone/WhatsApp, email, opening hours, address, forms, bank details, social media links |
@@ -16,7 +16,7 @@ Every time you click **Save**, the live website (www.thebridgehelpcentre.org) up
 | **Home page top photo** | The big photo at the top of the Home page |
 | **Home page text** | Headline, paragraphs, button, quote, Our Impact heading and photo, section headings |
 | **Page names, footer and contact band** | Page names in the menu, the big title on each page, the pink "Let's walk this journey together" band and the footer |
-| **Our Services** | The service cards on the Home page, the Our Programmes page and the footer |
+| **Our Services** | The service cards on the Home page, the Our Programs page and the footer |
 | **Extra pages** | New pages you build yourself from blocks (text, photos, buttons…) |
 | **Home page extra sections** | Extra blocks on the Home page, below "Moments from Our Work" |
 
@@ -33,17 +33,17 @@ Changes to colours or the layout of the existing pages need a developer or Claud
 
 ## Everyday tasks
 
-### Add an upcoming programme
-1. Click **Upcoming programmes**.
+### Add an upcoming program
+1. Click **Upcoming programs**.
 2. Click the **Add** button (+) at the bottom of the list.
 3. Fill in the title, date, time, location and a short description.
 4. Under **Main image or flyer**, click to upload the flyer from your computer or phone.
 5. Optional: add the Google Form link so people can register.
 6. Click **Save** (top right).
 
-Past programmes disappear from the website by themselves the day after they happen, so you don't need
-to delete them. The first programme that has **Slideshow images** is shown as a slideshow; any other
-upcoming programmes appear as cards below it.
+Past programs disappear from the website by themselves the day after they happen, so you don't need
+to delete them. The first program that has **Slideshow images** is shown as a slideshow; any other
+upcoming programs appear as cards below it.
 
 ### Add a photo to the gallery
 1. Click **Gallery**, then the **Add** button (+).

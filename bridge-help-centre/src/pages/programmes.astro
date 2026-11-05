@@ -9,9 +9,9 @@ import CtaBand from "../components/CtaBand.astro";
 import { whatsappLink } from "../config/site.js";
 import { services, servicesIntro } from "../data/services.js";
 import { pageText } from "../data/text.js";
-const t = pageText.programmes;
+const t = pageText.programs;
 
-// Header flyer: "My Why, My Focus, My Future" (1 Oct 2026). Shows a "Past programme" tag after its date.
+// Header flyer: "My Why, My Focus, My Future" (1 Oct 2026). Shows a "Past program" tag after its date.
 const flyerDate = "2026-10-01";
 const flyerIsPast = flyerDate < new Date().toISOString().slice(0, 10);
 
@@ -28,12 +28,12 @@ const audiences = [
     icon: "school",
     text: "Bring outreaches, educational talks, career guidance and teacher training to your students and staff.",
     href: "#school-development",
-    link: "Explore our school programmes",
+    link: "Explore our school programs",
   },
   {
     title: "For Communities & Partners",
     icon: "community",
-    text: "Run leadership, safety and girls' programmes with us for young people who need it most.",
+    text: "Run leadership, safety and girls' programs with us for young people who need it most.",
     href: "#community",
     link: "Explore youth and community empowerment",
   },
@@ -47,14 +47,14 @@ const audiences = [
     <a slot="aside" href="/images/gallery/my-why-my-focus-flyer.webp" target="_blank" rel="noopener" class="relative mx-auto block max-w-md overflow-hidden rounded-3xl shadow-[var(--shadow-lift)] transition hover:-translate-y-1 lg:max-w-none" title="Open full size">
       {flyerIsPast && (
         <span class="absolute left-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-sm font-extrabold uppercase tracking-wider text-ink shadow-[var(--shadow-soft)]">
-          <span class="size-2 rounded-full bg-ink-soft" aria-hidden="true"></span>Past programme
+          <span class="size-2 rounded-full bg-ink-soft" aria-hidden="true"></span>Past program
         </span>
       )}
       <img
         src="/images/gallery/my-why-my-focus-flyer.webp"
         srcset={srcsetFor("/images/gallery/my-why-my-focus-flyer.webp")}
         sizes="(min-width: 1024px) 40vw, (min-width: 448px) 28rem, 100vw"
-        alt="Flyer for 'My Why, My Focus, My Future', a student development programme for ages 10 to 18 with facilitator Amara Ikonne: understanding why I am in school, developing focus, and taking ownership of my future. 1st October 2026, 11 AM on Google Meet. Contact 09026433052. This programme has already taken place."
+        alt="Flyer for 'My Why, My Focus, My Future', a student development program for ages 10 to 18 with facilitator Amara Ikonne: understanding why I am in school, developing focus, and taking ownership of my future. 1st October 2026, 11 AM on Google Meet. Contact 09026433052. This program has already taken place."
         width="1080"
         height="1080"
         fetchpriority="high"
@@ -65,7 +65,7 @@ const audiences = [
   </PageHero>
 
   <!-- Sticky in-page navigation -->
-  <nav aria-label="Programmes on this page" class="sticky top-20 z-20 border-b-2 border-blue-tint bg-white/95 backdrop-blur lg:top-24">
+  <nav aria-label="Programs on this page" class="sticky top-20 z-20 border-b-2 border-blue-tint bg-white/95 backdrop-blur lg:top-24">
     <ul class="container-site flex gap-2 overflow-x-auto py-3 [scrollbar-width:thin]">
       {services.map((s) => (
         <li class="shrink-0">
@@ -82,11 +82,11 @@ const audiences = [
       <div class:list={["container-site grid items-center gap-12 lg:gap-20", s.image && "lg:grid-cols-2"]}>
         {s.image && (
           <div class:list={["reveal", i % 2 === 1 && "lg:order-2"]}>
-            <Media src={s.image} alt={s.imageAlt} label={`Programme ${s.number} photo`} size="1200 × 900 px" hint={s.imageHint} ratio="4 / 3" class="shadow-[var(--shadow-soft)]" />
+            <Media src={s.image} alt={s.imageAlt} label={`Program ${s.number} photo`} size="1200 × 900 px" hint={s.imageHint} ratio="4 / 3" class="shadow-[var(--shadow-soft)]" />
           </div>
         )}
         <div class:list={["reveal", !s.image && "max-w-3xl"]}>
-          <p class="eyebrow">Programme {s.number}</p>
+          <p class="eyebrow">Program {s.number}</p>
           <h2 id={`${s.id}-heading`} class="h-section">{s.name}</h2>
           {s.bullets.length > 0 ? (
             <ul class="tick-list mt-8 text-lg">

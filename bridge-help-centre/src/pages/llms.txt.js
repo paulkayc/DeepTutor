@@ -28,7 +28,7 @@ export function GET() {
     mission,
     "",
     ...(director.name ? ["## Leadership", `- ${director.name}, Director`, ""] : []),
-    ...(upcoming.length ? ["## Upcoming programmes", ...upcoming.map((e) => `- ${e.date}${e.time ? " " + e.time : ""}: ${e.title}${e.location ? " (" + e.location + ")" : ""}${e.price ? ", " + e.price : ""}`), ""] : []),
+    ...(upcoming.length ? ["## Upcoming programs", ...upcoming.map((e) => `- ${e.date}${e.time ? " " + e.time : ""}: ${e.title}${e.location ? " (" + e.location + ")" : ""}${e.price ? ", " + e.price : ""}`), ""] : []),
     "## Contact",
     `- Phone / WhatsApp: ${site.phone.display} (${site.phone.international})`,
     `- Email: ${site.email}`,

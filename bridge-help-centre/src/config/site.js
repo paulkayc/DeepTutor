@@ -13,9 +13,9 @@
    Home page photos ......................... src/data/home.js
    Director, story, vision, mission, values,
    team ..................................... src/data/about.js
-   Services / programmes (+ photos) ......... src/content/services.json
+   Services / programs (+ photos) ......... src/content/services.json
    Impact numbers ........................... src/data/stats.js
-   Upcoming programme (+ slideshow) ......... src/data/events.js
+   Upcoming program (+ slideshow) ......... src/data/events.js
    Gallery photos ........................... src/data/gallery.js
    Images ................................... public/images/
 
@@ -142,7 +142,7 @@ const label = (key, fallback) => clean(pageNames[key]?.menuLabel) || fallback;
 export const nav = [
   { label: label("home", "Home"), href: "/" },
   { label: label("about", "About Us"), href: "/about/" },
-  { label: label("programmes", "Our Programmes"), href: "/programmes/" },
+  { label: label("programs", "Our Programs"), href: "/programmes/" },
   { label: label("getInvolved", "Get Involved"), href: "/get-involved/" },
   { label: label("contact", "Contact Us"), href: "/contact/" },
 ];

@@ -1,4 +1,4 @@
-/* OUR SERVICES — used on Home (cards), Our Programmes (full sections), the
+/* OUR SERVICES — used on Home (cards), Our Programs (full sections), the
    footer, search-engine details and /llms.txt.
    The services are stored in src/content/services.json and changed with the
    online editor (Pages CMS → "Our Services"). The wording is the client's own
@@ -42,5 +42,5 @@ export const services = (data.services || [])
     };
   });
 
-// Short introduction shown under "Our Services" and on Our Programmes (client wording).
+// Short introduction shown under "Our Services" and on Our Programs (client wording).
 export const servicesIntro = clean(data.intro);

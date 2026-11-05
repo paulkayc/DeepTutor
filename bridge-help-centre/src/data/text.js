@@ -22,7 +22,7 @@ export const homeText = {
     line2Italic: pick(h.line2Italic, "tomorrow."),
     paragraph1: clean(h.paragraph1),
     paragraph2: clean(h.paragraph2),
-    buttonLabel: pick(h.buttonLabel, "Explore Our Programmes"),
+    buttonLabel: pick(h.buttonLabel, "Explore Our Programs"),
     buttonLink: safeLink(h.buttonLink, "/programmes/"),
   },
   servicesHeading: pick(home.servicesHeading, "Our Services"),
@@ -33,7 +33,7 @@ export const homeText = {
     imageAlt: clean(home.impact?.imageAlt),
   },
   directorHeading: pick(home.directorHeading, "Meet the Director"),
-  upcomingHeading: pick(home.upcomingHeading, "Upcoming Programmes"),
+  upcomingHeading: pick(home.upcomingHeading, "Upcoming Programs"),
   galleryHeading: pick(home.galleryHeading, "Moments from Our Work"),
 };
 
@@ -54,7 +54,7 @@ const page = (key, menu, heading, subtitle = "") => ({
 });
 export const pageText = {
   about: page("about", "About Us", "About The Bridge Help Centre"),
-  programmes: page("programmes", "Our Programmes", "Our Programmes"),
+  programs: page("programs", "Our Programs", "Our Programs"),
   getInvolved: page("getInvolved", "Get Involved", "Get Involved"),
   contact: page("contact", "Contact Us", "Contact Us", "We would love to hear from you."),
 };

@@ -93,14 +93,14 @@ components:
 content:
   # ---------------------------------------------------------------- events
   - name: events
-    label: Upcoming programmes
+    label: Upcoming programs
     description: Events shown on the Home page. Past events hide themselves automatically.
     type: file
     path: bridge-help-centre/src/content/events.json
     format: json
     fields:
       - name: events
-        label: Programmes
+        label: Programs
         type: object
         list:
           collapsible:
@@ -172,13 +172,13 @@ content:
   # -------------------------------------------------------------- services
   - name: services
     label: Our Services
-    description: "The services on the Home page, the Our Programmes page and the footer. This is the centre's approved wording, so change it only with the owner's approval."
+    description: "The services on the Home page, the Our Programs page and the footer. This is the centre's approved wording, so change it only with the owner's approval."
     type: file
     path: bridge-help-centre/src/content/services.json
     format: json
     fields:
       - name: intro
-        label: Introduction (under "Our Services" and at the top of Our Programmes)
+        label: Introduction (under "Our Services" and at the top of Our Programs)
         type: text
       - name: services
         label: Services
@@ -193,10 +193,10 @@ content:
           - { name: name, label: Service name, type: string, required: true }
           - { name: summary, label: "Short description (Home page card)", type: text }
           - name: bullets
-            label: What it includes (one box per point, Our Programmes page)
+            label: What it includes (one box per point, Our Programs page)
             type: string
             list: true
-          - { name: image, label: "Photo (Our Programmes page, landscape works best)", type: image }
+          - { name: image, label: "Photo (Our Programs page, landscape works best)", type: image }
           - { name: imageAlt, label: "Describe the photo (for blind visitors)", type: text }
           - name: icon
             label: Icon
@@ -237,7 +237,7 @@ content:
           - { name: line2Italic, label: "Headline line 2, italic part (e.g. tomorrow.)", type: string }
           - { name: paragraph1, label: First paragraph (larger), type: text }
           - { name: paragraph2, label: Second paragraph, type: text }
-          - { name: buttonLabel, label: "Button text (e.g. Explore Our Programmes)", type: string }
+          - { name: buttonLabel, label: "Button text (e.g. Explore Our Programs)", type: string }
           - { name: buttonLink, label: "Button link (e.g. /programmes/)", type: string }
       - { name: servicesHeading, label: "\"Our Services\" heading", type: string }
       - name: quote
@@ -256,7 +256,7 @@ content:
           - { name: image, label: "Photo under the numbers (remove to hide it)", type: image }
           - { name: imageAlt, label: "Describe the photo (for blind visitors)", type: text }
       - { name: directorHeading, label: "\"Meet the Director\" heading", type: string }
-      - { name: upcomingHeading, label: "\"Upcoming Programmes\" heading", type: string }
+      - { name: upcomingHeading, label: "\"Upcoming Programs\" heading", type: string }
       - { name: galleryHeading, label: "\"Moments from Our Work\" heading", type: string }
 
   # -------------------------------------------------- footer and contact band
@@ -284,8 +284,8 @@ content:
               - { name: menuLabel, label: Name in the menu, type: string }
               - { name: heading, label: Big title at the top of the page, type: string }
               - { name: subtitle, label: Line under the title (optional), type: text }
-          - name: programmes
-            label: Our Programmes
+          - name: programs
+            label: Our Programs
             description: "The line under the title is the introduction in \"Our Services\"."
             type: object
             fields:

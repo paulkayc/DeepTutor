@@ -1,7 +1,7 @@
 /* UPCOMING PROGRAMMES
    ---------------------------------------------------------------------
    The events themselves are stored in src/content/events.json, which the
-   online editor (Pages CMS → "Upcoming programmes") changes. This file only
+   online editor (Pages CMS → "Upcoming programs") changes. This file only
    tidies them up for the pages.
    date is "YYYY-MM-DD". The next upcoming event that has slides is featured
    on the Home page; past events hide themselves.

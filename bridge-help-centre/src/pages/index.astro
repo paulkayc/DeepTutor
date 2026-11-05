@@ -23,13 +23,13 @@ const impactSize = homeText.impact.image ? sizeOf(homeText.impact.image) : undef
 
 const today = new Date().toISOString().slice(0, 10);
 const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 3);
-// The next programme that has slideshow images is featured; otherwise show the next three as cards.
+// The next program that has slideshow images is featured; otherwise show the next three as cards.
 const heroSrcset = srcsetFor(home.heroImage, home.heroImageWidth);
 const featured = events.filter((e) => e.date >= today && e.slides?.length).sort((a, b) => a.date.localeCompare(b.date))[0];
-// Other upcoming programmes appear as cards below the featured slideshow.
+// Other upcoming programs appear as cards below the featured slideshow.
 const others = featured ? upcoming.filter((e) => e !== featured) : [];
 
-// Search engines: describe upcoming programmes as events (Nigeria time, UTC+1).
+// Search engines: describe upcoming programs as events (Nigeria time, UTC+1).
 const toIsoTime = (t = "") => {
   const m = t.trim().match(/^(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m\.?$/i);
   if (!m) return "";
@@ -60,7 +60,7 @@ const eventSchema = upcoming.map((e) => {
 <Base
   preloadImage={{ src: home.heroImage, srcset: heroSrcset }}
   title="The Bridge Help Centre"
-  description="The Bridge Help Centre in Umuahia, Abia State supports children and young people in Nigeria through counselling, mentorship, learning support and school programmes."
+  description="The Bridge Help Centre in Umuahia, Abia State supports children and young people in Nigeria through counselling, mentorship, learning support and school programs."
   extraSchema={eventSchema}
 >
   <!-- 1. Hero: full-width photo band at the very top, headline below it -->
@@ -158,7 +158,7 @@ const eventSchema = upcoming.map((e) => {
   <!-- 6. Meet the Director -->
   <DirectorBlock />
 
-  <!-- 7. Upcoming programmes (hidden when there is nothing coming up) -->
+  <!-- 7. Upcoming programs (hidden when there is nothing coming up) -->
   {(featured || upcoming.length > 0) && (
     <section class="section" aria-labelledby="upcoming-heading" data-upcoming-section>
       <div class="container-site">

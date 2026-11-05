@@ -11,6 +11,6 @@
     { "_block": "heading", "text": "A heading" },
     { "_block": "text", "text": "A paragraph of text. Leave an empty line to start a new paragraph.\n\nWrite **two stars** on each side of words to make them bold. Web links such as https://www.thebridgehelpcentre.org become clickable by themselves.\n\n- Start a line with a dash\n- to make a bullet list" },
     { "_block": "quote", "text": "A short quote from a parent, teacher or young person (with their permission).", "author": "Name, role" },
-    { "_block": "buttons", "buttons": [ { "label": "Chat on WhatsApp", "link": "https://wa.me/2349026433052", "style": "primary" }, { "label": "See our programmes", "link": "/programmes/", "style": "secondary" } ] }
+    { "_block": "buttons", "buttons": [ { "label": "Chat on WhatsApp", "link": "https://wa.me/2349026433052", "style": "primary" }, { "label": "See our programs", "link": "/programmes/", "style": "secondary" } ] }
   ]
 }

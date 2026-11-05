@@ -127,7 +127,7 @@ $$("[data-gallery]").forEach((gallery) => {
   });
 });
 
-/* ---- Programme slideshow: crossfades every 6s; pauses on hover/focus,
+/* ---- Program slideshow: crossfades every 6s; pauses on hover/focus,
         off-screen, or via the pause button; still for reduced motion ---- */
 $$("[data-slideshow]").forEach((show) => {
   const slides = $$("[data-slide]", show);
@@ -174,7 +174,7 @@ $$("[data-slideshow]").forEach((show) => {
   update();
 });
 
-/* ---- Past programmes: hide them in the visitor's browser once their
+/* ---- Past programs: hide them in the visitor's browser once their
         date has passed, even if the site hasn't been rebuilt ---------- */
 const today = new Date().toISOString().slice(0, 10);
 $$("[data-event-date]").forEach((el) => {

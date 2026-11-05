@@ -12,7 +12,7 @@ const register = whatsappLink(`Hello, I would like to register interest in ${eve
 ---
 <article class:list={["card card-hover reveal flex !p-0 overflow-hidden", layout === "row" ? "flex-col md:flex-row" : "flex-col"]} data-event-date={event.date}>
   <div class:list={["relative", layout === "row" && "md:w-[42%] md:shrink-0"]}>
-    <Media src={event.image} alt={`Photo for ${event.title}`} label="Programme photo" size="1200 × 800 px" ratio={event.imageRatio || "3 / 2"} class="!rounded-none !border-x-0 !border-t-0" width={1200} height={800} />
+    <Media src={event.image} alt={`Photo for ${event.title}`} label="Program photo" size="1200 × 800 px" ratio={event.imageRatio || "3 / 2"} class="!rounded-none !border-x-0 !border-t-0" width={1200} height={800} />
     <p class="date-badge absolute left-4 top-4" aria-hidden="true"><span class="text-2xl">{day}</span><span class="mt-1 text-xs uppercase tracking-wider">{month}</span></p>
   </div>
   <div class="flex flex-1 flex-col p-7">

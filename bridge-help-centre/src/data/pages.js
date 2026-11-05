@@ -7,7 +7,7 @@ import { nav } from "../config/site.js";
 const files = import.meta.glob("../content/pages/*.json", { eager: true, import: "default" });
 
 // Addresses already used by the website's own pages and files.
-const reserved = new Set(["about", "programmes", "get-involved", "contact", "privacy", "404", "llms", "sitemap", "robots", "images", "fonts", "_astro", "index"]);
+const reserved = new Set(["about", "programs", "get-involved", "contact", "privacy", "404", "llms", "sitemap", "robots", "images", "fonts", "_astro", "index"]);
 const clean = (v) => (typeof v === "string" ? v.trim() : "");
 
 /** @typedef {{ slug: string, href: string, title: string, description: string, subtitle: string,
