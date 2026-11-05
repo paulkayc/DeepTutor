@@ -1,7 +1,17 @@
 # Working agreement — The Bridge Help Centre website
 
-The site owner is not a programmer and manages this website through plain-English requests.
-Claude handles all design, content, image placement and technical changes.
+This website belongs to The Bridge Help Centre. Its team is not technical and manages the site
+through plain-English requests to Claude, plus the online editor (Pages CMS) for everyday content.
+Claude handles all design, layout and technical changes. The website files live in the
+`bridge-help-centre/` folder of the GitHub repository; run every npm command inside that folder.
+
+## How changes go live
+- Netlify builds and publishes the site automatically whenever the `main` branch changes
+  (about 2–3 minutes). If a build fails, the previous version stays online.
+- Staff also edit content in Pages CMS (https://app.pagescms.org), which saves straight to `main`.
+  Always start from the latest `main` (pull first) so their edits are never overwritten.
+- Work on a branch and open a pull request; Netlify shows a "Deploy Preview" link on the pull request
+  so the team can check the change before merging. Only push straight to `main` if the team asks.
 
 ## For every change request
 1. **Inspect first.** Read the relevant files (and screenshot the affected pages if the change is visual)
@@ -11,10 +21,13 @@ Claude handles all design, content, image placement and technical changes.
    owner asks for them to change. Client text marked `// exact` must stay word for word.
 4. **Check the work:** run `npm run build` (in this folder) and confirm it succeeds; for visual changes,
    check the page at phone (390 px) and desktop (1440 px) widths.
-5. **Commit and push** to the working branch so the owner can `git pull` the update.
+5. **Commit, push and open a pull request** (see "How changes go live"), and give the team the
+   Deploy Preview link and the pull request link.
 6. **Report back in plain English:** what changed and where to see it on the site, plus simple step-by-step
-   instructions for anything the owner must do themselves (e.g. `git pull`, restart `npm run dev`,
-   send a photo). Avoid jargon; explain any unavoidable technical term.
+   instructions for anything the team must do themselves (e.g. click "Merge pull request", send a photo).
+   Avoid jargon; explain any unavoidable technical term.
+7. **Content that lives in the editor** (`src/content/*.json`): prefer telling the team where to change it in
+   Pages CMS; if you do edit it, pull first so you start from their latest version.
 
 When a request is ambiguous or would remove content, ask one short question first.
 When the owner sends images, crop/optimise them (WebP, sensible size), place them under
@@ -42,15 +55,9 @@ When the owner sends images, crop/optimise them (WebP, sensible size), place the
 - Pages: `src/pages/`; shared pieces: `src/components/`; styles: `src/styles/global.css`
 - Images: `public/images/` (gallery photos in `public/images/gallery/`)
 
-## Gotcha
-(Only applies while this folder lives inside the DeepTutor repository.) The DeepTutor root `.gitignore` ignores every `data/` folder. This folder's `.gitignore`
-re-includes `src/data/`. Keep that rule, and check `git status` shows new data files before committing.
-
-## Online preview for the owner
-The owner previews the site through a private claude.ai link instead of running it locally:
-https://claude.ai/artifact/EHmkxctig8LKz9GzX9CdZx
-After each change: `npm run build`, then `python3 tools/make-preview.py dist <scratch folder>`,
-then republish that folder to the same artifact URL (index.html as the page, every other file in `files`).
+## Previewing locally
+`npm install` once, then `npm run dev` (http://localhost:4321). `npm run build` must pass before any
+push; `npx astro check` (with @astrojs/check installed) should report 0 errors.
 
 ## Audit notes (keep these working)
 - Photos: `tools/optimise-images.mjs` runs before every build (npm `prebuild`). It shrinks photos over
