@@ -14,11 +14,11 @@ Every time you click **Save**, the live website (www.thebridgehelpcentre.org) up
 | **Contact details, hours and bank details** | Phone/WhatsApp, email, opening hours, address, forms, bank details, social media links |
 | **Impact numbers** | The counting numbers on the Home page |
 | **Home page top photo** | The big photo at the top of the Home page |
+| **Our Services** | The service cards on the Home page, the Our Programmes page and the footer |
 | **Extra pages** | New pages you build yourself from blocks (text, photos, buttons…) |
 | **Home page extra sections** | Extra blocks on the Home page, below "Moments from Our Work" |
 
-Changes to colours, the layout of the existing pages, or the five service descriptions need a
-developer or Claude.
+Changes to colours or the layout of the existing pages need a developer or Claude.
 
 ## Signing in (first time)
 

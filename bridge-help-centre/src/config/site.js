@@ -13,7 +13,7 @@
    Home page photos ......................... src/data/home.js
    Director, story, vision, mission, values,
    team ..................................... src/data/about.js
-   Services / programmes (+ photos) ......... src/data/services.js
+   Services / programmes (+ photos) ......... src/content/services.json
    Impact numbers ........................... src/data/stats.js
    Upcoming programme (+ slideshow) ......... src/data/events.js
    Gallery photos ........................... src/data/gallery.js

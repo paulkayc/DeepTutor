@@ -39,7 +39,8 @@ It saves to the JSON files below; the website reads them at build time.
 | Home page top photo | `src/content/home.json` |
 | Extra pages built by staff (one file per page) | `src/content/pages/*.json` |
 | Home page extra sections | `src/content/home-sections.json` |
-| The five services (client's exact wording) and values | `src/data/services.js`, `src/data/about.js` |
+| Our Services (client's approved wording) | `src/content/services.json` |
+| Values | `src/data/about.js` |
 | Brand colours, logo, website address, navigation | `src/config/site.js` |
 | Editor settings (Pages CMS) | `cms/.pages.yml` → copied to the repository root as `.pages.yml` |
 

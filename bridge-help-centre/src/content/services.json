@@ -1,0 +1,76 @@
+{
+  "intro": "Our services include school and student development programs, Individual and group counselling, Mentorship and life skills development, Special education and Learning support and community youth empowerment.",
+  "services": [
+    {
+      "id": "school-development",
+      "name": "School & Student Development Services",
+      "summary": "Outreaches, training and career guidance for schools and students.",
+      "icon": "school",
+      "bullets": [
+        "School outreaches",
+        "Student development programs",
+        "Training programs",
+        "Educational talks",
+        "Career guidance",
+        "Awareness and sensitisation programs",
+        "Teachers training program"
+      ],
+      "image": "/images/programmes/school-development.webp",
+      "imageAlt": "A Bridge Help Centre facilitator in a red T-shirt leading a school outreach talk with a packed classroom of students"
+    },
+    {
+      "id": "counselling",
+      "name": "Individual and School Counselling services",
+      "summary": "A safe place to talk, be heard, and receive guidance.",
+      "icon": "counselling",
+      "bullets": [
+        "Support young people dealing with difficult emotions, experiences, and life changes.",
+        "A safe place to talk, be heard, and receive guidance"
+      ],
+      "image": "/images/programmes/counselling.webp",
+      "imageAlt": "A Bridge Help Centre speaker with a microphone talking warmly with pupils at an outdoor school session"
+    },
+    {
+      "id": "learning-support",
+      "name": "Special Education and Learning Support",
+      "summary": "Consultation, assessments and training for parents and teachers.",
+      "icon": "learning",
+      "bullets": [
+        "Consultation",
+        "Assessments",
+        "Training for parents and teachers"
+      ],
+      "image": "/images/programmes/learning-support.webp",
+      "imageAlt": "Secondary school students smiling and writing notes at their desks during a learning session"
+    },
+    {
+      "id": "mentorship",
+      "name": "Mentorship & Life Skills",
+      "summary": "Confidence, goal setting, communication and responsibility.",
+      "icon": "mentorship",
+      "bullets": [
+        "Build confidence.",
+        "Goal setting and planning for the future.",
+        "Communicate better and develop problem-solving skills",
+        "Take responsibility & use technology responsibly"
+      ],
+      "image": "/images/programmes/mentorship.webp",
+      "imageAlt": "Students in light-blue uniforms listening closely during a Bridge Help Centre mentoring session"
+    },
+    {
+      "id": "community",
+      "name": "Youth And Community empowerment",
+      "summary": "Leadership, outreach and programs for girls and underserved young people.",
+      "icon": "community",
+      "bullets": [
+        "Leadership training.",
+        "Community outreach.",
+        "Programs for girls and underserved young people.",
+        "Education and safety awareness campaigns.",
+        "Partnerships with Individuals, communities & government agencies."
+      ],
+      "image": "/images/programmes/community.webp",
+      "imageAlt": "Hundreds of pupils seated outdoors for a Bridge Help Centre community outreach"
+    }
+  ]
+}

@@ -77,16 +77,20 @@ const audiences = [
 
   {services.map((s, i) => (
     <section id={s.id} class:list={["section scroll-mt-40", i % 2 === 1 && "section-tint"]} aria-labelledby={`${s.id}-heading`}>
-      <div class="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-        <div class:list={["reveal", i % 2 === 1 && "lg:order-2"]}>
-          <Media src={s.image} alt={s.imageAlt} label={`Programme ${s.number} photo`} size="1200 × 900 px" hint={s.imageHint} ratio="4 / 3" class="shadow-[var(--shadow-soft)]" />
-        </div>
-        <div class="reveal">
+      <div class:list={["container-site grid items-center gap-12 lg:gap-20", s.image && "lg:grid-cols-2"]}>
+        {s.image && (
+          <div class:list={["reveal", i % 2 === 1 && "lg:order-2"]}>
+            <Media src={s.image} alt={s.imageAlt} label={`Programme ${s.number} photo`} size="1200 × 900 px" hint={s.imageHint} ratio="4 / 3" class="shadow-[var(--shadow-soft)]" />
+          </div>
+        )}
+        <div class:list={["reveal", !s.image && "max-w-3xl"]}>
           <p class="eyebrow">Programme {s.number}</p>
           <h2 id={`${s.id}-heading`} class="h-section">{s.name}</h2>
-          <ul class="tick-list mt-8 text-lg">
-            {s.bullets.map((b) => <li>{b}</li>)}
-          </ul>
+          {s.bullets.length > 0 ? (
+            <ul class="tick-list mt-8 text-lg">
+              {s.bullets.map((b) => <li>{b}</li>)}
+            </ul>
+          ) : s.summary && <p class="lead mt-6">{s.summary}</p>}
           <a href={whatsappLink(`Hello, I would like to enquire about ${s.name}`)} target="_blank" rel="noopener" class="btn btn-primary mt-10">
             <Icon name="whatsapp" />Enquire on WhatsApp<span class="sr-only"> about {s.name}</span>
           </a>

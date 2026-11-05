@@ -169,6 +169,56 @@ content:
             options:
               values: ["School Outreach", "Counselling", "Mentorship", "Community"]
 
+  # -------------------------------------------------------------- services
+  - name: services
+    label: Our Services
+    description: "The services on the Home page, the Our Programmes page and the footer. This is the centre's approved wording, so change it only with the owner's approval."
+    type: file
+    path: bridge-help-centre/src/content/services.json
+    format: json
+    fields:
+      - name: intro
+        label: Introduction (under "Our Services" and at the top of Our Programmes)
+        type: text
+      - name: services
+        label: Services
+        description: "Drag to change the order. They are numbered 01, 02… automatically."
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.name}"
+        fields:
+          - { name: id, label: Web link, type: string, hidden: true }
+          - { name: name, label: Service name, type: string, required: true }
+          - { name: summary, label: "Short description (Home page card)", type: text }
+          - name: bullets
+            label: What it includes (one box per point, Our Programmes page)
+            type: string
+            list: true
+          - { name: image, label: "Photo (Our Programmes page, landscape works best)", type: image }
+          - { name: imageAlt, label: "Describe the photo (for blind visitors)", type: text }
+          - name: icon
+            label: Icon
+            type: select
+            options:
+              values:
+                - { value: school, label: "School / graduation cap" }
+                - { value: counselling, label: "Speech bubble with heart" }
+                - { value: learning, label: "Book" }
+                - { value: mentorship, label: "Target with arrow" }
+                - { value: community, label: "Group of people" }
+                - { value: heart, label: "Heart" }
+                - { value: handshake, label: "Handshake" }
+                - { value: shield, label: "Shield" }
+                - { value: spark, label: "Spark" }
+                - { value: compass, label: "Compass" }
+                - { value: volunteer, label: "Person with plus" }
+                - { value: target, label: "Target" }
+                - { value: gift, label: "Gift" }
+                - { value: user, label: "Person" }
+                - { value: calendar, label: "Calendar" }
+
   # ----------------------------------------------------------------- about
   - name: about
     label: About Us and Director

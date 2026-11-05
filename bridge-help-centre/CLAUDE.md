@@ -31,7 +31,9 @@ When the owner sends images, crop/optimise them (WebP, sensible size), place the
   quote, buttons, video (see `components.pageBlocks` in `cms/.pages.yml`). Text is formatted by
   `src/lib/rich-text.js` (escaped; paragraphs, - bullets, **bold**, auto-links). Menus come from
   `src/data/pages.js` (`menu`, `footerLinks`): up to 2 extra pages in the top menu, all in the footer.
-- `src/data/*.js` read and tidy the JSON (and hold services and values, which are not in the editor).
+- Our Services: `src/content/services.json` (editor → "Our Services"); each service keeps a hidden fixed `id`
+  (its /programmes/#id link, used by programmes.astro audience links). `src/data/services.js` numbers them.
+- `src/data/*.js` read and tidy the JSON (and hold the values, which are not in the editor).
 - Colours, logo, website address, navigation: `src/config/site.js`
 - Pages: `src/pages/`; shared pieces: `src/components/`; styles: `src/styles/global.css`
 - Images: `public/images/` (gallery photos in `public/images/gallery/`)
