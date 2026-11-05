@@ -1,13 +1,16 @@
 ---
 import { site, telLink } from "../config/site.js";
-import { footerLinks as nav } from "../data/pages.js";
+import { footerLinks } from "../data/pages.js";
+import { footerText } from "../data/text.js";
+// Staff can set their own quick links in the editor; otherwise the menu pages are listed.
+const nav = footerText.quickLinks.length ? footerText.quickLinks : footerLinks;
 import { services } from "../data/services.js";
 import Icon from "./Icon.astro";
 ---
 <footer class="bg-blue-tint pb-28 text-ink sm:pb-10" data-hide-floats>
   <div class="container-site grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1fr_1.3fr_1.3fr] lg:py-20">
     <nav aria-labelledby="footer-pages">
-      <h2 id="footer-pages" class="text-base font-extrabold">Quick links</h2>
+      <h2 id="footer-pages" class="text-base font-extrabold">{footerText.quickLinksHeading}</h2>
       <ul class="mt-4">
         {nav.map((item) => (
           <li><a href={item.href} class="inline-flex min-h-11 items-center hover:text-magenta-deep hover:underline">{item.label}</a></li>
@@ -16,7 +19,7 @@ import Icon from "./Icon.astro";
     </nav>
 
     <nav aria-labelledby="footer-services">
-      <h2 id="footer-services" class="text-base font-extrabold">Our services</h2>
+      <h2 id="footer-services" class="text-base font-extrabold">{footerText.servicesHeading}</h2>
       <ul class="mt-4">
         {services.map((s) => (
           <li><a href={`/programmes/#${s.id}`} class="inline-flex min-h-11 items-center py-1 leading-snug hover:text-magenta-deep hover:underline">{s.name}</a></li>
@@ -25,7 +28,7 @@ import Icon from "./Icon.astro";
     </nav>
 
     <div>
-      <h2 class="text-base font-extrabold">Contact</h2>
+      <h2 class="text-base font-extrabold">{footerText.contactHeading}</h2>
       <ul class="mt-4 space-y-3">
         <li>
           <a href={telLink} class="inline-flex min-h-11 items-center gap-3 font-semibold hover:text-magenta-deep">
@@ -45,7 +48,7 @@ import Icon from "./Icon.astro";
           </div>
         </li>
       </ul>
-      <h3 class="mt-8 text-base font-extrabold">Follow us</h3>
+      <h3 class="mt-8 text-base font-extrabold">{footerText.followHeading}</h3>
       <ul class="mt-3 flex gap-2" aria-label="Social media">
         {site.social.map((s) => (
           <li>
@@ -59,9 +62,9 @@ import Icon from "./Icon.astro";
   </div>
   <div class="container-site flex flex-col gap-2 border-t border-blue py-6 text-sm sm:flex-row sm:items-center sm:justify-between">
     <div class="space-y-1">
-      <p>A registered social enterprise for child and youth development in Nigeria (RC Number: {site.rcNumber}).</p>
-      <p>© 2026 The Bridge Help Centre. All rights reserved.</p>
+      {footerText.registrationText && <p>{footerText.registrationText}</p>}
+      <p>{footerText.copyrightText}</p>
     </div>
-    <a href={site.privacyPolicyUrl} class="inline-flex min-h-11 items-center underline-offset-4 hover:underline">Privacy Policy</a>
+    <a href={site.privacyPolicyUrl} class="inline-flex min-h-11 items-center underline-offset-4 hover:underline">{footerText.privacyLabel}</a>
   </div>
 </footer>

@@ -40,6 +40,8 @@ It saves to the JSON files below; the website reads them at build time.
 | Extra pages built by staff (one file per page) | `src/content/pages/*.json` |
 | Home page extra sections | `src/content/home-sections.json` |
 | Our Services (client's approved wording) | `src/content/services.json` |
+| Home page headings and texts | `src/content/home-text.json` |
+| Pink contact band and footer | `src/content/site-text.json` |
 | Values | `src/data/about.js` |
 | Brand colours, logo, website address, navigation | `src/config/site.js` |
 | Editor settings (Pages CMS) | `cms/.pages.yml` → copied to the repository root as `.pages.yml` |

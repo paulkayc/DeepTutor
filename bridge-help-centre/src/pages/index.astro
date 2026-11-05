@@ -17,6 +17,9 @@ import { events } from "../data/events.js";
 import { site } from "../config/site.js";
 import Blocks from "../components/Blocks.astro";
 import { homeSections } from "../data/home-sections.js";
+import { homeText } from "../data/text.js";
+import { sizeOf } from "../lib/images.js";
+const impactSize = homeText.impact.image ? sizeOf(homeText.impact.image) : undefined;
 
 const today = new Date().toISOString().slice(0, 10);
 const upcoming = events.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 3);
@@ -87,18 +90,22 @@ const eventSchema = upcoming.map((e) => {
     <div class="container-site pb-16 pt-10 sm:pt-14 lg:pb-24 lg:pt-16">
       <div class="max-w-4xl">
         <h1 id="hero-heading" class="h-hero">
-          <span><strong>Guiding Lives</strong> <em>today,</em></span>
-          <span class="h-hero-alt"><strong>Building futures</strong> <em>tomorrow.</em></span>
+          <span><strong>{homeText.hero.line1Bold}</strong> <em>{homeText.hero.line1Italic}</em></span>
+          <span class="h-hero-alt"><strong>{homeText.hero.line2Bold}</strong> <em>{homeText.hero.line2Italic}</em></span>
         </h1>
-        <p class="hero-copy measure mt-8 text-xl font-medium leading-relaxed text-ink lg:text-2xl">
-          A social enterprise for child and youth development in Nigeria, equipping children and young people to thrive academically, psychologically, socially, and personally.
-        </p>
-        <p class="hero-copy measure mt-5 text-lg leading-relaxed text-ink-soft lg:text-xl">
-          We collaborate with parents, schools, communities, and government partners to create nurturing environments where children and young people can learn, grow, and reach their potential.
-        </p>
+        {homeText.hero.paragraph1 && (
+          <p class="hero-copy measure mt-8 text-xl font-medium leading-relaxed text-ink lg:text-2xl">
+            {homeText.hero.paragraph1}
+          </p>
+        )}
+        {homeText.hero.paragraph2 && (
+          <p class="hero-copy measure mt-5 text-lg leading-relaxed text-ink-soft lg:text-xl">
+            {homeText.hero.paragraph2}
+          </p>
+        )}
         <p class="hero-copy measure mt-5 text-lg leading-relaxed text-ink-soft lg:text-xl">{servicesIntro}</p>
         <div class="mt-10 flex flex-col gap-4 sm:flex-row">
-          <a href="/programmes/" class="btn btn-primary">Explore Our Programmes<Icon name="arrow" size={20} /></a>
+          <a href={homeText.hero.buttonLink} class="btn btn-primary">{homeText.hero.buttonLabel}<Icon name="arrow" size={20} /></a>
         </div>
       </div>
     </div>
@@ -111,7 +118,7 @@ const eventSchema = upcoming.map((e) => {
   <!-- 2. Our Services (directly under the hero) -->
   <section id="our-services" class="section scroll-mt-24" aria-labelledby="services-heading">
     <div class="container-site">
-      <h2 id="services-heading" class="fancy-title mb-10 lg:mb-14">Our Services</h2>
+      <h2 id="services-heading" class="fancy-title mb-10 lg:mb-14">{homeText.servicesHeading}</h2>
       <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-6">
         {services.map((s, i) => (
           <li class:list={["lg:col-span-2", i === 3 && "lg:col-start-2"]}>
@@ -128,21 +135,23 @@ const eventSchema = upcoming.map((e) => {
   <!-- 5. Impact at a glance -->
   <section class="section pt-0 lg:pt-0" aria-labelledby="impact-heading">
     <div class="container-site">
-      <h2 id="impact-heading" class="fancy-title mb-10 lg:mb-14">Our Impact</h2>
+      <h2 id="impact-heading" class="fancy-title mb-10 lg:mb-14">{homeText.impact.heading}</h2>
       <Stats />
-      <div class="reveal mx-auto mt-16 max-w-4xl overflow-hidden rounded-3xl shadow-[var(--shadow-soft)]">
-        <img
-          src="/images/home/impact-students.webp"
-          srcset={srcsetFor("/images/home/impact-students.webp")}
-          sizes="(min-width: 1024px) 56rem, 100vw"
-          alt="Secondary school students in light-blue uniforms smiling and taking notes during a Bridge Help Centre session"
-          width="858"
-          height="588"
-          loading="lazy"
-          decoding="async"
-          class="block h-auto w-full"
-        />
-      </div>
+      {homeText.impact.image && (
+        <div class="reveal mx-auto mt-16 max-w-4xl overflow-hidden rounded-3xl shadow-[var(--shadow-soft)]">
+          <img
+            src={homeText.impact.image}
+            srcset={srcsetFor(homeText.impact.image)}
+            sizes="(min-width: 1024px) 56rem, 100vw"
+            alt={homeText.impact.imageAlt}
+            width={impactSize?.width || 858}
+            height={impactSize?.height || 588}
+            loading="lazy"
+            decoding="async"
+            class="block h-auto w-full"
+          />
+        </div>
+      )}
     </div>
   </section>
 
@@ -153,7 +162,7 @@ const eventSchema = upcoming.map((e) => {
   {(featured || upcoming.length > 0) && (
     <section class="section" aria-labelledby="upcoming-heading" data-upcoming-section>
       <div class="container-site">
-        <SectionHeading title="Upcoming Programmes" id="upcoming-heading" />
+        <SectionHeading title={homeText.upcomingHeading} id="upcoming-heading" />
         {featured ? (
           <>
             <EventSlideshow event={featured} />
@@ -175,7 +184,7 @@ const eventSchema = upcoming.map((e) => {
   <!-- 8. Gallery preview -->
   <section class="section pt-0 lg:pt-0" aria-labelledby="gallery-heading">
     <div class="container-site">
-      <SectionHeading title="Moments from Our Work" id="gallery-heading" />
+      <SectionHeading title={homeText.galleryHeading} id="gallery-heading" />
       <Gallery limit={8} layout="grid" id="home-gallery" />
     </div>
   </section>

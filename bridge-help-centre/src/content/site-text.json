@@ -1,0 +1,18 @@
+{
+  "cta": {
+    "heading": "Let's walk this journey together",
+    "whatsappLabel": "Chat on WhatsApp",
+    "emailLabel": "Email Us",
+    "callLabel": "Or call us:"
+  },
+  "footer": {
+    "quickLinksHeading": "Quick links",
+    "quickLinks": [],
+    "servicesHeading": "Our services",
+    "contactHeading": "Contact",
+    "followHeading": "Follow us",
+    "registrationText": "A registered social enterprise for child and youth development in Nigeria (RC Number: 9403557).",
+    "copyrightText": "© {year} The Bridge Help Centre. All rights reserved.",
+    "privacyLabel": "Privacy Policy"
+  }
+}

@@ -219,6 +219,85 @@ content:
                 - { value: user, label: "Person" }
                 - { value: calendar, label: "Calendar" }
 
+  # ------------------------------------------------------------ home text
+  - name: homeText
+    label: Home page text
+    description: "Headings and texts on the Home page. A box left empty goes back to the original wording."
+    type: file
+    path: bridge-help-centre/src/content/home-text.json
+    format: json
+    fields:
+      - name: hero
+        label: Top of the page (big headline)
+        type: object
+        fields:
+          - { name: line1Bold, label: "Headline line 1, bold part (e.g. Guiding Lives)", type: string }
+          - { name: line1Italic, label: "Headline line 1, italic part (e.g. today,)", type: string }
+          - { name: line2Bold, label: "Headline line 2, bold part (e.g. Building futures)", type: string }
+          - { name: line2Italic, label: "Headline line 2, italic part (e.g. tomorrow.)", type: string }
+          - { name: paragraph1, label: First paragraph (larger), type: text }
+          - { name: paragraph2, label: Second paragraph, type: text }
+          - { name: buttonLabel, label: "Button text (e.g. Explore Our Programmes)", type: string }
+          - { name: buttonLink, label: "Button link (e.g. /programmes/)", type: string }
+      - { name: servicesHeading, label: "\"Our Services\" heading", type: string }
+      - name: quote
+        label: Quote (pink quotation marks, below Our Services)
+        description: Leave the quote empty to hide this section.
+        type: object
+        fields:
+          - { name: text, label: Quote, type: text }
+          - { name: author, label: "Who said it (e.g. The Bridge Help Centre)", type: string }
+      - name: impact
+        label: Our Impact
+        description: "The numbers themselves are under \"Impact numbers\"."
+        type: object
+        fields:
+          - { name: heading, label: Heading, type: string }
+          - { name: image, label: "Photo under the numbers (remove to hide it)", type: image }
+          - { name: imageAlt, label: "Describe the photo (for blind visitors)", type: text }
+      - { name: directorHeading, label: "\"Meet the Director\" heading", type: string }
+      - { name: upcomingHeading, label: "\"Upcoming Programmes\" heading", type: string }
+      - { name: galleryHeading, label: "\"Moments from Our Work\" heading", type: string }
+
+  # -------------------------------------------------- footer and contact band
+  - name: siteText
+    label: Footer and contact band
+    description: "The pink \"Let's walk this journey together\" band and the footer at the bottom of every page. A box left empty goes back to the original wording."
+    type: file
+    path: bridge-help-centre/src/content/site-text.json
+    format: json
+    fields:
+      - name: cta
+        label: Pink contact band
+        type: object
+        fields:
+          - { name: heading, label: "Heading (e.g. Let's walk this journey together)", type: string }
+          - { name: whatsappLabel, label: WhatsApp button text, type: string }
+          - { name: emailLabel, label: Email button text, type: string }
+          - { name: callLabel, label: "Text before the phone number (e.g. Or call us:)", type: string }
+      - name: footer
+        label: Footer
+        type: object
+        fields:
+          - { name: quickLinksHeading, label: "\"Quick links\" heading", type: string }
+          - name: quickLinks
+            label: Quick links
+            description: "Leave this list empty to show the website's pages automatically (recommended). If you add links here, only these are shown."
+            type: object
+            list: true
+            fields:
+              - { name: label, label: "Link text (e.g. About Us)", type: string }
+              - { name: link, label: "Link (e.g. /about/ or https://…)", type: string }
+          - { name: servicesHeading, label: "\"Our services\" heading", type: string }
+          - { name: contactHeading, label: "\"Contact\" heading", type: string }
+          - { name: followHeading, label: "\"Follow us\" heading", type: string }
+          - { name: registrationText, label: Registration line (RC Number), type: text }
+          - name: copyrightText
+            label: Copyright line
+            description: "Write {year} and the current year is filled in automatically."
+            type: string
+          - { name: privacyLabel, label: Privacy Policy link text, type: string }
+
   # ----------------------------------------------------------------- about
   - name: about
     label: About Us and Director
