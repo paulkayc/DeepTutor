@@ -4,64 +4,45 @@ import PageHero from "../components/PageHero.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import Media from "../components/Media.astro";
 import Icon from "../components/Icon.astro";
-import { srcsetFor } from "../lib/images.js";
+import { srcsetFor, sizeOf } from "../lib/images.js";
+import { programsPage } from "../data/programs-page.js";
 import CtaBand from "../components/CtaBand.astro";
 import { whatsappLink } from "../config/site.js";
 import { services, servicesIntro } from "../data/services.js";
 import { pageText } from "../data/text.js";
 const t = pageText.programs;
 
-// Header flyer: "My Why, My Focus, My Future" (1 Oct 2026). Shows a "Past program" tag after its date.
-const flyerDate = "2026-10-01";
-const flyerIsPast = flyerDate < new Date().toISOString().slice(0, 10);
-
-const audiences = [
-  {
-    title: "For Parents",
-    icon: "heart",
-    text: "Worried about your child's learning, feelings or confidence? Start with counselling or learning support.",
-    href: "#counselling",
-    link: "Explore our counselling services",
-  },
-  {
-    title: "For Schools",
-    icon: "school",
-    text: "Bring outreaches, educational talks, career guidance and teacher training to your students and staff.",
-    href: "#school-development",
-    link: "Explore our school programs",
-  },
-  {
-    title: "For Communities & Partners",
-    icon: "community",
-    text: "Run leadership, safety and girls' programs with us for young people who need it most.",
-    href: "#community",
-    link: "Explore youth and community empowerment",
-  },
-];
+// Header flyer and "Who is this for?" cards come from the editor ("Our Programs page").
+const { flyer, audience, programLabel, enquireLabel } = programsPage;
+const flyerIsPast = Boolean(flyer.date) && flyer.date < new Date().toISOString().slice(0, 10);
+const flyerSize = flyer.image ? sizeOf(flyer.image) : undefined;
+const isExternal = (href: string) => /^https?:\/\//i.test(href) && !/thebridgehelpcentre\.org/i.test(href);
 ---
 <Base
   title={t.menuLabel}
   description="Counselling, mentorship and life skills, special education and learning support, school outreaches and youth empowerment in Umuahia, Abia State and across Nigeria."
 >
   <PageHero title={t.heading} subtitle={servicesIntro}>
-    <a slot="aside" href="/images/gallery/my-why-my-focus-flyer.webp" target="_blank" rel="noopener" class="relative mx-auto block max-w-md overflow-hidden rounded-3xl shadow-[var(--shadow-lift)] transition hover:-translate-y-1 lg:max-w-none" title="Open full size">
-      {flyerIsPast && (
-        <span class="absolute left-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-sm font-extrabold uppercase tracking-wider text-ink shadow-[var(--shadow-soft)]">
-          <span class="size-2 rounded-full bg-ink-soft" aria-hidden="true"></span>Past program
-        </span>
-      )}
-      <img
-        src="/images/gallery/my-why-my-focus-flyer.webp"
-        srcset={srcsetFor("/images/gallery/my-why-my-focus-flyer.webp")}
-        sizes="(min-width: 1024px) 40vw, (min-width: 448px) 28rem, 100vw"
-        alt="Flyer for 'My Why, My Focus, My Future', a student development program for ages 10 to 18 with facilitator Amara Ikonne: understanding why I am in school, developing focus, and taking ownership of my future. 1st October 2026, 11 AM on Google Meet. Contact 09026433052. This program has already taken place."
-        width="1080"
-        height="1080"
-        fetchpriority="high"
-        decoding="async"
-        class="block h-auto w-full"
-      />
-    </a>
+    {flyer.image && (
+      <a slot="aside" href={flyer.image} target="_blank" rel="noopener" class="relative mx-auto block max-w-md overflow-hidden rounded-3xl shadow-[var(--shadow-lift)] transition hover:-translate-y-1 lg:max-w-none" title="Open full size">
+        {flyerIsPast && (
+          <span class="absolute left-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-sm font-extrabold uppercase tracking-wider text-ink shadow-[var(--shadow-soft)]">
+            <span class="size-2 rounded-full bg-ink-soft" aria-hidden="true"></span>Past program
+          </span>
+        )}
+        <img
+          src={flyer.image}
+          srcset={srcsetFor(flyer.image)}
+          sizes="(min-width: 1024px) 40vw, (min-width: 448px) 28rem, 100vw"
+          alt={flyer.imageAlt}
+          width={flyerSize?.width || 1080}
+          height={flyerSize?.height || 1080}
+          fetchpriority="high"
+          decoding="async"
+          class="block h-auto w-full"
+        />
+      </a>
+    )}
   </PageHero>
 
   <!-- Sticky in-page navigation -->
@@ -86,37 +67,54 @@ const audiences = [
           </div>
         )}
         <div class:list={["reveal", !s.image && "max-w-3xl"]}>
-          <p class="eyebrow">Program {s.number}</p>
+          <p class="eyebrow">{programLabel} {s.number}</p>
           <h2 id={`${s.id}-heading`} class="h-section">{s.name}</h2>
           {s.bullets.length > 0 ? (
             <ul class="tick-list mt-8 text-lg">
               {s.bullets.map((b) => <li>{b}</li>)}
             </ul>
           ) : s.summary && <p class="lead mt-6">{s.summary}</p>}
-          <a href={whatsappLink(`Hello, I would like to enquire about ${s.name}`)} target="_blank" rel="noopener" class="btn btn-primary mt-10">
-            <Icon name="whatsapp" />Enquire on WhatsApp<span class="sr-only"> about {s.name}</span>
+          {s.buttons.length > 0 && (
+            <ul class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap" aria-label={`${s.name}: choose a program`}>
+              {s.buttons.map((btn) => {
+                const href = btn.link || whatsappLink(`Hello, I would like to know more about the ${btn.label}`);
+                const external = !btn.link || isExternal(btn.link);
+                return (
+                  <li>
+                    <a href={href} class="btn btn-secondary w-full sm:w-auto" {...(external ? { target: "_blank", rel: "noopener" } : {})}>
+                      {btn.label}<Icon name="arrow" size={20} />{!btn.link && <span class="sr-only"> (opens WhatsApp)</span>}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+          <a href={whatsappLink(`Hello, I would like to enquire about ${s.name}`)} target="_blank" rel="noopener" class:list={["btn btn-primary", s.buttons.length ? "mt-6" : "mt-10"]}>
+            <Icon name="whatsapp" />{enquireLabel}<span class="sr-only"> about {s.name}</span>
           </a>
         </div>
       </div>
     </section>
   ))}
 
-  <!-- Who is this for? -->
+  <!-- Who is this for? (hidden when there are no cards) -->
+  {audience.cards.length > 0 && (
   <section class="section" aria-labelledby="who-heading">
     <div class="container-site">
-      <SectionHeading eyebrow="Find your starting point" title="Who is this for?" id="who-heading" />
+      <SectionHeading eyebrow={audience.eyebrow || undefined} title={audience.heading} id="who-heading" />
       <ul class="grid gap-6 md:grid-cols-3">
-        {audiences.map((a) => (
+        {audience.cards.map((a) => (
           <li class="card card-hover reveal flex flex-col">
             <span class="icon-badge"><Icon name={a.icon} size={28} /></span>
             <h3 class="h-sub mt-6">{a.title}</h3>
             <p class="mt-3 text-ink-soft">{a.text}</p>
-            <a href={a.href} class="link-arrow mt-auto pt-5">{a.link}<Icon name="arrow" size={20} /></a>
+            {a.href && a.linkLabel && <a href={a.href} class="link-arrow mt-auto pt-5">{a.linkLabel}<Icon name="arrow" size={20} /></a>}
           </li>
         ))}
       </ul>
     </div>
   </section>
+  )}
 
   <CtaBand />
 </Base>

@@ -21,7 +21,12 @@ const legacyIds = {
 const icons = new Set(["school", "counselling", "learning", "mentorship", "community", "heart", "respect", "shield", "handshake", "spark", "lock", "eye", "target", "volunteer", "compass", "gift", "user", "calendar"]);
 
 const used = new Set();
-/** @type {{ id: string, number: string, name: string, summary: string, icon: string, image: string, imageAlt: string, imageHint: string, bullets: string[] }[]} */
+const safeLink = (v) => {
+  const l = clean(v);
+  return /^(https?:\/\/|\/|#|mailto:|tel:)/i.test(l) ? l : "";
+};
+
+/** @type {{ id: string, number: string, name: string, summary: string, icon: string, image: string, imageAlt: string, imageHint: string, bullets: string[], buttons: { label: string, link: string }[] }[]} */
 export const services = (data.services || [])
   .filter((s) => clean(s?.name))
   .map((s, i) => {
@@ -39,6 +44,11 @@ export const services = (data.services || [])
       imageAlt: clean(s.imageAlt) || `Photo for ${name}`,
       imageHint: `A photo that shows ${name.toLowerCase()} in action.`,
       bullets: (s.bullets || []).map(clean).filter(Boolean),
+      // Extra buttons under the program (e.g. sub-programs). An empty link opens
+      // a WhatsApp enquiry about that button's name.
+      buttons: (s.buttons || [])
+        .filter((b) => clean(b?.label))
+        .map((b) => ({ label: clean(b.label), link: safeLink(b.link) })),
     };
   });
 

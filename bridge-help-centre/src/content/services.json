@@ -16,7 +16,8 @@
         "Teachers training program"
       ],
       "image": "/images/programmes/school-development.webp",
-      "imageAlt": "A Bridge Help Centre facilitator in a red T-shirt leading a school outreach talk with a packed classroom of students"
+      "imageAlt": "A Bridge Help Centre facilitator in a red T-shirt leading a school outreach talk with a packed classroom of students",
+      "buttons": []
     },
     {
       "id": "counselling",
@@ -28,7 +29,8 @@
         "A safe place to talk, be heard, and receive guidance"
       ],
       "image": "/images/programmes/counselling.webp",
-      "imageAlt": "A Bridge Help Centre speaker with a microphone talking warmly with pupils at an outdoor school session"
+      "imageAlt": "A Bridge Help Centre speaker with a microphone talking warmly with pupils at an outdoor school session",
+      "buttons": []
     },
     {
       "id": "learning-support",
@@ -41,7 +43,8 @@
         "Training for parents and teachers"
       ],
       "image": "/images/programmes/learning-support.webp",
-      "imageAlt": "Secondary school students smiling and writing notes at their desks during a learning session"
+      "imageAlt": "Secondary school students smiling and writing notes at their desks during a learning session",
+      "buttons": []
     },
     {
       "id": "mentorship",
@@ -55,7 +58,21 @@
         "Take responsibility & use technology responsibly"
       ],
       "image": "/images/programmes/mentorship.webp",
-      "imageAlt": "Students in light-blue uniforms listening closely during a Bridge Help Centre mentoring session"
+      "imageAlt": "Students in light-blue uniforms listening closely during a Bridge Help Centre mentoring session",
+      "buttons": [
+        {
+          "label": "Boys Mentorship Academy",
+          "link": ""
+        },
+        {
+          "label": "Girls Mentorship Academy",
+          "link": ""
+        },
+        {
+          "label": "One-on-One Mentorship",
+          "link": ""
+        }
+      ]
     },
     {
       "id": "community",
@@ -70,7 +87,8 @@
         "Partnerships with Individuals, communities & government agencies."
       ],
       "image": "/images/programmes/community.webp",
-      "imageAlt": "Hundreds of pupils seated outdoors for a Bridge Help Centre community outreach"
+      "imageAlt": "Hundreds of pupils seated outdoors for a Bridge Help Centre community outreach",
+      "buttons": []
     }
   ]
 }

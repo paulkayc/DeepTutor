@@ -1,0 +1,36 @@
+{
+  "flyer": {
+    "image": "/images/gallery/my-why-my-focus-flyer.webp",
+    "imageAlt": "Flyer for 'My Why, My Focus, My Future', a student development program for ages 10 to 18 with facilitator Amara Ikonne: understanding why I am in school, developing focus, and taking ownership of my future. 1st October 2026, 11 AM on Google Meet. Contact 09026433052. This program has already taken place.",
+    "date": "2026-10-01"
+  },
+  "programLabel": "Program",
+  "enquireLabel": "Enquire on WhatsApp",
+  "audience": {
+    "eyebrow": "Find your starting point",
+    "heading": "Who is this for?",
+    "cards": [
+      {
+        "title": "For Parents",
+        "icon": "heart",
+        "text": "Worried about your child's learning, feelings or confidence? Start with counselling or learning support.",
+        "link": "#counselling",
+        "linkLabel": "Explore our counselling services"
+      },
+      {
+        "title": "For Schools",
+        "icon": "school",
+        "text": "Bring outreaches, educational talks, career guidance and teacher training to your students and staff.",
+        "link": "#school-development",
+        "linkLabel": "Explore our school programs"
+      },
+      {
+        "title": "For Communities & Partners",
+        "icon": "community",
+        "text": "Run leadership, safety and girls' programs with us for young people who need it most.",
+        "link": "#community",
+        "linkLabel": "Explore youth and community empowerment"
+      }
+    ]
+  }
+}

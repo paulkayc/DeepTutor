@@ -196,6 +196,14 @@ content:
             label: What it includes (one box per point, Our Programs page)
             type: string
             list: true
+          - name: buttons
+            label: Buttons under this program (optional, Our Programs page)
+            description: "E.g. Boys Mentorship Academy. Leave the link empty to open a WhatsApp enquiry about that button, or add a link such as /girls-mentorship-academy/ (a page made in Extra pages)."
+            type: object
+            list: true
+            fields:
+              - { name: label, label: Button text, type: string }
+              - { name: link, label: "Link (optional)", type: string }
           - { name: image, label: "Photo (Our Programs page, landscape works best)", type: image }
           - { name: imageAlt, label: "Describe the photo (for blind visitors)", type: text }
           - name: icon
@@ -335,6 +343,63 @@ content:
             description: "Write {year} and the current year is filled in automatically."
             type: string
           - { name: privacyLabel, label: Privacy Policy link text, type: string }
+
+  # ---------------------------------------------------------- programs page
+  - name: programsPage
+    label: Our Programs page
+    description: "The flyer at the top of Our Programs, the labels on each program and the \"Who is this for?\" cards. The programs themselves are in \"Our Services\"."
+    type: file
+    path: bridge-help-centre/src/content/programs-page.json
+    format: json
+    fields:
+      - name: flyer
+        label: Flyer at the top of the page
+        description: Remove the image to hide it.
+        type: object
+        fields:
+          - { name: image, label: Flyer image, type: image }
+          - { name: imageAlt, label: "Describe the flyer (for blind visitors)", type: text }
+          - name: date
+            label: Date of the program on the flyer
+            description: "After this date the flyer shows a \"Past program\" tag. Leave empty for no tag."
+            type: date
+      - { name: programLabel, label: "Word before each number (e.g. Program → \"Program 01\")", type: string }
+      - { name: enquireLabel, label: "WhatsApp button text (e.g. Enquire on WhatsApp)", type: string }
+      - name: audience
+        label: Who is this for?
+        description: Remove all cards to hide this section.
+        type: object
+        fields:
+          - { name: eyebrow, label: "Small line above the heading (optional)", type: string }
+          - { name: heading, label: Heading, type: string }
+          - name: cards
+            label: Cards
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{fields.title}"
+            fields:
+              - { name: title, label: "Title (e.g. For Parents)", type: string, required: true }
+              - { name: text, label: Text, type: text }
+              - { name: linkLabel, label: "Link text (e.g. Explore our counselling services)", type: string }
+              - name: link
+                label: Link
+                description: "A program on this page: # and its web link, e.g. #counselling, #school-development, #learning-support, #mentorship, #community. Or another page, e.g. /contact/."
+                type: string
+              - name: icon
+                label: Icon
+                type: select
+                options:
+                  values:
+                    - { value: heart, label: Heart }
+                    - { value: school, label: "School / graduation cap" }
+                    - { value: community, label: Group of people }
+                    - { value: counselling, label: Speech bubble with heart }
+                    - { value: learning, label: Book }
+                    - { value: mentorship, label: Target with arrow }
+                    - { value: handshake, label: Handshake }
+                    - { value: user, label: Person }
 
   # ----------------------------------------------------------------- about
   - name: about
